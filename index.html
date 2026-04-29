@@ -497,7 +497,75 @@
             max-width: 900px; margin: 0 auto;
         }
         .testimonials .section-header { margin-bottom: 32px; }
-        .testimonial-embed { width: 100%; }
+        .testimonials-list { display: flex; flex-direction: column; gap: 32px; }
+        .testimonial-item { width: 100%; }
+        .testimonial-author {
+            font-size: 13px; font-weight: 600; color: var(--dark-60);
+            letter-spacing: 0.02em; margin-bottom: 10px;
+        }
+
+        /* Card testimonial CTA */
+        .card-testimonial-btn {
+            display: inline-flex; align-items: center; gap: 5px;
+            margin-top: 12px; margin-right: 12px;
+            font-family: 'Geist', sans-serif;
+            font-size: 13px; font-weight: 500;
+            color: var(--dark); background: var(--yellow-light);
+            border: 1px solid rgba(254,170,2,0.25);
+            padding: 6px 12px; border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.3s var(--transition);
+        }
+        .card-testimonial-btn:hover {
+            background: var(--yellow); border-color: var(--yellow);
+            transform: translateY(-1px);
+        }
+        .card-testimonial-btn svg { width: 12px; height: 12px; }
+
+        /* Modal */
+        .modal[hidden] { display: none; }
+        .modal {
+            position: fixed; inset: 0; z-index: 2000;
+            display: flex; align-items: center; justify-content: center;
+            padding: 24px;
+            animation: modalFade 0.25s var(--transition);
+        }
+        @keyframes modalFade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal-backdrop {
+            position: absolute; inset: 0;
+            background: rgba(30,20,0,0.55);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+        .modal-card {
+            position: relative; z-index: 1;
+            background: var(--white);
+            border-radius: 20px;
+            max-width: 680px; width: 100%;
+            max-height: 85vh; overflow-y: auto;
+            padding: 44px 28px 28px;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+        }
+        .modal-close {
+            position: absolute; top: 14px; right: 14px;
+            width: 34px; height: 34px;
+            border: none; background: var(--dark-05);
+            border-radius: 50%; cursor: pointer;
+            font-size: 22px; line-height: 1;
+            color: var(--dark-60);
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.25s var(--transition);
+        }
+        .modal-close:hover { background: var(--dark-10); color: var(--dark); }
+        .modal-title {
+            font-size: 13px; font-weight: 600;
+            color: var(--dark-60); letter-spacing: 0.02em;
+            margin-bottom: 18px; padding-right: 32px;
+        }
+        .modal-body { width: 100%; }
 
         /* ═══ CTA ═══ */
         .cta-section {
@@ -717,10 +785,18 @@
             <div class="section-label">Témoignages</div>
             <h2 class="section-title">Ils en parlent.</h2>
         </div>
-        <div class="testimonial-embed reveal">
-            <div class="senja-embed" data-id="d9693df0-7a06-48f6-809a-1d1c316a8d8d" data-mode="shadow" data-lazyload="false" style="display: block; width: 100%;"></div>
-        </div>
+        <div class="testimonials-list reveal" id="testimonialsList"></div>
     </section>
+
+    <!-- MODALE TÉMOIGNAGE -->
+    <div id="testimonialModal" class="modal" hidden>
+        <div class="modal-backdrop" data-close></div>
+        <div class="modal-card">
+            <button class="modal-close" type="button" aria-label="Fermer" data-close>×</button>
+            <div class="modal-title"></div>
+            <div class="modal-body"></div>
+        </div>
+    </div>
 
     <!-- SECTION 03 — CTA -->
     <section class="cta-section" id="contact">
@@ -767,7 +843,7 @@
             { name:"Thibault Marti", niche:"Accompagnement Business", revenue:"+20k/m", tags:["funnel"], img:"assets/portfolio/Thibault%20Marti.png" },
             { name:"Clipeo", niche:"SaaS IA", revenue:null, tags:["vsl","emails"], img:"assets/portfolio/Clipeo.jpeg" },
             { name:"Mon Avenir En France", niche:"Cabinet d'avocat", revenue:null, tags:["funnel"], img:"" },
-            { name:"Meho Guster", niche:"Ecom SEO · ROAS x40", revenue:null, tags:["funnel"], img:"assets/portfolio/Meho%20Guster.jpg" },
+            { name:"Meho Guster", niche:"Ecom SEO · ROAS x40", revenue:null, tags:["funnel"], img:"assets/portfolio/Meho%20Guster.jpg", testimonialId:"d9693df0-7a06-48f6-809a-1d1c316a8d8d" },
             { name:"Rentabl", niche:"Location voiture premium", revenue:null, tags:["ads"], img:"assets/portfolio/Rentabl.png" },
             { name:"Tom Adrien · SKAALE", niche:"Agence Ecom + Wébinaire", revenue:null, tags:["webinaire","emails"], img:"assets/portfolio/Tom%20Adrien.jpg" },
             { name:"Selly Dorido", niche:"Immopreneurs · Coaching Immo", revenue:null, tags:["emails"], img:"assets/portfolio/Selly%20Doridot.jpg" },
@@ -802,6 +878,9 @@
                     : `<div class="card-initials ${vCls}">${ini}</div>`;
                 const badge = c.revenue ? `<div class="card-badge">${c.revenue}</div>` : '';
                 const link = c.link ? `<a href="${c.link}" target="_blank" class="card-link">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>` : '';
+                const testimonial = c.testimonialId
+                    ? `<button type="button" class="card-testimonial-btn" data-testimonial="${c.testimonialId}" data-name="${c.name.replace(/"/g,'&quot;')}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Voir le témoignage</button>`
+                    : '';
 
                 el.innerHTML = `
                     <div class="card-body">
@@ -814,7 +893,7 @@
                             ${badge}
                         </div>
                         <div class="card-tags">${c.tags.map(t=>`<span class="card-tag">${tagMap[t]}</span>`).join('')}</div>
-                        ${link}
+                        ${testimonial}${link}
                     </div>`;
                 grid.appendChild(el);
                 const d = n * 30;
@@ -847,6 +926,38 @@
                 b.classList.add('active');
                 render(b.dataset.filter);
             });
+        });
+
+        // ──── Témoignages : section + modale ────
+        const testimonialsList = document.getElementById('testimonialsList');
+        clients.filter(c => c.testimonialId).forEach(c => {
+            testimonialsList.insertAdjacentHTML('beforeend', `
+                <div class="testimonial-item">
+                    <div class="testimonial-author">${c.name} · ${c.niche}</div>
+                    <div class="senja-embed" data-id="${c.testimonialId}" data-mode="shadow" data-lazyload="false" style="display: block; width: 100%;"></div>
+                </div>
+            `);
+        });
+
+        const tModal = document.getElementById('testimonialModal');
+        const tBody = tModal.querySelector('.modal-body');
+        const tTitle = tModal.querySelector('.modal-title');
+        function openTestimonial(id, name) {
+            tTitle.textContent = name;
+            tBody.innerHTML = `<div class="senja-embed" data-id="${id}" data-mode="shadow" data-lazyload="false" style="display: block; width: 100%;"></div>`;
+            tModal.removeAttribute('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeTestimonial() {
+            tModal.setAttribute('hidden', '');
+            tBody.innerHTML = '';
+            document.body.style.overflow = '';
+        }
+        tModal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeTestimonial));
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && !tModal.hasAttribute('hidden')) closeTestimonial(); });
+        document.addEventListener('click', e => {
+            const btn = e.target.closest('.card-testimonial-btn');
+            if (btn) openTestimonial(btn.dataset.testimonial, btn.dataset.name);
         });
 
         window.addEventListener('scroll',()=>{
