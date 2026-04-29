@@ -285,6 +285,45 @@
             color: var(--dark); border-color: var(--dark-20);
             background: var(--dark-03);
         }
+
+        /* Hero clients ticker */
+        .hero-clients {
+            position: relative; left: 50%;
+            margin: 56px -50vw 0; width: 100vw;
+            overflow: hidden;
+            mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+            opacity: 0; animation: fadeUp 0.8s var(--transition) 0.85s forwards;
+        }
+        .hero-clients-track {
+            display: flex; gap: 12px;
+            width: max-content;
+            animation: tickerScroll 80s linear infinite;
+        }
+        .hero-client {
+            display: inline-flex; align-items: center; gap: 10px;
+            flex-shrink: 0;
+            padding: 5px 16px 5px 5px;
+            background: var(--white);
+            border: 1px solid var(--dark-05);
+            border-radius: 100px;
+            box-shadow: var(--shadow-sm);
+        }
+        .hero-client-avatar {
+            width: 32px; height: 32px;
+            border-radius: 50%; overflow: hidden;
+            flex-shrink: 0;
+        }
+        .hero-client-avatar img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        .hero-client-avatar .card-initials { font-size: 12px; }
+        .hero-client-name {
+            font-size: 13px; font-weight: 500;
+            color: var(--dark); white-space: nowrap;
+            letter-spacing: -0.01em;
+        }
+
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(24px); }
             to { opacity: 1; transform: translateY(0); }
@@ -379,29 +418,29 @@
             border-color: var(--dark-10);
         }
 
-        .card-visual {
-            width: 100%; height: 190px;
-            position: relative; overflow: hidden;
+        .card-header {
+            display: flex; align-items: center; gap: 14px;
+            margin-bottom: 14px;
         }
-        .card-visual img {
+        .card-avatar {
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            position: relative;
+        }
+        .card-avatar img {
             width: 100%; height: 100%;
             object-fit: cover;
             transition: transform 0.5s var(--transition);
         }
-        .portfolio-card:hover .card-visual img {
-            transform: scale(1.04);
+        .portfolio-card:hover .card-avatar img {
+            transform: scale(1.08);
         }
-
         .card-initials {
             width: 100%; height: 100%;
             display: flex; align-items: center; justify-content: center;
-            font-size: 44px; font-weight: 800; letter-spacing: -0.04em;
-            position: relative;
-        }
-        .card-initials::before {
-            content: '';
-            position: absolute; inset: 0; opacity: 0.04;
-            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000' fill-opacity='1'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2l2 3.5-2 3z'/%3E%3C/g%3E%3C/svg%3E");
+            font-size: 18px; font-weight: 700; letter-spacing: -0.02em;
         }
 
         .v0 { background: #FFF8E7; color: #D49400; }
@@ -411,8 +450,9 @@
         .v4 { background: #FFF0E0; color: #C46A10; }
         .v5 { background: #F0EDE8; color: #7A6F5F; }
 
+        .card-id { flex: 1; min-width: 0; }
         .card-badge {
-            position: absolute; top: 12px; right: 12px;
+            flex-shrink: 0; align-self: center;
             font-size: 11px; font-weight: 600;
             color: var(--dark); background: var(--yellow);
             padding: 4px 11px; border-radius: 100px;
@@ -420,15 +460,16 @@
             letter-spacing: -0.01em;
         }
 
-        .card-body { padding: 18px 20px 20px; }
+        .card-body { padding: 20px; }
         .card-name {
             font-weight: 600; font-size: 15px;
-            letter-spacing: -0.02em; line-height: 1.3;
-            color: var(--dark); margin-bottom: 3px;
+            letter-spacing: -0.02em; line-height: 1.25;
+            color: var(--dark); margin-bottom: 2px;
+            overflow: hidden; text-overflow: ellipsis;
         }
         .card-niche {
-            font-size: 13px; color: var(--dark-40);
-            margin-bottom: 12px;
+            font-size: 12px; color: var(--dark-40);
+            line-height: 1.35;
         }
         .card-tags { display: flex; gap: 5px; flex-wrap: wrap; }
         .card-tag {
@@ -445,6 +486,7 @@
         }
         .card-link:hover { gap: 9px; }
         .card-link svg { width: 12px; height: 12px; }
+        .card-tags { margin-top: 4px; }
 
         /* ═══ CTA ═══ */
         .cta-section {
@@ -537,8 +579,8 @@
         /* ═══ RESPONSIVE ═══ */
         @media (max-width: 768px) {
             .portfolio-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
-            .card-visual { height: 150px; }
-            .card-initials { font-size: 32px; }
+            .card-avatar { width: 48px; height: 48px; }
+            .card-initials { font-size: 16px; }
             .cta-box { padding: 52px 28px; border-radius: 20px; }
             footer { flex-direction: column; gap: 8px; text-align: center; padding: 20px; }
             .hero-cta-group { flex-direction: column; width: 100%; max-width: 320px; }
@@ -619,6 +661,10 @@
                 Discuter avec Sol
             </a>
             <a href="#portfolio" class="btn-ghost">Voir le portfolio</a>
+        </div>
+
+        <div class="hero-clients">
+            <div class="hero-clients-track" id="heroClients"></div>
         </div>
     </section>
 
@@ -734,17 +780,22 @@
 
                 const ini = initials(c.name);
                 const vCls = `v${i%vc}`;
-                const visual = c.img
+                const avatar = c.img
                     ? `<img src="${c.img}" alt="${c.name}" onerror="this.outerHTML='<div class=\\'card-initials ${vCls}\\'>${ini}</div>'">`
                     : `<div class="card-initials ${vCls}">${ini}</div>`;
                 const badge = c.revenue ? `<div class="card-badge">${c.revenue}</div>` : '';
                 const link = c.link ? `<a href="${c.link}" target="_blank" class="card-link">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>` : '';
 
                 el.innerHTML = `
-                    <div class="card-visual">${visual}${badge}</div>
                     <div class="card-body">
-                        <div class="card-name">${c.name}</div>
-                        <div class="card-niche">${c.niche}</div>
+                        <div class="card-header">
+                            <div class="card-avatar">${avatar}</div>
+                            <div class="card-id">
+                                <div class="card-name">${c.name}</div>
+                                <div class="card-niche">${c.niche}</div>
+                            </div>
+                            ${badge}
+                        </div>
                         <div class="card-tags">${c.tags.map(t=>`<span class="card-tag">${tagMap[t]}</span>`).join('')}</div>
                         ${link}
                     </div>`;
@@ -758,6 +809,17 @@
             });
         }
         render('all');
+
+        const heroTrack = document.getElementById('heroClients');
+        const heroHTML = clients.map((c, i) => {
+            const ini = initials(c.name);
+            const vCls = `v${i%vc}`;
+            const avatar = c.img
+                ? `<img src="${c.img}" alt="${c.name}" onerror="this.outerHTML='<div class=\\'card-initials ${vCls}\\'>${ini}</div>'">`
+                : `<div class="card-initials ${vCls}">${ini}</div>`;
+            return `<div class="hero-client"><div class="hero-client-avatar">${avatar}</div><span class="hero-client-name">${c.name}</span></div>`;
+        }).join('');
+        heroTrack.innerHTML = heroHTML + heroHTML;
 
         document.querySelectorAll('.filter-btn').forEach(b=>{
             b.addEventListener('click',()=>{
