@@ -288,18 +288,20 @@
 
         /* Hero clients ticker */
         .hero-clients {
-            position: relative; left: 50%;
-            margin: 56px -50vw 0; width: 100vw;
+            align-self: stretch;
+            margin: 56px -24px 0;
             overflow: hidden;
             mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
             -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
             opacity: 0; animation: fadeUp 0.8s var(--transition) 0.85s forwards;
+            display: flex; flex-direction: column; gap: 12px;
         }
         .hero-clients-track {
             display: flex; gap: 12px;
             width: max-content;
             animation: tickerScroll 80s linear infinite;
         }
+        .hero-clients-track.reverse { animation-direction: reverse; }
         .hero-client {
             display: inline-flex; align-items: center; gap: 10px;
             flex-shrink: 0;
@@ -664,7 +666,8 @@
         </div>
 
         <div class="hero-clients">
-            <div class="hero-clients-track" id="heroClients"></div>
+            <div class="hero-clients-track" id="heroClients1"></div>
+            <div class="hero-clients-track reverse" id="heroClients2"></div>
         </div>
     </section>
 
@@ -810,16 +813,19 @@
         }
         render('all');
 
-        const heroTrack = document.getElementById('heroClients');
-        const heroHTML = clients.map((c, i) => {
+        function heroPill(c, i) {
             const ini = initials(c.name);
             const vCls = `v${i%vc}`;
             const avatar = c.img
                 ? `<img src="${c.img}" alt="${c.name}" onerror="this.outerHTML='<div class=\\'card-initials ${vCls}\\'>${ini}</div>'">`
                 : `<div class="card-initials ${vCls}">${ini}</div>`;
             return `<div class="hero-client"><div class="hero-client-avatar">${avatar}</div><span class="hero-client-name">${c.name}</span></div>`;
-        }).join('');
-        heroTrack.innerHTML = heroHTML + heroHTML;
+        }
+        const heroHalf = Math.ceil(clients.length / 2);
+        const heroRow1 = clients.slice(0, heroHalf).map(heroPill).join('');
+        const heroRow2 = clients.slice(heroHalf).map((c, i) => heroPill(c, i + heroHalf)).join('');
+        document.getElementById('heroClients1').innerHTML = heroRow1 + heroRow1;
+        document.getElementById('heroClients2').innerHTML = heroRow2 + heroRow2;
 
         document.querySelectorAll('.filter-btn').forEach(b=>{
             b.addEventListener('click',()=>{
