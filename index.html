@@ -274,14 +274,6 @@
             box-shadow: 0 8px 28px rgba(254,170,2,0.25);
         }
         .btn-primary svg { width: 15px; height: 15px; }
-        .btn-primary .btn-text {
-            display: flex; flex-direction: column; align-items: flex-start;
-            line-height: 1.15; text-align: left;
-        }
-        .btn-primary .btn-sub {
-            font-size: 11px; font-weight: 500; opacity: 0.65;
-            letter-spacing: 0.02em; margin-top: 2px;
-        }
         .btn-ghost {
             font-family: 'Geist', sans-serif; font-weight: 500; font-size: 15px;
             color: var(--dark-60); background: transparent;
@@ -624,10 +616,7 @@
         <div class="hero-cta-group">
             <a href="https://wa.me/33634091708" target="_blank" class="btn-primary">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                <span class="btn-text">
-                    <span>Discuter avec Sol</span>
-                    <span class="btn-sub">Réponse sous 48h</span>
-                </span>
+                Discuter avec Sol
             </a>
             <a href="#portfolio" class="btn-ghost">Voir le portfolio</a>
         </div>
@@ -692,36 +681,36 @@
 
     <script>
         const clients = [
-            { name:"Antoine Cosson", niche:"YouTube · +50M abonnés · +2M€/an", revenue:"+2M€/an", tags:["vsl","emails","pdv"], link:"https://master-elo.fr/", img:"https://yt3.googleusercontent.com/ytc/AIdro_nOXCxJFcjN0qZD8yqOEpKSEkYPBmGqMPagaZkPWbnXMw=s176-c-k-c0x00ffffff-no-rj" },
-            { name:"Jody Cavalié & Jean Hollaender", niche:"Wébinaire · Coaching", revenue:"+500k/m", tags:["pdv","webinaire"], link:"https://www.libertywebi.com/2-days-virtual-event", img:"" },
-            { name:"Margo Cunego", niche:"Boost Ton Biz · Coaching", revenue:"+300k/m", tags:["webinaire","emails"], img:"" },
-            { name:"Bry Vanderwalle", niche:"Freedom Lab · Coaching Setting", revenue:"+200k/m", tags:["emails"], img:"" },
+            { name:"Antoine Cosson", niche:"YouTube · +50M abonnés · +2M€/an", revenue:"+2M€/an", tags:["vsl","emails","pdv"], link:"https://master-elo.fr/", img:"assets/portfolio/Antoine%20Cosson.png" },
+            { name:"Jody Cavalié & Jean Hollaender", niche:"Wébinaire · Coaching", revenue:"+500k/m", tags:["pdv","webinaire"], link:"https://www.libertywebi.com/2-days-virtual-event", img:"assets/portfolio/Copie%20de%20Jody%20et%20Jean.png" },
+            { name:"Margo Cunego", niche:"Boost Ton Biz · Coaching", revenue:"+300k/m", tags:["webinaire","emails"], img:"assets/portfolio/Margo.jpeg" },
+            { name:"Bry Vanderwalle", niche:"Freedom Lab · Coaching Setting", revenue:"+200k/m", tags:["emails"], img:"assets/portfolio/Bryan%20Vande.png" },
             { name:"Elliot Hewitt", niche:"Trading · Formation", revenue:"100k/m", tags:["emails","pdv"], img:"" },
             { name:"Marcuus Lawrence", niche:"Formation Ecom", revenue:"+100k/m", tags:["vsl","pdv"], img:"" },
             { name:"Imran · EXPONENSIA", niche:"Agence Scaling Coach", revenue:"+100k/m", tags:["emails","funnel"], img:"" },
             { name:"Loïc Bourget", niche:"Accompagnement Business", revenue:"+100k/m", tags:["ads","funnel"], img:"" },
-            { name:"Kika DonZinga", niche:"Scaling Coach", revenue:"+100k/m", tags:["emails","webinaire","funnel"], img:"" },
-            { name:"Remakeit.io", niche:"SaaS IA", revenue:"+100k/m", tags:["emails"], img:"" },
+            { name:"Kika DonZinga", niche:"Scaling Coach", revenue:"+100k/m", tags:["emails","webinaire","funnel"], img:"assets/portfolio/Copie%20de%20Kika%20Don%20Zinga.png" },
+            { name:"Remakeit.io", niche:"SaaS IA", revenue:"+100k/m", tags:["emails"], img:"assets/portfolio/Copie%20de%20Remake%20it.png" },
             { name:"Manoah · FORTUMEDIA", niche:"Infoproduits", revenue:"+70k/m", tags:["emails"], img:"" },
-            { name:"Luc · Labarile English", niche:"Coaching Anglais", revenue:"30k→50k/m", tags:["vsl","emails"], link:"https://go.labarileenglish.com/vsl-1d801666", img:"" },
-            { name:"Lucas Roma", niche:"Coach Sportif", revenue:"+30k/m", tags:["vsl","ads"], img:"" },
-            { name:"Steve · Vrai Entrepreneur", niche:"Formation TikTok", revenue:"+30k/m", tags:["emails","funnel"], img:"" },
-            { name:"Leo Growth", niche:"Coaching Création de contenu", revenue:"+30k/m", tags:["emails","webinaire","funnel"], img:"" },
-            { name:"Kevin Geisler", niche:"Coaching Closing", revenue:"+30k/m", tags:["emails","ads","webinaire","funnel"], img:"" },
-            { name:"Moshé Aaron", niche:"Coaching PNL · Hypnose", revenue:"+30k/m", tags:["vsl","ads","funnel"], img:"" },
+            { name:"Luc · Labarile English", niche:"Coaching Anglais", revenue:"30k→50k/m", tags:["vsl","emails"], link:"https://go.labarileenglish.com/vsl-1d801666", img:"assets/portfolio/Luc%20Labarile.png" },
+            { name:"Lucas Roma", niche:"Coach Sportif", revenue:"+30k/m", tags:["vsl","ads"], img:"assets/portfolio/Lucas%20Roma.png" },
+            { name:"Steve · Vrai Entrepreneur", niche:"Formation TikTok", revenue:"+30k/m", tags:["emails","funnel"], img:"assets/portfolio/Steeve%20Vrai%20Entrepreneur.png" },
+            { name:"Leo Growth", niche:"Coaching Création de contenu", revenue:"+30k/m", tags:["emails","webinaire","funnel"], img:"assets/portfolio/Leo%20Grindars.png" },
+            { name:"Kevin Geisler", niche:"Coaching Closing", revenue:"+30k/m", tags:["emails","ads","webinaire","funnel"], img:"assets/portfolio/Kevin%20Geisler.jpg" },
+            { name:"Moshé Aaron", niche:"Coaching PNL · Hypnose", revenue:"+30k/m", tags:["vsl","ads","funnel"], img:"assets/portfolio/Mosh%C3%A9%20Aaron.jpg" },
             { name:"Celofat", niche:"Coliving · Infoproduits", revenue:"+20k/m", tags:["vsl","emails"], link:"https://www.celofat.fr/la-methode-reelser-pro-118b79ef", img:"" },
             { name:"Anthony Jonas", niche:"L'Écosystème · Scaling Freelance", revenue:"+20k/m", tags:["emails","funnel"], img:"" },
-            { name:"Felix Beauregard", niche:"Resell Vinted · Infoproduit", revenue:"+20k/m", tags:["vsl","emails"], img:"" },
-            { name:"Thibault Marti", niche:"Accompagnement Business", revenue:"+20k/m", tags:["funnel"], img:"" },
+            { name:"Felix Beauregard", niche:"Resell Vinted · Infoproduit", revenue:"+20k/m", tags:["vsl","emails"], img:"assets/portfolio/F%C3%A9lix%20Beauregard.png" },
+            { name:"Thibault Marti", niche:"Accompagnement Business", revenue:"+20k/m", tags:["funnel"], img:"assets/portfolio/Thibault%20Marti.png" },
             { name:"Clipeo", niche:"SaaS IA", revenue:null, tags:["vsl","emails"], img:"" },
             { name:"Mon Avenir En France", niche:"Cabinet d'avocat", revenue:null, tags:["funnel"], img:"" },
-            { name:"Meho Guster", niche:"Ecom SEO · ROAS x40", revenue:null, tags:["funnel"], img:"" },
+            { name:"Meho Guster", niche:"Ecom SEO · ROAS x40", revenue:null, tags:["funnel"], img:"assets/portfolio/Meho%20Guster.jpg" },
             { name:"Rentabl", niche:"Location voiture premium", revenue:null, tags:["ads"], img:"" },
-            { name:"Tom Adrien · SKAALE", niche:"Agence Ecom + Wébinaire", revenue:null, tags:["webinaire","emails"], img:"" },
-            { name:"Selly Dorido", niche:"Immopreneurs · Coaching Immo", revenue:null, tags:["emails"], img:"" },
-            { name:"Sophie · SJ Social", niche:"Agence Création de Contenu", revenue:null, tags:["emails"], img:"" },
-            { name:"Meily Chen", niche:"Auteure et Coach", revenue:null, tags:["webinaire"], img:"" },
-            { name:"Morphée", niche:"Marque de bien-être", revenue:null, tags:["ads"], img:"" }
+            { name:"Tom Adrien · SKAALE", niche:"Agence Ecom + Wébinaire", revenue:null, tags:["webinaire","emails"], img:"assets/portfolio/Tom%20Adrien.jpg" },
+            { name:"Selly Dorido", niche:"Immopreneurs · Coaching Immo", revenue:null, tags:["emails"], img:"assets/portfolio/Selly%20Doridot.jpg" },
+            { name:"Sophie · SJ Social", niche:"Agence Création de Contenu", revenue:null, tags:["emails"], img:"assets/portfolio/Sophie%20SJ%20Social.png" },
+            { name:"Meily Chen", niche:"Auteure et Coach", revenue:null, tags:["webinaire"], img:"assets/portfolio/Meily%20Chen.jpg" },
+            { name:"Morphée", niche:"Marque de bien-être", revenue:null, tags:["ads"], img:"assets/portfolio/Morphee_Marque_Logo2025_Vert-Baseline.svg" }
         ];
 
         const tagMap = {vsl:"VSL",emails:"Emails",pdv:"Page de vente",webinaire:"Webinaire",ads:"Ads",funnel:"Funnel"};
