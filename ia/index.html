@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOL.IA — Le système pour écrire un meilleur copy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#FEAA02; --gold-2:#F59300; --gold-deep:#E07A00; --ink:#1E1400;
+  --bg:#FFF9EE; --bg-2:#ffffff; --bg-soft:#FFF3DD;
+  --line:rgba(35,24,10,.09); --line-2:rgba(35,24,10,.15);
+  --txt:#23180a; --muted:#6f6450; --muted-2:#9a8f78;
+  --green:#1f9d6b; --red:#e0584b; --blue:#3b82f6; --purple:#8b5cf6;
+  --radius:18px; --radius-sm:12px;
+  --shadow:0 18px 44px rgba(224,122,0,.12);
+  --shadow-lg:0 28px 64px rgba(224,122,0,.18);
+  --font:'Geist',-apple-system,BlinkMacSystemFont,sans-serif;
+  --display:'Geist',-apple-system,BlinkMacSystemFont,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font); color:var(--txt); -webkit-font-smoothing:antialiased; line-height:1.55;
+  background:var(--bg); min-height:100vh;
+}
+/* hero glow only at the very top, behind the first screen */
+.landing-glow{position:absolute;top:0;left:0;right:0;height:760px;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(1200px 620px at 50% -18%, rgba(254,170,2,.22), transparent 70%),
+    radial-gradient(820px 460px at 88% -4%, rgba(245,147,0,.10), transparent 68%);}
+.page{display:none; animation:fade .4s ease both}
+.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-8px) rotate(3deg)}}
+@keyframes pulse{50%{opacity:.4}}
+
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:inherit;font-weight:800;cursor:pointer;border:none;transition:.18s;border-radius:13px;font-size:15px}
+.btn-gold{background:linear-gradient(150deg,var(--gold),var(--gold-2));color:var(--ink);padding:14px 24px;box-shadow:0 10px 26px rgba(254,170,2,.4)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(254,170,2,.5)}
+.btn-ghost{background:var(--bg-2);color:var(--txt);border:1px solid var(--line-2);padding:13px 22px}
+.btn-ghost:hover{border-color:var(--gold)}
+.btn-lg{padding:17px 30px;font-size:16px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-deep);border:1px solid rgba(254,170,2,.42);background:rgba(254,170,2,.12);padding:8px 15px;border-radius:100px}
+.eb-dot{width:6px;height:6px;border-radius:50%;background:var(--gold-deep);animation:pulse 1.8s infinite}
+
+/* ============ TOP NAV ============ */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,249,238,.62);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  backdrop-filter:blur(20px) saturate(180%);
+  border-bottom:1px solid rgba(255,255,255,.5);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.6), 0 1px 0 rgba(35,24,10,.04);
+  transition:background .3s, box-shadow .3s, border-color .3s;
+}
+.nav.scrolled{
+  background:rgba(255,249,238,.78);
+  border-bottom-color:rgba(35,24,10,.08);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.6), 0 6px 24px rgba(35,24,10,.07);
+}
+body.dark .nav{background:rgba(21,16,10,.55);border-bottom-color:rgba(255,255,255,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 1px 0 rgba(0,0,0,.2)}
+.nav-inner{max-width:1024px;margin:0 auto;padding:0 22px;height:48px;display:flex;align-items:center;gap:20px;position:relative}
+.logo{display:flex;align-items:center;gap:9px;cursor:pointer}
+.logo-mark{width:26px;height:26px;border-radius:7px;background:var(--ink);display:flex;align-items:center;justify-content:center}
+.logo-mark svg{width:13px;height:13px}
+.logo-mark svg path{fill:#FEAA02}
+.logo-name{font-weight:700;font-size:15px;letter-spacing:-.01em;color:var(--ink)}
+.logo-name b{color:var(--ink)}
+.nav-links{display:flex;gap:30px;position:absolute;left:50%;transform:translateX(-50%)}
+.nav-link{font-size:12.5px;font-weight:500;color:rgba(35,24,10,.78);padding:0;border-radius:0;cursor:pointer;transition:color .15s;background:none!important}
+.nav-link:hover{color:var(--ink);background:none}
+.nav-link.active{color:var(--ink);background:none;font-weight:600}
+.nav-spacer{flex:1}
+.nav-cta{display:flex;gap:22px;align-items:center}
+.nav-cta .nav-login{font-size:12.5px;font-weight:500;color:rgba(35,24,10,.78);cursor:pointer;transition:color .15s}
+.nav-cta .nav-login:hover{color:var(--ink)}
+.nav-cta .btn-access{font-size:12.5px;font-weight:600;color:var(--ink);background:var(--gold);padding:6px 15px;border-radius:100px;border:none;cursor:pointer;font-family:inherit;transition:.15s}
+.nav-cta .btn-access:hover{background:var(--gold-deep);color:#fff}
+body.dark .logo-name,body.dark .nav-link,body.dark .nav-cta .nav-login{color:rgba(245,239,226,.8)}
+body.dark .logo-mark{background:#fff}
+body.dark .nav-link.active,body.dark .nav-link:hover,body.dark .nav-cta .nav-login:hover{color:#fff}
+@media(max-width:880px){.nav-links{display:none}.logo{margin-right:auto}}
+@media(max-width:560px){
+  .nav-inner{padding:0 16px;gap:10px}
+  .nav-cta{gap:16px}
+  .nav-cta .nav-login{display:none}
+  .logo-name{font-size:14px}
+}
+
+/* ============ LANDING ============ */
+.hero-wrap{position:relative;overflow:hidden}
+.hero{text-align:center;padding:54px 24px 90px;display:flex;flex-direction:column;align-items:center;position:relative;z-index:1;max-width:820px;margin:0 auto}
+.hero > *{opacity:0;animation:rise .6s cubic-bezier(.2,.7,.3,1) forwards}
+.hero .mascot-wrap{animation-delay:0s}.hero .hero-kicker{animation-delay:.1s}.hero h1{animation-delay:.18s}
+.hero .hero-sub{animation-delay:.26s}.hero .hero-cta{animation-delay:.34s}.hero .hero-trust{animation-delay:.42s}
+.mascot-wrap{position:relative;width:124px;height:124px;margin-bottom:18px}
+.mascot-rays{position:absolute;inset:-34%;animation:spin 30s linear infinite}
+.mascot-rays::before{content:"";position:absolute;inset:0;border-radius:50%;
+  background:conic-gradient(from 0deg,transparent 0 8deg,rgba(254,170,2,.22) 8deg 13deg,transparent 13deg 30deg,rgba(254,170,2,.16) 30deg 35deg,transparent 35deg 60deg,rgba(254,170,2,.22) 60deg 65deg,transparent 65deg 90deg,rgba(254,170,2,.16) 90deg 95deg,transparent 95deg 120deg,rgba(254,170,2,.22) 120deg 125deg,transparent 125deg 150deg,rgba(254,170,2,.16) 150deg 155deg,transparent 155deg 180deg,rgba(254,170,2,.22) 180deg 185deg,transparent 185deg 210deg,rgba(254,170,2,.16) 210deg 215deg,transparent 215deg 240deg,rgba(254,170,2,.22) 240deg 245deg,transparent 245deg 270deg,rgba(254,170,2,.16) 270deg 275deg,transparent 275deg 300deg,rgba(254,170,2,.22) 300deg 305deg,transparent 305deg 330deg,rgba(254,170,2,.16) 330deg 335deg,transparent 335deg 360deg);
+  -webkit-mask:radial-gradient(circle,transparent 42%,#000 44%,#000 70%,transparent 75%);mask:radial-gradient(circle,transparent 42%,#000 44%,#000 70%,transparent 75%)}
+.mascot-body{position:relative;width:100%;height:100%;animation:bob 3.6s ease-in-out infinite}
+.mascot-body svg{width:100%;height:100%;filter:drop-shadow(0 10px 20px rgba(224,122,0,.3))}
+.hero h1{font-family:var(--display);font-size:clamp(34px,5.5vw,56px);font-weight:800;line-height:1.05;letter-spacing:-.035em;max-width:760px;margin-bottom:18px;text-wrap:balance}.hero h1 .hl{color:var(--gold-deep);font-style:italic}
+.hero-sub{font-size:18px;color:var(--muted);max-width:480px;margin-bottom:28px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:14px}
+.hero-trust{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;font-size:13.5px;color:var(--muted-2);font-weight:600}
+.hero-trust span{display:inline-flex;align-items:center;gap:5px}
+.hero-trust .c{color:var(--green);font-weight:900}
+.hero-bench{margin-top:18px;font-size:13px;color:var(--muted-2);font-weight:500}
+.hero-kicker{font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:18px}
+.hero-bench b{color:var(--gold-deep);font-weight:800}
+
+/* pour qui */
+.forwho{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:680px;margin:0 auto}
+.fw{display:inline-flex;align-items:center;gap:8px;background:var(--bg-2);border:1px solid var(--line);border-radius:100px;padding:11px 20px;font-size:14.5px;font-weight:700}
+.fw b{color:var(--green);font-weight:900}
+
+/* progression visible */
+.prog-demo{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:880px;margin:0 auto;align-items:stretch}
+@media(max-width:760px){.prog-demo{grid-template-columns:1fr}}
+.prog-card{background:linear-gradient(160deg,#fff,#fffaf0);border:1px solid rgba(254,170,2,.3);border-radius:var(--radius);padding:26px}
+.prog-lvl{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.prog-lvl-num{width:58px;height:58px;border-radius:16px;background:linear-gradient(150deg,var(--gold),var(--gold-2));color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;flex-shrink:0}
+.prog-lvl-t{font-size:17px;font-weight:800}
+.prog-lvl-s{font-size:13px;color:var(--muted)}
+.prog-bar{height:9px;border-radius:100px;background:var(--bg-soft);overflow:hidden;margin-bottom:18px}
+.prog-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-2))}
+.prog-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.prog-stat{border-radius:12px;padding:13px 15px;border:1px solid var(--line)}
+.prog-stat span{font-size:12px;font-weight:700;color:var(--muted);display:block;margin-bottom:3px}
+.prog-stat b{font-size:16px;font-weight:900}
+.prog-stat.str{background:#f0fbf5;border-color:rgba(31,157,107,.25)}.prog-stat.str b{color:var(--green)}
+.prog-stat.wk{background:#fff5f3;border-color:rgba(224,88,75,.22)}.prog-stat.wk b{color:var(--red)}
+.prog-loop-cap{font-size:13px;color:var(--muted);line-height:1.5}
+.prog-loop{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:26px;display:flex;flex-direction:column}
+.loop-title{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted-2);margin-bottom:16px}
+.loop-flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:16px}
+.loop-step{font-size:13px;font-weight:700;background:var(--bg-soft);padding:8px 13px;border-radius:10px}
+.loop-step.on{background:linear-gradient(150deg,var(--gold),var(--gold-2));color:#fff}
+.loop-ar{color:var(--gold-deep);font-weight:900}
+.loop-note{font-size:13.5px;color:var(--muted);line-height:1.6;margin-bottom:18px;flex:1}
+
+.section{padding:110px 24px;position:relative}
+.section > *{max-width:1024px;margin-left:auto;margin-right:auto}
+.section.alt{background:linear-gradient(180deg, var(--bg) 0%, #FFFCF5 18%, #FFFCF5 82%, var(--bg) 100%)}
+.section.alt2{background:linear-gradient(180deg, var(--bg) 0%, #FFF6E6 20%, #FFF6E6 80%, var(--bg) 100%)}
+.section-head{text-align:center;max-width:680px;margin:0 auto 56px}
+.section-head .eyebrow{display:none}
+.section-head h2{font-family:var(--display);font-size:clamp(32px,5vw,52px);font-weight:800;letter-spacing:-.035em;line-height:1.06;margin-bottom:18px}
+.section-head p{font-size:19px;color:var(--muted);line-height:1.5;max-width:560px;margin:0 auto}
+@media(max-width:700px){.section{padding:72px 20px}.section-head{margin-bottom:40px}}
+
+/* problem grid */
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:820px;margin:0 auto}
+.ba-col{border-radius:var(--radius);padding:26px;border:1px solid var(--line)}
+.ba-col.before{background:#fff5f3;border-color:rgba(224,88,75,.2)}
+.ba-col.after{background:#f0fbf5;border-color:rgba(31,157,107,.22)}
+.ba-col h3{font-size:14px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:16px;font-weight:800}
+.ba-col.before h3{color:var(--red)}.ba-col.after h3{color:var(--green)}
+.ba-col ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+.ba-col li{font-size:15px;display:flex;gap:9px;align-items:flex-start;color:var(--txt)}
+.ba-col li .mk{flex-shrink:0;font-weight:900}
+.ba-col.before .mk{color:var(--red)}.ba-col.after .mk{color:var(--green)}
+@media(max-width:680px){.ba-grid{grid-template-columns:1fr}}
+
+/* demo */
+.demo-box{max-width:680px;margin:0 auto;background:var(--bg-2);border:1px solid var(--line-2);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+.demo-box textarea{width:100%;border:1px solid var(--line-2);border-radius:var(--radius-sm);padding:15px;font-family:inherit;font-size:15px;resize:none;background:var(--bg);color:var(--txt);min-height:90px;margin-bottom:14px}
+.demo-box textarea:focus{outline:none;border-color:var(--gold)}
+.demo-result{margin-top:18px;border-top:1px dashed var(--line-2);padding-top:18px;display:none}
+.demo-result.show{display:block;animation:rise .4s ease both}
+.demo-result .dr-label{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--gold-deep);margin-bottom:12px}
+.dr-flag{display:flex;align-items:center;gap:10px;background:#fff8ec;border:1px solid rgba(254,170,2,.25);border-radius:10px;padding:11px 14px;margin-bottom:8px;font-size:14px;font-weight:600}
+.dr-flag .w{color:var(--gold-deep)}
+.demo-cta{margin-top:16px;text-align:center}
+
+/* features */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.feat{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;transition:.2s}
+.feat:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:rgba(254,170,2,.4)}
+.feat-ic{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;background:linear-gradient(150deg,rgba(254,170,2,.18),rgba(254,170,2,.07));border:1px solid rgba(254,170,2,.22);margin-bottom:16px}
+.feat h3{font-size:19px;font-weight:800;margin-bottom:8px;letter-spacing:-.01em}
+.feat p{font-size:14px;color:var(--muted);margin-bottom:14px}
+.feat-tags{display:flex;flex-wrap:wrap;gap:6px}
+.feat-tag{font-size:11.5px;font-weight:700;color:var(--gold-deep);background:rgba(254,170,2,.1);padding:4px 10px;border-radius:100px}
+@media(max-width:760px){.feat-grid{grid-template-columns:1fr}}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:780px;margin:0 auto}
+.stat{text-align:center;background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:30px 18px}
+.stat-num{font-family:var(--display);font-size:42px;font-weight:700;color:var(--gold-deep);line-height:1;letter-spacing:-.02em}
+.stat-lab{font-size:13.5px;color:var(--muted);margin-top:8px;font-weight:600}
+@media(max-width:680px){.stats{grid-template-columns:1fr}}
+
+/* rating + logos */
+.rating-row{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:18px}
+.rating-stars{color:var(--gold);font-size:22px;letter-spacing:2px}
+.rating-txt{font-size:15px;color:var(--muted)}
+.rating-txt b{color:var(--txt);font-weight:800}
+.logos{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;margin-bottom:30px;font-size:13px;font-weight:700;color:var(--muted-2)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+@media(max-width:820px){.testi-grid{grid-template-columns:1fr}}
+.testi{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.testi-stars{color:var(--gold);font-size:14px;letter-spacing:1px;margin-bottom:12px}
+.testi-q{font-size:14.5px;line-height:1.6;color:var(--txt);margin-bottom:18px}
+.testi-who{display:flex;align-items:center;gap:11px}
+.testi-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(150deg,var(--gold),var(--gold-2));color:#fff;font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.testi-av.av2{background:linear-gradient(150deg,#34c08a,#1f9d6b)}
+.testi-av.av3{background:linear-gradient(150deg,#8b9bf5,#6366f1)}
+.testi-who b{font-size:14px;font-weight:800;display:block}
+.testi-who span{font-size:12.5px;color:var(--muted-2)}
+
+/* video frame */
+.video-frame{max-width:760px;margin:0 auto;aspect-ratio:16/9;border-radius:20px;overflow:hidden;cursor:pointer;position:relative;
+  background:linear-gradient(135deg,#23180a,#3a2c10);box-shadow:var(--shadow-lg);border:1px solid rgba(254,170,2,.2)}
+.video-frame::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,rgba(254,170,2,.18),transparent 60%)}
+.video-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:1}
+.video-play{width:74px;height:74px;border-radius:50%;background:linear-gradient(150deg,var(--gold),var(--gold-2));color:var(--ink);display:flex;align-items:center;justify-content:center;font-size:28px;padding-left:6px;box-shadow:0 12px 30px rgba(254,170,2,.5);transition:transform .2s}
+.video-frame:hover .video-play{transform:scale(1.08)}
+.video-cap{color:rgba(255,255,255,.85);font-size:13.5px;font-weight:600}
+.video-frame.playing .video-inner::before{content:"🎬 (Vidéo démo à intégrer ici)";color:rgba(255,255,255,.7);font-size:14px}
+.video-frame.playing .video-play,.video-frame.playing .video-cap{display:none}
+
+/* faq */
+.faq-list{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.faq-item{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden}
+.faq-q{padding:18px 20px;font-weight:700;font-size:15.5px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq-q .chev{transition:.2s;color:var(--gold-deep);flex-shrink:0}
+.faq-item.open .chev{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;padding:0 20px;font-size:14.5px;color:var(--muted)}
+.faq-item.open .faq-a{max-height:200px;padding:0 20px 18px}
+
+/* final cta band */
+.cta-band{text-align:center;background:linear-gradient(150deg,var(--gold),var(--gold-2));border-radius:24px;padding:50px 30px;color:var(--ink);box-shadow:var(--shadow-lg);max-width:820px;margin:0 auto}
+.cta-band h2{font-family:var(--display);font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-.03em;margin-bottom:12px;letter-spacing:-.02em}
+.cta-band p{font-size:16px;opacity:.85;margin-bottom:24px;font-weight:500}
+.cta-band .btn-ghost{background:var(--ink);color:#fff;border:none}
+
+/* footer */
+.footer{border-top:1px solid var(--line);padding:30px 0;margin-top:40px;text-align:center;font-size:13px;color:var(--muted-2)}
+.footer b{color:var(--gold-deep)}
+.footer-fun{max-width:560px;margin:0 auto 14px;font-size:12.5px;color:var(--muted-2);line-height:1.6;padding-bottom:14px;border-bottom:1px dashed var(--line)}
+.footer-fun b{color:var(--gold-deep);font-weight:800}
+
+/* ============ APP SHELL (dashboard etc) ============ */
+.app-shell{display:grid;grid-template-columns:236px 1fr;min-height:calc(100vh - 64px);max-width:1180px;margin:0 auto}
+.sidebar{border-right:1px solid var(--line);padding:24px 14px;display:flex;flex-direction:column;gap:4px}
+.side-grp{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted-2);padding:14px 12px 6px}
+.side-link{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:10px;font-size:14.5px;font-weight:600;color:var(--muted);cursor:pointer;transition:.15s}
+.side-link:hover{background:var(--bg-soft);color:var(--txt)}
+.side-link.active{background:rgba(254,170,2,.14);color:var(--gold-deep)}
+.side-link .si{width:20px;text-align:center;flex-shrink:0}
+.main{padding:30px 32px 60px}
+@media(max-width:880px){.app-shell{grid-template-columns:1fr}.sidebar{display:none}.main{padding:24px 18px 50px}}
+
+.app-hd{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:26px;flex-wrap:wrap}
+.app-hd h1{font-family:var(--display);font-size:30px;font-weight:600;letter-spacing:-.02em}
+.app-hd p{color:var(--muted);font-size:15px;margin-top:2px}
+
+/* dashboard cards */
+.dash-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px}
+@media(max-width:760px){.dash-row{grid-template-columns:1fr}}
+.dcard{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.dcard-lab{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted-2);margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.dcard-big{font-size:30px;font-weight:900;letter-spacing:-.02em}
+.dcard-big.gold{color:var(--gold-deep)}
+.dcard-sub{font-size:13px;color:var(--muted);margin-top:4px}
+.streak-dots{display:flex;gap:5px;margin-top:12px}
+.streak-dots i{width:22px;height:22px;border-radius:7px;background:rgba(254,170,2,.16);display:flex;align-items:center;justify-content:center;font-size:11px;font-style:normal}
+.streak-dots i.on{background:linear-gradient(150deg,var(--gold),var(--gold-2));color:#fff}
+.progress-track{height:9px;border-radius:100px;background:var(--bg-soft);overflow:hidden;margin-top:14px}
+.progress-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--gold),var(--gold-2))}
+
+.suggest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+@media(max-width:760px){.suggest-grid{grid-template-columns:1fr}}
+.suggest{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:20px;cursor:pointer;transition:.2s}
+.suggest:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:rgba(254,170,2,.4)}
+.suggest-tag{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--gold-deep);margin-bottom:8px}
+.suggest h4{font-size:16px;font-weight:800;margin-bottom:5px}
+.suggest p{font-size:13px;color:var(--muted)}
+
+.block-title{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted-2);margin:28px 0 14px}
+
+/* review engine */
+.rev-grid{display:grid;grid-template-columns:1fr 320px;gap:22px}
+@media(max-width:900px){.rev-grid{grid-template-columns:1fr}}
+.rev-input textarea{width:100%;border:1px solid var(--line-2);border-radius:var(--radius);padding:18px;font-family:inherit;font-size:15px;background:var(--bg-2);min-height:150px;resize:vertical;color:var(--txt)}
+.rev-input textarea:focus{outline:none;border-color:var(--gold)}
+.rev-out{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:24px;margin-top:18px}
+.rev-sec{margin-bottom:20px}
+.rev-sec:last-child{margin-bottom:0}
+.rev-sec h4{font-size:14px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.rev-sec.good h4{color:var(--green)}.rev-sec.bad h4{color:var(--red)}.rev-sec.why h4{color:var(--purple)}.rev-sec.fix h4{color:var(--gold-deep)}
+.rev-sec p,.rev-sec li{font-size:14px;color:var(--txt);line-height:1.6}
+.rev-sec ul{padding-left:18px;margin-top:4px}
+.score-card{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:24px;position:sticky;top:80px}
+.score-global{text-align:center;margin-bottom:22px}
+.score-ring{width:120px;height:120px;margin:0 auto 8px;position:relative}
+.score-ring svg{transform:rotate(-90deg)}
+.score-ring .val{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.score-ring .val b{font-size:32px;font-weight:900;letter-spacing:-.02em}
+.score-ring .val span{font-size:11px;color:var(--muted-2);font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.score-bar{margin-bottom:14px}
+.score-bar-hd{display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:5px}
+.score-bar-hd b{font-weight:800}
+.score-bar-track{height:7px;border-radius:100px;background:var(--bg-soft);overflow:hidden}
+.score-bar-fill{height:100%;border-radius:100px}
+
+/* generation */
+.gen-opts{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:18px}
+.chip{font-family:inherit;font-size:13.5px;font-weight:600;padding:9px 16px;border-radius:100px;border:1px solid var(--line-2);background:var(--bg-2);color:var(--txt);cursor:pointer;transition:.15s}
+.chip:hover{border-color:var(--gold)}
+.chip.sel{background:linear-gradient(150deg,var(--gold),var(--gold-2));color:var(--ink);border-color:transparent;font-weight:800}
+.gen-out{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:24px;margin-top:8px}
+.gen-out .gen-copy{font-size:15px;line-height:1.7;white-space:pre-wrap}
+.gen-explain{margin-top:18px;border-top:1px dashed var(--line-2);padding-top:16px;font-size:13.5px;color:var(--muted)}
+.gen-explain b{color:var(--gold-deep)}
+
+/* learning */
+.learn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.module{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:22px;cursor:pointer;transition:.2s;position:relative;overflow:hidden}
+.module:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:rgba(254,170,2,.4)}
+.module-ic{font-size:26px;margin-bottom:12px}
+.module h4{font-size:16.5px;font-weight:800;margin-bottom:5px}
+.module p{font-size:13px;color:var(--muted);margin-bottom:14px}
+.module-meta{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted-2);font-weight:600}
+.module-bar{height:6px;border-radius:100px;background:var(--bg-soft);overflow:hidden;margin-top:12px}
+.module-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-2))}
+.module.done{border-color:rgba(31,157,107,.3)}
+.module.done .check{position:absolute;top:14px;right:14px;color:var(--green);font-weight:900}
+.level-banner{background:linear-gradient(150deg,#fff,#fffaf0);border:1px solid rgba(254,170,2,.3);border-radius:var(--radius);padding:24px;margin-bottom:26px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.level-num{width:64px;height:64px;border-radius:18px;background:linear-gradient(150deg,var(--gold),var(--gold-2));color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;flex-shrink:0}
+.level-info{flex:1;min-width:200px}
+.level-info h3{font-size:18px;font-weight:800}
+.level-info p{font-size:13.5px;color:var(--muted);margin-bottom:8px}
+
+/* challenges */
+.chal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.chal{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:24px;position:relative}
+.chal-badge{position:absolute;top:18px;right:18px;font-size:11px;font-weight:800;padding:4px 10px;border-radius:100px;background:rgba(254,170,2,.14);color:var(--gold-deep)}
+.chal h4{font-size:18px;font-weight:800;margin-bottom:6px;padding-right:60px}
+.chal p{font-size:13.5px;color:var(--muted);margin-bottom:16px}
+.chal-tasks{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.chal-tasks li{font-size:13.5px;display:flex;align-items:center;gap:9px}
+.chal-tasks .cb{width:18px;height:18px;border-radius:6px;border:2px solid var(--line-2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px}
+.chal-tasks li.done .cb{background:var(--green);border-color:var(--green);color:#fff}
+.chal-tasks li.done{color:var(--muted-2);text-decoration:line-through}
+.chal-xp{font-size:13px;font-weight:800;color:var(--gold-deep)}
+
+/* history */
+.hist-table{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.hist-row{display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid var(--line);cursor:pointer;transition:.15s}
+.hist-row:last-child{border-bottom:none}
+.hist-row:hover{background:var(--bg-soft)}
+.hist-ic{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;background:linear-gradient(150deg,rgba(254,170,2,.16),rgba(254,170,2,.06));flex-shrink:0}
+.hist-main{flex:1;min-width:0}
+.hist-main h4{font-size:14.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hist-main p{font-size:12.5px;color:var(--muted-2)}
+.hist-score{font-weight:900;font-size:16px;flex-shrink:0}
+
+/* pricing */
+.price-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:980px){.price-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.price-grid{grid-template-columns:1fr}}
+.bill-toggle{display:flex;justify-content:center;gap:6px;margin-bottom:26px;background:var(--bg-2);border:1px solid var(--line-2);border-radius:100px;padding:5px;width:fit-content;margin-left:auto;margin-right:auto}
+.bill-opt{font-family:inherit;font-size:14px;font-weight:700;padding:9px 20px;border-radius:100px;border:none;background:transparent;color:var(--muted);cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:7px}
+.bill-opt.sel{background:linear-gradient(150deg,var(--gold),var(--gold-2));color:var(--ink)}
+.bill-save{font-size:10.5px;font-weight:800;background:rgba(31,157,107,.16);color:var(--green);padding:2px 7px;border-radius:100px}
+.bill-opt.sel .bill-save{background:rgba(30,20,0,.18);color:var(--ink)}
+.price{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:28px 22px;display:flex;flex-direction:column}
+.price.feat{border-color:var(--gold);box-shadow:0 16px 40px rgba(254,170,2,.2);position:relative}
+.price.feat::before{content:"POPULAIRE";position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:linear-gradient(150deg,var(--gold),var(--gold-2));color:var(--ink);font-size:10px;font-weight:900;letter-spacing:.08em;padding:4px 12px;border-radius:100px}
+.price-name{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted-2);margin-bottom:10px}
+.price-amt{font-family:var(--display);font-size:38px;font-weight:700;letter-spacing:-.02em;line-height:1}
+.price-amt small{font-size:14px;color:var(--muted);font-weight:500;font-family:var(--font)}
+.price ul{list-style:none;display:flex;flex-direction:column;gap:10px;margin:20px 0 24px;flex:1}
+.price li{font-size:13.5px;display:flex;gap:9px;align-items:flex-start}
+.price li .ck{color:var(--green);font-weight:900;flex-shrink:0}
+.price .btn{justify-content:center;width:100%}
+
+/* community / leaderboard */
+.lb{max-width:620px;margin:0 auto;background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.lb-row{display:flex;align-items:center;gap:14px;padding:15px 20px;border-bottom:1px solid var(--line)}
+.lb-row:last-child{border-bottom:none}
+.lb-row.you{background:rgba(254,170,2,.08)}
+.lb-rank{width:30px;font-weight:900;font-size:16px;color:var(--muted-2);text-align:center}
+.lb-rank.top{color:var(--gold-deep)}
+.lb-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(150deg,var(--gold),var(--gold-2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:15px;flex-shrink:0}
+.lb-name{flex:1;font-weight:700;font-size:14.5px}
+.lb-name span{display:block;font-size:12px;color:var(--muted-2);font-weight:500}
+.lb-xp{font-weight:900;color:var(--gold-deep);font-size:15px}
+
+/* onboarding */
+.onb{max-width:560px;margin:0 auto;padding:30px 0}
+.onb-prog{display:flex;gap:6px;margin-bottom:30px}
+.onb-prog i{flex:1;height:5px;border-radius:100px;background:var(--bg-soft)}
+.onb-prog i.on{background:linear-gradient(90deg,var(--gold),var(--gold-2))}
+.onb h2{font-family:var(--display);font-size:28px;font-weight:600;margin-bottom:6px;letter-spacing:-.01em}
+.onb .onb-hint{color:var(--muted);font-size:14.5px;margin-bottom:24px}
+.onb-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:520px){.onb-opts{grid-template-columns:1fr}}
+.onb-opt{background:var(--bg-2);border:1px solid var(--line-2);border-radius:var(--radius-sm);padding:18px;cursor:pointer;transition:.15s;font-weight:600;font-size:15px;display:flex;align-items:center;gap:11px}
+.onb-opt:hover{border-color:var(--gold);background:#fffaf0}
+.onb-opt .oe{font-size:20px}
+
+.tag-soft{display:inline-block;font-size:11px;font-weight:700;color:var(--muted-2);background:var(--bg-soft);padding:3px 9px;border-radius:6px;margin-left:8px}
+.proto-note{max-width:1080px;margin:14px auto 0;padding:0 22px}
+.proto-note div{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.25);border-radius:10px;padding:10px 14px;font-size:12.5px;color:#2c5fa8}
+</style>
+</head>
+<body>
+
+<!-- ===== TOP NAV ===== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo" onclick="go('landing')">
+      <div class="logo-mark"><svg viewBox="0 0 287 586"><path d="M91.39 378.63l10.38 38.72 74.31 41.35 40.7 107.66-18.58-113.59 15.08-39.61-27.22 16.61 45.45-88.68-10.37-38.72-10.38-38.72-61.66 50.12 40.91-127.55-10.37-38.72-10.38-38.72L70.06 18.77 29.15 146.33l99.21 90.01-78.46-12.57 10.37 38.72 10.38 38.72 99.21 90.01-78.46-12.57z" fill="#1E1400"/></svg></div>
+      <div class="logo-name">SOL<b>.IA</b></div>
+    </div>
+    <div class="nav-links">
+      <div class="nav-link" data-nav="landing" onclick="go('landing')">Accueil</div>
+      <div class="nav-link" data-nav="pricing" onclick="go('pricing')">Tarifs</div>
+      <div class="nav-link" data-nav="affiliate" onclick="go('affiliate')">Affiliés</div>
+    </div>
+    <div class="nav-spacer"></div>
+    <div class="nav-cta">
+      <span class="nav-login" onclick="go('onboarding')">Connexion</span>
+      <button class="btn-access" onclick="go('onboarding')">Accès beta</button>
+    </div>
+  </div>
+</nav>
+<div class="proto-note"><div>🧪 <b>Aperçu — SOL.IA est en beta privée.</b> Le site public se limite à Accueil / Tarifs / Affiliés. Les écrans produit (dashboard, analyse, apprentissage) existent derrière l'accès membre — accessibles ici pour la démo via les boutons. <a onclick="go('dashboard')" style="color:#2c5fa8;cursor:pointer;font-weight:700">voir la démo →</a> <a href="app.html" style="color:#2c5fa8;cursor:pointer;font-weight:700">ouvrir SOL.IA →</a></div></div>
+
+<!-- ============ PAGE 1 — LANDING ============ -->
+<div class="page active" id="page-landing">
+  <section class="hero-wrap">
+    <div class="landing-glow"></div>
+    <section class="hero">
+      <div class="mascot-wrap">
+        <div class="mascot-rays"></div>
+        <div class="mascot-body">
+          <svg viewBox="0 0 287 620" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="m1" x1="0" y1="0" x2="0.6" y2="1"><stop offset="0" stop-color="#FFC23D"/><stop offset="1" stop-color="#F59300"/></linearGradient></defs>
+            <path d="M40 300 Q12 305 8 332" fill="none" stroke="#23180a" stroke-width="13" stroke-linecap="round"/>
+            <path d="M232 300 Q262 290 270 262" fill="none" stroke="#23180a" stroke-width="13" stroke-linecap="round"/>
+            <circle cx="270" cy="260" r="11" fill="#23180a"/>
+            <path d="M91.39 378.63l10.38 38.72 74.31 41.35 40.7 107.66-18.58-113.59 15.08-39.61-27.22 16.61 45.45-88.68-10.37-38.72-10.38-38.72-61.66 50.12 40.91-127.55-10.37-38.72-10.38-38.72L70.06 18.77 29.15 146.33l99.21 90.01-78.46-12.57 10.37 38.72 10.38 38.72 99.21 90.01-78.46-12.57z" fill="url(#m1)" stroke="#23180a" stroke-width="9"/>
+            <ellipse cx="105" cy="202" rx="15" ry="16" fill="#fff" stroke="#23180a" stroke-width="5"/>
+            <ellipse cx="150" cy="192" rx="15" ry="16" fill="#fff" stroke="#23180a" stroke-width="5"/>
+            <circle cx="108" cy="205" r="6.5" fill="#23180a"/><circle cx="153" cy="195" r="6.5" fill="#23180a"/>
+            <path d="M112 230 Q128 242 146 226" fill="none" stroke="#23180a" stroke-width="5.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+      <span class="hero-kicker">Beta privée · accès limité</span>
+      <h1>Beaucoup d'IA écrivent. Peu vous disent <span class="hl">pourquoi votre copy échoue.</span></h1>
+      <p class="hero-sub">SOL.IA écrit, analyse et explique les erreurs psychologiques qui vous coûtent des clics, des clients et des ventes. Et vous fait progresser à chaque texte.</p>
+      <div class="hero-cta">
+        <button class="btn btn-gold btn-lg" onclick="go('onboarding')">Demander un accès →</button>
+        <button class="btn btn-ghost btn-lg" onclick="location.href='app.html'">Essayer SOL.IA</button>
+      </div>
+      <p class="hero-bench">Inspiré de 6M€+ de copy qui a généré des ventes · Sans prompt</p>
+    </section>
+  </section>
+
+    <!-- PROBLEM -->
+    <section class="section alt">
+      <div class="section-head">
+        <span class="eyebrow">Le vrai problème</span>
+        <h2>Écrire au feeling, c'est laisser de l'argent sur la table.</h2>
+      </div>
+      <div class="ba-grid">
+        <div class="ba-col before">
+          <h3>✕ Avant SOL.IA</h3>
+          <ul>
+            <li><span class="mk">✕</span> 2 heures bloqué sur un seul email</li>
+            <li><span class="mk">✕</span> Le doute permanent : « est-ce que ça va vendre ? »</li>
+            <li><span class="mk">✕</span> Des hooks faibles qui ne stoppent personne</li>
+            <li><span class="mk">✕</span> Un angle moyen, déjà vu mille fois</li>
+            <li><span class="mk">✕</span> Des ventes en dessous de votre potentiel</li>
+          </ul>
+        </div>
+        <div class="ba-col after">
+          <h3>✓ Avec SOL.IA</h3>
+          <ul>
+            <li><span class="mk">✓</span> De la clarté : vous savez quoi écrire</li>
+            <li><span class="mk">✓</span> Un raisonnement, pas juste un résultat</li>
+            <li><span class="mk">✓</span> La certitude que chaque ligne a un rôle</li>
+            <li><span class="mk">✓</span> Un meilleur copy, à chaque itération</li>
+            <li><span class="mk">✓</span> Et vous devenez meilleur copywriter</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- POUR QUI -->
+    <section class="section" style="padding-top:10px">
+      <div class="section-head"><span class="eyebrow">Conçu pour</span><h2>Fait pour ceux qui vivent de leurs mots.</h2></div>
+      <div class="forwho">
+        <span class="fw"><b>✓</b> Freelances</span>
+        <span class="fw"><b>✓</b> Agences</span>
+        <span class="fw"><b>✓</b> E-commerce</span>
+        <span class="fw"><b>✓</b> SaaS</span>
+        <span class="fw"><b>✓</b> Créateurs</span>
+        <span class="fw"><b>✓</b> Infopreneurs</span>
+      </div>
+    </section>
+
+    <!-- PROGRESSION VISIBLE -->
+    <section class="section alt">
+      <div class="section-head">
+        <span class="eyebrow">Vous ne stagnez plus</span>
+        <h2>Vous ne générez pas. Vous montez de niveau.</h2>
+        <p>Génération = remplaçable. <b style="color:var(--gold-deep)">Progression = imbattable.</b></p>
+      </div>
+      <div class="prog-demo">
+        <div class="prog-card">
+          <div class="prog-lvl">
+            <div class="prog-lvl-num">12</div>
+            <div><div class="prog-lvl-t">Copywriter niveau 12</div><div class="prog-lvl-s">2 430 XP · plus que 570 avant le niveau 13</div></div>
+          </div>
+          <div class="prog-bar"><i style="width:81%"></i></div>
+          <div class="prog-stats">
+            <div class="prog-stat str"><span>💪 Votre force</span><b>Curiosité</b></div>
+            <div class="prog-stat wk"><span>🎯 Votre faiblesse</span><b>Urgence</b></div>
+          </div>
+          <div class="prog-loop-cap">Chaque analyse nourrit votre profil. SOL.IA sait quoi vous faire travailler.</div>
+        </div>
+        <div class="prog-loop">
+          <div class="loop-title">La boucle qui vous fait revenir</div>
+          <div class="loop-flow">
+            <span class="loop-step">Analyse</span><span class="loop-ar">→</span>
+            <span class="loop-step">Compréhension</span><span class="loop-ar">→</span>
+            <span class="loop-step">Exercice</span><span class="loop-ar">→</span>
+            <span class="loop-step on">Niveau +1</span><span class="loop-ar">↺</span>
+          </div>
+          <p class="loop-note">Vous revenez non pas parce qu'il faut générer un texte de plus — mais parce que vous devenez meilleur. C'est Duolingo, version copywriting.</p>
+          <button class="btn btn-gold" onclick="go('dashboard')">Voir mon tableau de bord →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEMO -->
+    <section class="section">
+      <div class="section-head">
+        <span class="eyebrow">Démo instantanée</span>
+        <h2>Collez un bout de copy. Voyez SOL.IA réfléchir.</h2>
+        <p>Pas de prompt à écrire. Vous collez, SOL.IA détecte.</p>
+      </div>
+      <div class="demo-box">
+        <textarea id="demoIn" placeholder="Collez votre copy… (ex: votre hook, votre objet de mail, votre accroche)">Cliquez ici pour découvrir notre nouvelle offre exceptionnelle !</textarea>
+        <button class="btn btn-gold" onclick="runDemo()" style="width:100%;justify-content:center">Analyser mon copy</button>
+        <div class="demo-result" id="demoOut">
+          <div class="dr-label">SOL.IA détecte</div>
+          <div class="dr-flag"><span class="w">⚠</span> Manque de curiosité — le lecteur n'a aucune raison de cliquer</div>
+          <div class="dr-flag"><span class="w">⚠</span> Tension émotionnelle faible — « exceptionnelle » est un mot vide</div>
+          <div class="dr-flag"><span class="w">⚠</span> CTA passif — « cliquez ici » ne dit pas ce qu'on y gagne</div>
+          <div class="demo-cta"><button class="btn btn-gold" onclick="go('onboarding')">Voir l'analyse complète + comment corriger →</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section alt">
+      <div class="section-head">
+        <span class="eyebrow">Le système complet</span>
+        <h2>Écrire, analyser, progresser — au même endroit.</h2>
+      </div>
+      <div class="feat-grid">
+        <div class="feat" onclick="go('generate')">
+          <div class="feat-ic">✍️</div>
+          <h3>Écrire</h3>
+          <p>Générez du copy qui applique une vraie méthode, pas du texte générique.</p>
+          <div class="feat-tags"><span class="feat-tag">Emails</span><span class="feat-tag">Ads</span><span class="feat-tag">VSL</span><span class="feat-tag">Pages</span></div>
+        </div>
+        <div class="feat" onclick="go('review')">
+          <div class="feat-ic">🔍</div>
+          <h3>Analyser</h3>
+          <p>SOL.IA décortique chaque ligne et note votre copy sur les leviers qui comptent.</p>
+          <div class="feat-tags"><span class="feat-tag">Psychologie</span><span class="feat-tag">Clarté</span><span class="feat-tag">Urgence</span></div>
+        </div>
+        <div class="feat" onclick="go('learning')">
+          <div class="feat-ic">📈</div>
+          <h3>Progresser</h3>
+          <p>Chaque analyse vous explique le pourquoi. Vous gardez l'historique. Vous montez de niveau.</p>
+          <div class="feat-tags"><span class="feat-tag">Explications</span><span class="feat-tag">Feedback</span><span class="feat-tag">Historique</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOCIAL PROOF -->
+    <section class="section">
+      <div class="section-head">
+        <span class="eyebrow">Les premiers de la beta</span>
+        <h2>Ils testent SOL.IA avant tout le monde.</h2>
+        <p>(Et ils ne nous le pardonneraient pas si on ouvrait à tous trop vite.)</p>
+      </div>
+
+      <div class="rating-row">
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-txt"><b>4,8/5</b> · sur les retours beta</div>
+      </div>
+
+      <div class="logos">
+        <span>★ E-commerçants à 7 chiffres</span>
+        <span>★ Coachs &amp; infopreneurs</span>
+        <span>★ Agences</span>
+        <span>★ SaaS</span>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><div class="stat-num">300</div><div class="stat-lab">Membres en beta privée</div></div>
+        <div class="stat"><div class="stat-num">2 100+</div><div class="stat-lab">Sur la liste d'attente</div></div>
+        <div class="stat"><div class="stat-num">+38%</div><div class="stat-lab">Conversion moyenne en plus</div></div>
+      </div>
+
+      <div class="testi-grid">
+        <div class="testi">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-q">"J'ai compris en 3 analyses pourquoi mes emails ne vendaient pas. Mon point faible c'était l'urgence — SOL.IA me l'a dit avant mon marché."</p>
+          <div class="testi-who"><div class="testi-av">CM</div><div><b>Camille M.</b><span>E-commerce cosmétique · beta</span></div></div>
+        </div>
+        <div class="testi">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-q">"Le truc que ChatGPT ne fait pas : il m'explique le pourquoi. Du coup je progresse vraiment, je ne copie-colle pas bêtement."</p>
+          <div class="testi-who"><div class="testi-av av2">TD</div><div><b>Thomas D.</b><span>Coach business · beta</span></div></div>
+        </div>
+        <div class="testi">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-q">"La série de 7 jours m'a accroché comme Duolingo. Sauf que là, je deviens meilleur en copy au lieu d'apprendre à dire 'le hibou boit du lait'."</p>
+          <div class="testi-who"><div class="testi-av av3">LR</div><div><b>Léa R.</b><span>Freelance copywriting · beta</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDÉO DÉMO -->
+    <section class="section alt2">
+      <div class="section-head">
+        <span class="eyebrow">30 secondes chrono</span>
+        <h2>Regardez SOL.IA disséquer un copy en direct.</h2>
+        <p>Spoiler : il ne mâche pas ses mots. (Votre copy non plus ne devrait pas.)</p>
+      </div>
+      <div class="video-frame" onclick="this.classList.add('playing')">
+        <div class="video-inner">
+          <div class="video-play">▶</div>
+          <div class="video-cap">SOL.IA — Analyse d'un email de vente (0:32)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section alt">
+      <div class="section-head"><span class="eyebrow">Questions fréquentes</span><h2>Tout ce que vous vous demandez.</h2></div>
+      <div class="faq-list" id="faq">
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Pourquoi SOL.IA plutôt que ChatGPT ?<span class="chev">▾</span></div><div class="faq-a">ChatGPT vous donne du texte. SOL.IA applique une méthode précise, vous explique le raisonnement psychologique derrière chaque choix, et vous fait progresser. Vous ne devenez pas dépendant — vous devenez meilleur. (ChatGPT, lui, vous laissera toujours aussi nul. Sans rancune.)</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Faut-il savoir écrire des prompts ?<span class="chev">▾</span></div><div class="faq-a">Non. Vous collez votre copy ou vous choisissez un format. SOL.IA s'occupe du reste — zéro prompt à apprendre, zéro soirée passée à supplier une IA.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Mes textes sont-ils privés ?<span class="chev">▾</span></div><div class="faq-a">Oui. Vos analyses et générations restent dans votre espace. On ne lit pas vos emails de relance en se moquant. (Enfin, SOL.IA un peu, mais c'est pour votre bien.)</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">C'est fait pour qui ?<span class="chev">▾</span></div><div class="faq-a">Entrepreneurs, e-commerçants, coachs, freelances, agences — toute personne qui veut un meilleur copy sans engager un copywriter à 3 000 € la mission.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Je peux annuler quand je veux ?<span class="chev">▾</span></div><div class="faq-a">Quand vous voulez, en deux clics. Pas de rétention forcée, pas de « êtes-vous VRAIMENT sûr » répété sept fois. Vous gardez l'accès jusqu'à la fin de votre cycle.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Et si je suis déjà un bon copywriter ?<span class="chev">▾</span></div><div class="faq-a">Alors vous allez adorer avoir un deuxième cerveau qui repère ce que vous ne voyez plus. Les meilleurs sont ceux qui se font relire. SOL.IA ne dort jamais et ne vous juge pas (trop).</div></div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="section">
+      <div class="cta-band">
+        <h2>Le système pour écrire un meilleur copy — et le devenir.</h2>
+        <p>Génération = remplaçable. Progression = imbattable.</p>
+        <button class="btn btn-ghost btn-lg" onclick="go('onboarding')">Demander mon accès →</button>
+      </div>
+    </section>
+  <div class="footer">
+    <div class="footer-fun">Vous avez scrollé jusqu'en bas. Soit vous nous adorez déjà, soit vous procrastinez votre prochain email de vente. 👀<br>Dans le doute : code <b>SCROLLEUR10</b> pour -10% sur votre premier mois.</div>
+    Par <b>Better Call Sol</b> · SOL.IA, l'IA qui veut votre bien (et votre taux de conversion) · Prototype
+  </div>
+</div>
+<div class="page" id="page-onboarding">
+  <div class="wrap">
+    <div class="onb">
+      <div class="onb-prog"><i class="on"></i><i></i><i></i><i></i></div>
+      <h2>Demande d'accès à la beta</h2>
+      <p class="onb-hint">Dites-nous pour qui vous écrivez — on personnalise votre espace et on vous place dans la file.</p>
+      <div class="onb-opts">
+        <div class="onb-opt" onclick="go('dashboard')"><span class="oe">🧑‍💻</span> Freelance</div>
+        <div class="onb-opt" onclick="go('dashboard')"><span class="oe">🏢</span> Agence</div>
+        <div class="onb-opt" onclick="go('dashboard')"><span class="oe">🛒</span> E-commerce</div>
+        <div class="onb-opt" onclick="go('dashboard')"><span class="oe">⚙️</span> SaaS</div>
+        <div class="onb-opt" onclick="go('dashboard')"><span class="oe">🎓</span> Infoproduit</div>
+        <div class="onb-opt" onclick="go('dashboard')"><span class="oe">🎬</span> Créateur</div>
+      </div>
+      <p style="text-align:center;margin-top:24px;font-size:13px;color:var(--muted-2)">Étape 1 / 4 · 🔒 Beta privée, places limitées · <a onclick="go('dashboard')" style="color:var(--gold-deep);cursor:pointer;font-weight:700">aperçu de l'app (démo) →</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ APP PAGES (shared shell built via JS sidebar) ============ -->
+
+<!-- PAGE 3 — DASHBOARD -->
+<div class="page" id="page-dashboard">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar-dashboard"></aside>
+    <main class="main">
+      <div class="app-hd">
+        <div><h1>Bonjour, Alex 👋</h1><p>Voici votre copy du jour. On continue la série ?</p></div>
+        <button class="btn btn-gold" onclick="go('review')">+ Nouvelle analyse</button>
+      </div>
+      <div class="dash-row">
+        <div class="dcard">
+          <div class="dcard-lab">🔥 Série en cours</div>
+          <div class="dcard-big gold">7 jours</div>
+          <div class="dcard-sub">Votre meilleure série : 12 jours</div>
+          <div class="streak-dots"><i class="on">L</i><i class="on">M</i><i class="on">M</i><i class="on">J</i><i class="on">V</i><i class="on">S</i><i class="on">D</i></div>
+        </div>
+        <div class="dcard">
+          <div class="dcard-lab">📈 Niveau copy</div>
+          <div class="dcard-big">Intermédiaire</div>
+          <div class="dcard-sub">Niveau 34 · 1 240 XP</div>
+          <div class="progress-track"><div class="progress-fill" style="width:64%"></div></div>
+        </div>
+        <div class="dcard">
+          <div class="dcard-lab">🎯 Point faible détecté</div>
+          <div class="dcard-big" style="color:var(--red)">Urgence</div>
+          <div class="dcard-sub">Score moyen 3,4/10 sur vos 10 derniers textes</div>
+        </div>
+      </div>
+
+      <div class="block-title">Suggestions du jour</div>
+      <div class="suggest-grid">
+        <div class="suggest" onclick="go('learning')">
+          <div class="suggest-tag">À travailler</div>
+          <h4>Le CTA passif</h4>
+          <p>Vos appels à l'action manquent de mouvement. Module de 6 min.</p>
+        </div>
+        <div class="suggest" onclick="go('learning')">
+          <div class="suggest-tag">À travailler</div>
+          <h4>Créer de la curiosité</h4>
+          <p>Apprenez les 16 déclencheurs de curiosité. Exercice inclus.</p>
+        </div>
+        <div class="suggest" onclick="go('learning')">
+          <div class="suggest-tag">Fondation</div>
+          <h4>Specific Conditions</h4>
+          <p>Comprendre l'audience avant d'écrire. Le socle de tout bon copy.</p>
+        </div>
+      </div>
+
+      <div class="block-title">Reprendre où vous en étiez</div>
+      <div class="hist-table">
+        <div class="hist-row" onclick="go('review')"><div class="hist-ic">📝</div><div class="hist-main"><h4>Email de relance — panier abandonné</h4><p>Analysé il y a 2 h · Score 72/100</p></div><div class="hist-score" style="color:var(--gold-deep)">72</div></div>
+        <div class="hist-row" onclick="go('generate')"><div class="hist-ic">✨</div><div class="hist-main"><h4>3 hooks pour pub Meta — coaching fitness</h4><p>Généré hier</p></div><div class="hist-score" style="color:var(--muted-2)">→</div></div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- PAGE 4 — REVIEW ENGINE -->
+<div class="page" id="page-review">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar-review"></aside>
+    <main class="main">
+      <div class="app-hd"><div><h1>Analyser un copy</h1><p>Collez votre texte. SOL.IA le décortique avec la méthode.</p></div></div>
+      <div class="rev-grid">
+        <div>
+          <div class="rev-input">
+            <textarea id="revIn">Cliquez ici pour découvrir notre nouvelle offre exceptionnelle ! Profitez de réductions incroyables sur toute la boutique.</textarea>
+          </div>
+          <button class="btn btn-gold" style="margin-top:14px" onclick="showReview()">Analyser →</button>
+
+          <div class="rev-out" id="revOut" style="display:none">
+            <div class="rev-sec good"><h4>✓ Ce qui marche</h4><p>La promesse de réduction est claire et l'intention commerciale est lisible. Le ton est direct.</p></div>
+            <div class="rev-sec bad"><h4>✕ Ce qui bloque</h4><ul><li>« exceptionnelle » et « incroyables » sont des mots vides — le cerveau les ignore.</li><li>« Cliquez ici » est un CTA passif : il décrit l'action, pas le bénéfice.</li><li>Aucune tension, aucune curiosité : rien ne donne envie de cliquer <em>maintenant</em>.</li></ul></div>
+            <div class="rev-sec why"><h4>🧠 Pourquoi (psychologie)</h4><p>Le cerveau filtre le générique (principe du <b>NEW</b> : « categorization is death »). Sans curiosité (un knowledge gap) ni enjeu, il n'y a aucune raison d'agir — l'équation de l'action n'est pas remplie : la douleur de l'inaction est nulle.</p></div>
+            <div class="rev-sec fix"><h4>⚡ Comment améliorer</h4><ul><li>Remplacez le mot vide par un bénéfice concret et chiffré.</li><li>Transformez le CTA en promesse : ce qu'on gagne en cliquant.</li><li>Ajoutez un déclencheur de curiosité ou une vraie raison d'agir maintenant.</li></ul></div>
+          </div>
+        </div>
+
+        <div class="score-card" id="scoreCard" style="display:none">
+          <div class="score-global">
+            <div class="score-ring">
+              <svg width="120" height="120"><circle cx="60" cy="60" r="52" fill="none" stroke="#FFE9C2" stroke-width="12"/><circle cx="60" cy="60" r="52" fill="none" stroke="url(#sg)" stroke-width="12" stroke-linecap="round" stroke-dasharray="326" stroke-dashoffset="91"/><defs><linearGradient id="sg"><stop offset="0" stop-color="#FEAA02"/><stop offset="1" stop-color="#F59300"/></linearGradient></defs></svg>
+              <div class="val"><b>72</b><span>/ 100</span></div>
+            </div>
+          </div>
+          <div class="score-bar"><div class="score-bar-hd"><span>Hook</span><b>8/10</b></div><div class="score-bar-track"><div class="score-bar-fill" style="width:80%;background:var(--green)"></div></div></div>
+          <div class="score-bar"><div class="score-bar-hd"><span>Curiosité</span><b>5/10</b></div><div class="score-bar-track"><div class="score-bar-fill" style="width:50%;background:var(--gold)"></div></div></div>
+          <div class="score-bar"><div class="score-bar-hd"><span>Urgence</span><b>3/10</b></div><div class="score-bar-track"><div class="score-bar-fill" style="width:30%;background:var(--red)"></div></div></div>
+          <div class="score-bar"><div class="score-bar-hd"><span>Clarté</span><b>9/10</b></div><div class="score-bar-track"><div class="score-bar-fill" style="width:90%;background:var(--green)"></div></div></div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- PAGE 5 — GENERATION -->
+<div class="page" id="page-generate">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar-generate"></aside>
+    <main class="main">
+      <div class="app-hd"><div><h1>Générer du copy</h1><p>Choisissez un format et un ton. SOL.IA écrit en appliquant la méthode.</p></div></div>
+      <div class="block-title">Format</div>
+      <div class="gen-opts" id="genFormats">
+        <button class="chip sel">Email</button><button class="chip">Ads</button><button class="chip">Landing</button><button class="chip">Hook</button><button class="chip">VSL</button><button class="chip">Thread</button>
+      </div>
+      <div class="block-title">Ton</div>
+      <div class="gen-opts" id="genTones">
+        <button class="chip sel">Direct</button><button class="chip">Luxueux</button><button class="chip">Hormozi</button><button class="chip">Ogilvy</button><button class="chip">Halbert</button>
+      </div>
+      <button class="btn btn-gold" style="margin:8px 0 4px" onclick="document.getElementById('genOut').style.display='block'">Générer →</button>
+      <div class="gen-out" id="genOut" style="display:none">
+        <div class="gen-copy">Objet : Vous avez oublié quelque chose (et il part dans 2 h)
+
+Salut,
+
+Votre panier vous attend encore — mais pas pour longtemps.
+
+Les articles que vous avez choisis sont parmi nos plus demandés, et le stock bouge vite. Dans 2 heures, on ne peut plus garantir qu'ils seront là.
+
+Reprenez là où vous vous êtes arrêté →</div>
+        <div class="gen-explain"><b>Pourquoi ça marche :</b> l'objet crée un knowledge gap (« quelque chose ») + une urgence réelle (2 h). Le corps réactive la peur de perdre (FOMO) avec une justification crédible (le stock), pas une urgence artificielle. Le CTA est une reprise d'action, pas un « cliquez ici » passif.</div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- PAGE 6 — LEARNING -->
+<div class="page" id="page-learning">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar-learning"></aside>
+    <main class="main">
+      <div class="app-hd"><div><h1>Apprendre</h1><p>Là où vous devenez vraiment meilleur. Modules, quiz, exercices.</p></div></div>
+      <div class="level-banner">
+        <div class="level-num">34</div>
+        <div class="level-info">
+          <h3>Copy Level 34 — Intermédiaire</h3>
+          <p>Encore 760 XP avant le niveau Avancé.</p>
+          <div class="module-bar"><i style="width:64%"></i></div>
+        </div>
+        <button class="btn btn-gold" onclick="go('challenges')">Voir les challenges</button>
+      </div>
+      <div class="learn-grid">
+        <div class="module done" onclick="go('challenges')"><span class="check">✓</span><div class="module-ic">🎯</div><h4>Specific Conditions</h4><p>Comprendre l'audience avant d'écrire.</p><div class="module-meta">Terminé · 120 XP</div><div class="module-bar"><i style="width:100%"></i></div></div>
+        <div class="module" onclick="go('challenges')"><div class="module-ic">⏳</div><h4>Urgence</h4><p>10 formes d'urgence réelle, sans bullshit.</p><div class="module-meta">3 / 6 leçons</div><div class="module-bar"><i style="width:50%"></i></div></div>
+        <div class="module" onclick="go('challenges')"><div class="module-ic">🧲</div><h4>Curiosité</h4><p>Les 16 déclencheurs de curiosité.</p><div class="module-meta">1 / 5 leçons</div><div class="module-bar"><i style="width:20%"></i></div></div>
+        <div class="module" onclick="go('challenges')"><div class="module-ic">💢</div><h4>Douleur</h4><p>Les 7 origines de la douleur (Maslow).</p><div class="module-meta">Non commencé</div><div class="module-bar"><i style="width:0%"></i></div></div>
+        <div class="module" onclick="go('challenges')"><div class="module-ic">🤝</div><h4>Liking</h4><p>Les 11 variables qui créent la confiance.</p><div class="module-meta">Non commencé</div><div class="module-bar"><i style="width:0%"></i></div></div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- PAGE 7 — CHALLENGES -->
+<div class="page" id="page-challenges">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar-challenges"></aside>
+    <main class="main">
+      <div class="app-hd"><div><h1>Challenges</h1><p>Des défis concrets pour pratiquer et gagner de l'XP.</p></div></div>
+      <div class="chal-grid">
+        <div class="chal">
+          <div class="chal-badge">En cours · J3</div>
+          <h4>Challenge 7 jours : Hooks</h4>
+          <p>Réécrivez un hook par jour. SOL.IA note chaque version.</p>
+          <ul class="chal-tasks">
+            <li class="done"><span class="cb">✓</span> Jour 1 — Hook email</li>
+            <li class="done"><span class="cb">✓</span> Jour 2 — Hook pub</li>
+            <li class="done"><span class="cb">✓</span> Jour 3 — Hook landing</li>
+            <li><span class="cb"></span> Jour 4 — Hook VSL</li>
+            <li><span class="cb"></span> Jour 5 — Hook thread</li>
+          </ul>
+          <div class="chal-xp">🏆 +300 XP à la clé</div>
+        </div>
+        <div class="chal">
+          <div class="chal-badge">Disponible</div>
+          <h4>Sprint Email</h4>
+          <p>Écrivez 3 emails de séquence welcome en appliquant le ratio 3:1.</p>
+          <ul class="chal-tasks">
+            <li><span class="cb"></span> Email de bienvenue</li>
+            <li><span class="cb"></span> Email valeur</li>
+            <li><span class="cb"></span> Email offre</li>
+          </ul>
+          <div class="chal-xp">🏆 +200 XP</div>
+        </div>
+        <div class="chal">
+          <div class="chal-badge">Disponible</div>
+          <h4>La Landing parfaite</h4>
+          <p>Construisez une page de vente section par section, notée en direct.</p>
+          <ul class="chal-tasks">
+            <li><span class="cb"></span> Hook + promesse</li>
+            <li><span class="cb"></span> Problème + mécanisme</li>
+            <li><span class="cb"></span> Offre + CTA</li>
+          </ul>
+          <div class="chal-xp">🏆 +500 XP</div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- PAGE 8 — HISTORIQUE -->
+<div class="page" id="page-history">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar-history"></aside>
+    <main class="main">
+      <div class="app-hd"><div><h1>Historique</h1><p>Toutes vos analyses et générations. Suivez votre progression.</p></div></div>
+      <div class="hist-table">
+        <div class="hist-row" onclick="go('review')"><div class="hist-ic">📝</div><div class="hist-main"><h4>Email de relance — panier abandonné</h4><p>Analyse · il y a 2 h</p></div><div class="hist-score" style="color:var(--gold-deep)">72</div></div>
+        <div class="hist-row" onclick="go('review')"><div class="hist-ic">📝</div><div class="hist-main"><h4>Hook pub Meta — coaching</h4><p>Analyse · hier</p></div><div class="hist-score" style="color:var(--green)">86</div></div>
+        <div class="hist-row" onclick="go('generate')"><div class="hist-ic">✨</div><div class="hist-main"><h4>3 hooks — lancement formation</h4><p>Génération · hier</p></div><div class="hist-score" style="color:var(--muted-2)">→</div></div>
+        <div class="hist-row" onclick="go('review')"><div class="hist-ic">📝</div><div class="hist-main"><h4>Page de vente — section hero</h4><p>Analyse · il y a 3 j</p></div><div class="hist-score" style="color:var(--red)">58</div></div>
+        <div class="hist-row" onclick="go('generate')"><div class="hist-ic">✨</div><div class="hist-main"><h4>Séquence welcome — 5 emails</h4><p>Génération · il y a 4 j</p></div><div class="hist-score" style="color:var(--muted-2)">→</div></div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- PAGE 9 — PRICING -->
+<div class="page" id="page-pricing">
+  <div class="wrap">
+    <div class="section-head" style="padding-top:40px">
+      <span class="eyebrow">Tarifs</span>
+      <h2>Tarifs de lancement — verrouillés pour les membres beta.</h2>
+      <p>Génération = remplaçable. Progression = ce pour quoi vous restez. <span style="color:var(--gold-deep);font-weight:700">Les premiers gardent ce prix à vie.</span></p>
+    </div>
+
+    <div class="bill-toggle">
+      <button class="bill-opt sel" id="billMonthly" onclick="setBilling('m')">Mensuel</button>
+      <button class="bill-opt" id="billYearly" onclick="setBilling('y')">Annuel <span class="bill-save">−20%</span></button>
+    </div>
+
+    <div class="price-grid">
+      <div class="price">
+        <div class="price-name">Free</div>
+        <div class="price-amt">0€</div>
+        <ul><li><span class="ck">✓</span> 5 analyses / mois</li><li><span class="ck">✓</span> Scoring de base</li><li><span class="ck">✓</span> 1 module d'apprentissage</li></ul>
+        <button class="btn btn-ghost" onclick="go('onboarding')">Demander un accès</button>
+      </div>
+      <div class="price feat">
+        <div class="price-name">Pro</div>
+        <div class="price-amt" data-m="19" data-y="15">19€<small>/mois</small></div>
+        <ul><li><span class="ck">✓</span> Analyses illimitées</li><li><span class="ck">✓</span> Génération tous formats</li><li><span class="ck">✓</span> Historique complet</li><li><span class="ck">✓</span> Tous les scores détaillés</li></ul>
+        <button class="btn btn-gold" onclick="go('onboarding')">Rejoindre la beta</button>
+      </div>
+      <div class="price">
+        <div class="price-name">Elite</div>
+        <div class="price-amt" data-m="49" data-y="39">49€<small>/mois</small></div>
+        <ul><li><span class="ck">✓</span> Tout Pro, +</li><li><span class="ck">✓</span> Coaching IA avancé</li><li><span class="ck">✓</span> Tous les modules + challenges</li><li><span class="ck">✓</span> Bibliothèque de templates</li></ul>
+        <button class="btn btn-ghost" onclick="go('onboarding')">Rejoindre la beta</button>
+      </div>
+      <div class="price">
+        <div class="price-name">Team</div>
+        <div class="price-amt" data-m="99" data-y="79">99€<small>/mois</small></div>
+        <ul><li><span class="ck">✓</span> Tout Elite, +</li><li><span class="ck">✓</span> Espace agence multi-membres</li><li><span class="ck">✓</span> Suivi de progression d'équipe</li><li><span class="ck">✓</span> Support prioritaire</li></ul>
+        <button class="btn btn-ghost" onclick="go('onboarding')">Contacter</button>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:22px;font-size:13px;color:var(--muted-2)">💡 Astuce de scrolleur : le code <b style="color:var(--gold-deep)">SCROLLEUR10</b> traîne quelque part sur ce site.</p>
+  </div>
+  <div class="footer">Par <b>Better Call Sol</b> · Prototype SOL.IA</div>
+</div>
+
+<!-- PAGE 10 — COMMUNITY -->
+<div class="page" id="page-community">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar-community"></aside>
+    <main class="main">
+      <div class="app-hd"><div><h1>Communauté</h1><p>Le classement de la semaine. Plus vous progressez, plus vous montez.</p></div></div>
+      <div class="lb">
+        <div class="lb-row"><div class="lb-rank top">1</div><div class="lb-av">CM</div><div class="lb-name">Camille M. <span>Niveau 67 · Avancé</span></div><div class="lb-xp">9 840 XP</div></div>
+        <div class="lb-row"><div class="lb-rank top">2</div><div class="lb-av">TD</div><div class="lb-name">Thomas D. <span>Niveau 61 · Avancé</span></div><div class="lb-xp">8 730 XP</div></div>
+        <div class="lb-row"><div class="lb-rank top">3</div><div class="lb-av">LR</div><div class="lb-name">Léa R. <span>Niveau 58 · Avancé</span></div><div class="lb-xp">8 110 XP</div></div>
+        <div class="lb-row"><div class="lb-rank">4</div><div class="lb-av">NK</div><div class="lb-name">Nadia K. <span>Niveau 49 · Intermédiaire</span></div><div class="lb-xp">6 420 XP</div></div>
+        <div class="lb-row you"><div class="lb-rank">12</div><div class="lb-av">AX</div><div class="lb-name">Vous (Alex) <span>Niveau 34 · Intermédiaire</span></div><div class="lb-xp">1 240 XP</div></div>
+      </div>
+      <p style="text-align:center;margin-top:18px;font-size:13.5px;color:var(--muted-2)">Gagnez de l'XP en analysant, en générant et en complétant des modules. <a onclick="go('challenges')" style="color:var(--gold-deep);cursor:pointer;font-weight:700">Voir les challenges →</a></p>
+    </main>
+  </div>
+</div>
+
+<!-- PAGE 11 — AFFILIÉS -->
+<div class="page" id="page-affiliate">
+  <div class="wrap">
+    <section class="hero" style="padding:50px 0 20px">
+      <span class="eyebrow"><span class="eb-dot"></span>Programme d'affiliation</span>
+      <h1>Recommandez SOL.IA. <span class="hl">Touchez 30%</span>. À vie.</h1>
+      <p class="hero-sub">Chaque copywriter que vous parrainez vous rapporte 30% de commission récurrente. Tant qu'il reste, vous touchez.</p>
+      <div class="hero-cta"><button class="btn btn-gold btn-lg" onclick="go('onboarding')">Devenir affilié →</button></div>
+      <div class="hero-trust"><span><span class="c">✓</span> Paiement mensuel</span><span><span class="c">✓</span> Cookie 60 jours</span><span><span class="c">✓</span> Dashboard temps réel</span></div>
+    </section>
+
+    <section class="section">
+      <div class="stats">
+        <div class="stat"><div class="stat-num">30%</div><div class="stat-lab">Commission récurrente</div></div>
+        <div class="stat"><div class="stat-num">60 j</div><div class="stat-lab">Durée du cookie</div></div>
+        <div class="stat"><div class="stat-num">∞</div><div class="stat-lab">À vie, tant qu'il reste abonné</div></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><span class="eyebrow">Comment ça marche</span><h2>Trois étapes. Zéro prise de tête.</h2></div>
+      <div class="feat-grid">
+        <div class="feat"><div class="feat-ic">🔗</div><h3>1. Récupérez votre lien</h3><p>Un lien unique dans votre dashboard affilié. Copiez, partagez, c'est parti.</p></div>
+        <div class="feat"><div class="feat-ic">📣</div><h3>2. Partagez</h3><p>À votre audience, vos clients, votre mère (elle écrit sûrement du mauvais copy aussi).</p></div>
+        <div class="feat"><div class="feat-ic">💸</div><h3>3. Touchez 30%</h3><p>Sur chaque abonnement, chaque mois, tant que la personne reste. Versé automatiquement.</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="cta-band">
+        <h2>Le copy, ça se partage. Les commissions aussi.</h2>
+        <p>Rejoignez les affiliés SOL.IA et transformez vos recommandations en revenu récurrent.</p>
+        <button class="btn btn-ghost btn-lg" onclick="go('onboarding')">Rejoindre le programme →</button>
+      </div>
+    </section>
+  </div>
+  <div class="footer">Par <b>Better Call Sol</b> · Prototype SOL.IA</div>
+</div>
+
+<script>
+/* ===== Router ===== */
+const PAGES = ["landing","onboarding","dashboard","review","generate","learning","challenges","history","pricing","community","affiliate"];
+const NAV_PAGES = ["landing","dashboard","review","generate","learning","pricing","affiliate"];
+
+function go(id){
+  PAGES.forEach(p=>{
+    const el=document.getElementById("page-"+p);
+    if(el) el.classList.toggle("active", p===id);
+  });
+  document.querySelectorAll(".nav-link").forEach(l=>l.classList.toggle("active", l.dataset.nav===id));
+  window.scrollTo({top:0,behavior:"instant"});
+}
+
+/* ===== Sidebar (shared, injected into each app page) ===== */
+const SIDEBAR = `
+  <div class="side-grp">Outils</div>
+  <div class="side-link" data-s="review" onclick="go('review')"><span class="si">🔍</span> Analyser</div>
+  <div class="side-link" data-s="generate" onclick="go('generate')"><span class="si">✨</span> Générer</div>
+  <div class="side-link" data-s="dashboard" onclick="go('dashboard')"><span class="si">🏠</span> Dashboard</div>
+  <div class="side-grp">Progresser</div>
+  <div class="side-link" data-s="learning" onclick="go('learning')"><span class="si">📚</span> Apprendre</div>
+  <div class="side-link" data-s="challenges" onclick="go('challenges')"><span class="si">🏆</span> Challenges</div>
+  <div class="side-link" data-s="community" onclick="go('community')"><span class="si">👥</span> Communauté</div>
+  <div class="side-grp">Mon espace</div>
+  <div class="side-link" data-s="history" onclick="go('history')"><span class="si">🕓</span> Historique</div>
+  <div class="side-link" data-s="pricing" onclick="go('pricing')"><span class="si">💎</span> Passer Pro</div>
+`;
+["dashboard","review","generate","learning","challenges","history","community"].forEach(p=>{
+  const sb=document.getElementById("sidebar-"+p);
+  if(sb){ sb.innerHTML=SIDEBAR; const act=sb.querySelector(`[data-s="${p}"]`); if(act) act.classList.add("active"); }
+});
+
+/* ===== Landing interactions ===== */
+function runDemo(){ document.getElementById("demoOut").classList.add("show"); }
+function toggleFaq(q){ q.parentElement.classList.toggle("open"); }
+function showReview(){
+  document.getElementById("revOut").style.display="block";
+  document.getElementById("scoreCard").style.display="block";
+}
+/* pricing billing toggle */
+function setBilling(mode){
+  document.getElementById("billMonthly").classList.toggle("sel", mode==="m");
+  document.getElementById("billYearly").classList.toggle("sel", mode==="y");
+  document.querySelectorAll(".price-amt[data-m]").forEach(el=>{
+    const v = mode==="m" ? el.dataset.m : el.dataset.y;
+    el.innerHTML = v+"€<small>/mois</small>";
+  });
+}
+/* chip selectors */
+document.querySelectorAll("#genFormats .chip, #genTones .chip").forEach(c=>{
+  c.onclick=()=>{ c.parentElement.querySelectorAll(".chip").forEach(x=>x.classList.remove("sel")); c.classList.add("sel"); };
+});
+
+/* liquid glass : ombre douce qui apparaît au scroll, comme iOS */
+const navEl = document.querySelector(".nav");
+const onScroll = ()=>{ navEl.classList.toggle("scrolled", window.scrollY > 8); };
+window.addEventListener("scroll", onScroll, {passive:true});
+onScroll();
+</script>
+</body>
+</html>
