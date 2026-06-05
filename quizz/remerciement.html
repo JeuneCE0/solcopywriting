@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ton appel est réservé — Une dernière étape pour le confirmer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --yellow: #f5a623;
+  --yellow-dark: #d68a0a;
+  --yellow-light: #fff3d6;
+  --ink: #1a1a1a;
+  --paper: #ffffff;
+  --bg: #fafafa;
+  --border: #e5e5e5;
+  --muted: #6b6b6b;
+  --success: #10b981;
+  --success-dark: #047857;
+  --whatsapp: #25d366;
+  --whatsapp-dark: #128c7e;
+  --danger: #dc2626;
+  --danger-light: #fee2e2;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,0.12);
+}
+
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+
+.container { max-width: 760px; margin: 0 auto; padding: 0 16px 80px; }
+
+
+.top-warning {
+  background: var(--danger);
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+
+.top-warning .pulse-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.4); }
+}
+
+
+.header { text-align: center; margin: 24px 0; }
+.logo { display: inline-block; font-weight: 900; font-size: 22px; letter-spacing: -0.02em; }
+.logo-emoji { color: var(--yellow); margin-right: 4px; }
+
+
+/* HERO CONFIRMATION */
+.hero-confirmation {
+  background: var(--paper);
+  border-radius: 20px;
+  padding: 36px 28px;
+  text-align: center;
+  margin-bottom: 24px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+
+.hero-confirmation::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--yellow), var(--yellow-dark));
+}
+
+
+.confirm-eyebrow {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--yellow);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 16px;
+}
+
+
+.hero-confirmation h1 {
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+
+.hero-confirmation h1 .underline {
+  border-bottom: 4px solid var(--yellow);
+  padding-bottom: 2px;
+}
+
+
+.hero-confirmation p {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+
+/* VIDEO BLOCK */
+.video-block {
+  background: var(--ink);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  position: relative;
+}
+
+
+.video-block:hover { transform: translateY(-2px); }
+
+
+.video-thumb {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+  position: relative;
+}
+
+
+.video-thumb::after {
+  content: '▶';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 88px; height: 88px;
+  background: var(--yellow);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: var(--ink);
+  padding-left: 6px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+}
+
+
+.video-tag {
+  position: absolute;
+  top: 16px; left: 16px;
+  background: var(--danger);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+
+.video-duration {
+  position: absolute;
+  bottom: 16px; right: 16px;
+  background: rgba(0,0,0,0.85);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+.video-info { padding: 20px 24px; background: var(--ink); }
+
+
+.video-title {
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+
+.video-meta { color: rgba(255,255,255,0.7); font-size: 13px; }
+
+
+/* SECTION HOW TO CONFIRM */
+.confirm-section {
+  background: var(--paper);
+  border-radius: 16px;
+  padding: 32px 28px;
+  margin-bottom: 24px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+
+.confirm-section h2 {
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+
+.confirm-section .subtitle {
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+
+.confirm-section .subtitle strong { color: var(--ink); }
+
+
+/* STEPS */
+.steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+
+.step-item {
+  display: flex;
+  gap: 16px;
+  background: var(--bg);
+  border-radius: 14px;
+  padding: 20px 22px;
+  border-left: 4px solid var(--yellow);
+}
+
+
+.step-num {
+  width: 40px;
+  height: 40px;
+  background: var(--ink);
+  color: var(--yellow);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+
+.step-content { flex: 1; }
+
+
+.step-content h4 {
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+
+.step-content p {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.55;
+  margin: 0;
+}
+
+
+.step-content strong { color: var(--ink); font-weight: 700; }
+
+
+.highlight-yellow {
+  background: linear-gradient(180deg, transparent 60%, var(--yellow-light) 60%);
+  padding: 0 2px;
+  font-weight: 600;
+}
+
+
+/* WHATSAPP CTA BLOCK */
+.whatsapp-block {
+  background: linear-gradient(135deg, var(--whatsapp) 0%, var(--whatsapp-dark) 100%);
+  border-radius: 20px;
+  padding: 32px 24px;
+  margin: 24px 0;
+  text-align: center;
+  color: white;
+}
+
+
+.whatsapp-block-eyebrow {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 16px;
+}
+
+
+.whatsapp-block h3 {
+  font-size: 22px;
+  font-weight: 900;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+
+.whatsapp-block p {
+  font-size: 15px;
+  margin-bottom: 20px;
+  opacity: 0.95;
+}
+
+
+.whatsapp-block p strong { color: white; font-weight: 700; }
+
+
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  color: var(--whatsapp-dark);
+  padding: 16px 28px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+  transition: all 0.2s;
+}
+
+
+.btn-whatsapp:hover { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
+.btn-whatsapp:active { transform: translateY(4px); box-shadow: 0 0 0 rgba(0,0,0,0.2); }
+
+
+/* IMPORTANT BLOCK */
+.important-block {
+  background: var(--ink);
+  color: white;
+  border-radius: 16px;
+  padding: 32px 28px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.important-block::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 6px;
+  background: var(--yellow);
+}
+
+
+.important-eyebrow {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--ink);
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 16px;
+}
+
+
+.important-block h2 {
+  color: white;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+
+.important-block p {
+  font-size: 15px;
+  line-height: 1.65;
+  margin-bottom: 14px;
+  color: rgba(255,255,255,0.9);
+}
+
+
+.important-block p:last-child { margin-bottom: 0; }
+
+
+.important-block strong { color: var(--yellow); font-weight: 700; }
+
+
+.important-block .warning-line {
+  background: rgba(220,38,38,0.15);
+  border-left: 3px solid var(--danger);
+  padding: 14px 16px;
+  margin: 20px 0;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+
+.important-block .warning-line strong { color: #fca5a5; }
+
+
+/* CHECKLIST */
+.checklist-block {
+  background: var(--paper);
+  border-radius: 16px;
+  padding: 32px 28px;
+  margin-bottom: 24px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+
+.checklist-block h2 {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+
+.checklist-block .subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+
+.checklist {
+  display: grid;
+  gap: 12px;
+}
+
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--bg);
+  border-radius: 10px;
+  border-left: 3px solid var(--success);
+}
+
+
+.checklist-check {
+  width: 22px; height: 22px;
+  background: var(--success);
+  color: white;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 12px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+
+.checklist-text {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+
+.checklist-text strong { color: var(--ink); font-weight: 700; }
+
+
+/* SIGN OFF */
+.sign-off {
+  text-align: center;
+  margin: 32px 0 16px;
+  padding: 0 16px;
+}
+
+
+.sign-off p {
+  font-size: 17px;
+  color: var(--ink);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+
+.sign-off .signature {
+  font-size: 16px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+
+.sign-off .signature strong { color: var(--yellow-dark); font-style: normal; }
+
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 24px 16px;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+
+.footer a { color: var(--muted); text-decoration: underline; }
+
+
+.footer-disclaimer {
+  max-width: 600px;
+  margin: 0 auto 12px;
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+
+@media (max-width: 640px) {
+  .container { padding: 0 12px 60px; }
+  .hero-confirmation { padding: 28px 22px; }
+  .hero-confirmation h1 { font-size: 24px; }
+  .confirm-section { padding: 24px 20px; }
+  .confirm-section h2 { font-size: 20px; }
+  .step-item { padding: 16px 18px; gap: 12px; }
+  .step-num { width: 36px; height: 36px; font-size: 16px; }
+  .step-content h4 { font-size: 15px; }
+  .whatsapp-block { padding: 28px 20px; }
+  .whatsapp-block h3 { font-size: 20px; }
+  .btn-whatsapp { padding: 14px 24px; font-size: 14px; }
+  .important-block { padding: 28px 22px; }
+  .important-block h2 { font-size: 20px; }
+  .checklist-block { padding: 24px 20px; }
+  .video-info { padding: 16px 18px; }
+  .video-title { font-size: 16px; }
+}
+</style>
+</head>
+<body>
+
+
+<div class="top-warning">
+  <span class="pulse-dot"></span>
+  <span>Attention : ton appel n'est <strong>PAS encore confirmé</strong>. Lis ce qui suit pour le valider.</span>
+</div>
+
+
+<div class="container">
+
+
+  <header class="header">
+    <div class="logo"><span class="logo-emoji">✒️</span>Le Copy Quiz</div>
+  </header>
+
+
+  <!-- HERO CONFIRMATION -->
+  <div class="hero-confirmation">
+    <div class="confirm-eyebrow">📅 Créneau réservé</div>
+    <h1>Top <span id="firstname-greeting">!</span> Ton créneau est posé — <span class="underline">il reste une étape</span></h1>
+    <p>Tu vas recevoir un <strong>email de confirmation</strong> dans les prochaines minutes avec tous les détails. Mais avant ça : lis bien ce qui suit, c'est important.</p>
+  </div>
+
+
+  <!-- HOW TO CONFIRM -->
+  <div class="confirm-section">
+    <h2>Comment confirmer ton rendez-vous</h2>
+    <p class="subtitle">Deux étapes simples, mais <strong>essentielles</strong>. Sans ça, ton appel saute.</p>
+
+
+    <div class="steps-list">
+
+
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Note la date et l'heure dans ton agenda</h4>
+          <p>Mets-toi un rappel <strong>15 minutes avant</strong> au moins. La pire chose qui puisse arriver, c'est de paumer ton créneau parce que t'as pas vu passer l'heure. Sois sérieux là-dessus.</p>
+        </div>
+      </div>
+
+
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Je vais t'envoyer un message WhatsApp — réponds-y</h4>
+          <p>Dans la journée, je vais te ping sur WhatsApp pour confirmer notre call. <span class="highlight-yellow">Il faut <strong>impérativement</strong> que tu réponds à ce message</span>, sinon je peux pas confirmer ton créneau et je devrai le libérer pour quelqu'un d'autre.</p>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+  <!-- WHATSAPP CTA -->
+  <div class="whatsapp-block">
+    <div class="whatsapp-block-eyebrow">📱 Anticipe-moi</div>
+    <h3>Tu peux aussi me ping en premier sur WhatsApp</h3>
+    <p>Ajoute mon numéro tout de suite et envoie-moi un <strong>"Salut Sol, c'est [ton prénom], j'ai réservé pour [date]"</strong>. Ça nous fait gagner du temps à tous les deux.</p>
+    <a href="https://wa.me/33634091708" target="_blank" class="btn-whatsapp">
+      💬 Envoyer un WhatsApp maintenant
+    </a>
+  </div>
+
+
+  <!-- IMPORTANT BLOCK -->
+  <div class="important-block">
+    <div class="important-eyebrow">⚠ Important — Lis ça à fond</div>
+    <h2>Tu viens de réserver un créneau. Et je vais mettre <span style="color:var(--yellow);">ce temps-là rien que pour toi</span>.</h2>
+
+
+    <p>De mon côté, je serai là, à l'heure, <strong>100% dispo</strong> pour t'aider au mieux.</p>
+
+
+    <p>Je te demande juste la même chose en retour : <strong>ponctualité, concentration, et un endroit calme</strong>.</p>
+
+
+    <p>Et rappelle-toi un truc : si t'as réservé cet appel, <strong>c'est que quelque chose compte vraiment pour toi</strong>. Respecte cet engagement envers toi-même.</p>
+
+
+    <div class="warning-line">
+      <strong>Si tu confirmes pas le RDV ou si tu te présentes pas le jour J : je devrai l'annuler.</strong> Et il te sera <strong>pas possible</strong> de le replanifier. Je prends que 10-15 nouveaux clients par trimestre. Chaque créneau compte.
+    </div>
+
+
+    <p>Hâte d'avoir cet échange avec toi.</p>
+  </div>
+
+
+  <!-- CHECKLIST AVANT L'APPEL -->
+  <div class="checklist-block">
+    <h2>Ta mini-checklist avant le call</h2>
+    <p class="subtitle">5 minutes de prépa, pour que nos 30 minutes ensemble soient les plus utiles possibles.</p>
+
+
+    <div class="checklist">
+      <div class="checklist-item">
+        <div class="checklist-check">✓</div>
+        <div class="checklist-text"><strong>Regarde la vidéo</strong> qu'on t'a montrée juste avant. C'est la base pour qu'on aille direct au cœur du sujet.</div>
+      </div>
+      <div class="checklist-item">
+        <div class="checklist-check">✓</div>
+        <div class="checklist-text"><strong>Prépare tes 3 questions principales.</strong> Pas 20. 3 max. Les vraies. Celles qui te tracassent depuis des semaines.</div>
+      </div>
+      <div class="checklist-item">
+        <div class="checklist-check">✓</div>
+        <div class="checklist-text"><strong>Sois dans un endroit calme</strong> avec un bon micro ou un casque. Pas dans un café. Pas en marchant.</div>
+      </div>
+      <div class="checklist-item">
+        <div class="checklist-check">✓</div>
+        <div class="checklist-text"><strong>Connecte-toi 2 minutes avant</strong> pour pas perdre de temps avec les soucis techniques. Je démarre à l'heure pile.</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- SIGN OFF -->
+  <div class="sign-off">
+    <p>À très vite,</p>
+    <p class="signature"><strong>Sol</strong> — Copywriting</p>
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-disclaimer">Ce site n'est pas affilié au site de Meta ou de Meta, Inc. De plus, ce site n'est en aucun cas approuvé par Meta. Meta est une marque déposée de Meta, Inc.</div>
+    <div>
+      © Sol Copywriting · <a href="#">Mentions légales</a> · <a href="#">Politique de confidentialité</a> · <a href="#">CGV</a>
+    </div>
+  </footer>
+
+
+</div>
+
+
+<script>
+try {
+  const userDataStr = localStorage.getItem('quiz_user');
+  if (userDataStr) {
+    const userData = JSON.parse(userDataStr);
+    if (userData.firstname && userData.firstname !== 'Dev') {
+      document.getElementById('firstname-greeting').textContent = userData.firstname;
+    }
+  }
+} catch(e) {}
+</script>
+
+
+</body>
+</html>

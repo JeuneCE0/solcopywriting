@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Réserve ton appel offert avec Sol — Le Copy Quiz</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --yellow: #f5a623;
+    --yellow-dark: #d68a0a;
+    --yellow-light: #fff3d6;
+    --ink: #1a1a1a;
+    --paper: #ffffff;
+    --bg: #fafafa;
+    --border: #e5e5e5;
+    --muted: #6b6b6b;
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --shadow-lg: 0 12px 32px rgba(0,0,0,0.12);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 48px 20px 80px; }
+  .header { text-align: center; margin-bottom: 32px; }
+  .eyebrow {
+    display: inline-block;
+    font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--yellow-dark); background: var(--yellow-light);
+    padding: 6px 14px; border-radius: 100px; margin-bottom: 18px;
+  }
+  h1 {
+    font-size: clamp(26px, 5vw, 38px); font-weight: 800;
+    letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 14px;
+  }
+  h1 .hl { color: var(--yellow-dark); }
+  .sub { font-size: 17px; color: var(--muted); max-width: 540px; margin: 0 auto; }
+
+  /* VSL — slot optionnel. Décommenter et coller l'embed (Vimeo/Vidalytics) quand prêt.
+  .vsl {
+    aspect-ratio: 16 / 9; width: 100%; margin: 0 0 28px;
+    border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-lg);
+    background: #000;
+  }
+  .vsl iframe { width: 100%; height: 100%; border: 0; }
+  */
+
+  .booking-card {
+    background: var(--paper); border: 1px solid var(--border);
+    border-radius: 20px; box-shadow: var(--shadow-md);
+    padding: 14px; overflow: hidden;
+  }
+  .booking-card iframe { width: 100%; border: none; min-height: 720px; display: block; }
+
+  .reassure {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px;
+    margin-top: 28px; font-size: 14px; color: var(--muted);
+  }
+  .reassure span { display: inline-flex; align-items: center; gap: 7px; }
+  .reassure b { color: var(--ink); font-weight: 600; }
+
+  .back {
+    display: block; text-align: center; margin-top: 36px;
+    font-size: 14px; color: var(--muted); text-decoration: none;
+  }
+  .back:hover { color: var(--ink); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="header">
+      <span class="eyebrow">Dernière étape</span>
+      <h1>Choisis ton <span class="hl">créneau</span> avec Sol</h1>
+      <p class="sub">Un échange offert de 30 min : on diagnostique ta situation et on te dit cash si — et comment — on peut t'aider. Zéro blabla, zéro hard-selling.</p>
+    </div>
+
+    <!-- VSL (optionnel) — décommenter le bloc .vsl du <style> et coller l'embed ici
+    <div class="vsl"><iframe src="" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+    -->
+
+    <div class="booking-card">
+      <iframe src="https://api.leadconnectorhq.com/widget/booking/YEqUwsFSrTaWYxJ5GngF"
+              scrolling="no" id="YEqUwsFSrTaWYxJ5GngF_reserver"></iframe>
+    </div>
+
+    <div class="reassure">
+      <span>✓ <b>30 minutes</b>, en visio</span>
+      <span>✓ <b>Offert</b>, sans engagement</span>
+      <span>✓ Réponse honnête sur ton potentiel</span>
+    </div>
+
+    <a href="index.html" class="back">↩ Revenir au quiz</a>
+  </div>
+
+  <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
+</body>
+</html>

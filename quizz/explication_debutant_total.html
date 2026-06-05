@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Débutant Ambitieux — Ton plan d'action perso par Sol</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --yellow: #f5a623;
+  --yellow-dark: #d68a0a;
+  --yellow-light: #fff3d6;
+  --ink: #1a1a1a;
+  --paper: #ffffff;
+  --bg: #fafafa;
+  --border: #e5e5e5;
+  --muted: #6b6b6b;
+  --success: #10b981;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,0.12);
+  --shadow-xl: 0 20px 48px rgba(0,0,0,0.18);
+}
+
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px 16px 80px;
+}
+
+
+/* HEADER */
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+
+.logo {
+  display: inline-block;
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+
+.logo-emoji {
+  display: inline-block;
+  color: var(--yellow);
+  margin-right: 4px;
+}
+
+
+.credentials {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+
+.header-result-label {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 6px 14px;
+  background: var(--ink);
+  color: var(--yellow);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border-radius: 100px;
+}
+
+
+/* RESULT BANNER */
+.result-banner {
+  background: linear-gradient(135deg, var(--yellow) 0%, var(--yellow-dark) 100%);
+  border-radius: 20px;
+  padding: 40px 28px;
+  text-align: center;
+  color: var(--ink);
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+
+.result-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 60%;
+  height: 200%;
+  background: rgba(255,255,255,0.08);
+  transform: rotate(25deg);
+}
+
+
+.result-badge {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--yellow);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+
+.result-banner h1 {
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+
+.result-banner h1 .underline {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
+}
+
+
+.result-banner .greeting {
+  font-size: 16px;
+  font-weight: 600;
+  opacity: 0.85;
+  position: relative;
+}
+
+
+/* SECTIONS */
+.section {
+  background: var(--paper);
+  border-radius: 20px;
+  padding: 36px 28px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+}
+
+
+.section-eyebrow {
+  display: inline-block;
+  background: var(--yellow-light);
+  color: var(--yellow-dark);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+
+.section h2 {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+
+.section p {
+  font-size: 16px;
+  line-height: 1.65;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+
+.section p strong { color: var(--ink); font-weight: 700; }
+
+
+.highlight-yellow {
+  background: linear-gradient(180deg, transparent 60%, var(--yellow-light) 60%);
+  padding: 0 2px;
+  font-weight: 600;
+}
+
+
+.highlight-marker {
+  background: var(--yellow);
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+
+.underline-wavy {
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: var(--yellow);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  font-weight: 600;
+}
+
+
+.underline-thick {
+  border-bottom: 3px solid var(--yellow);
+  padding-bottom: 1px;
+  font-weight: 600;
+}
+
+
+/* HIGHLIGHT BOX */
+.highlight {
+  background: var(--yellow-light);
+  border-left: 4px solid var(--yellow);
+  padding: 20px 22px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+
+.highlight strong {
+  display: block;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--yellow-dark);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+
+.highlight p {
+  font-size: 15px;
+  margin-bottom: 0;
+  line-height: 1.55;
+}
+
+
+/* DIAGNOSTIC */
+.diag-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+
+.diag-card {
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid var(--border);
+}
+
+
+.diag-card-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+
+.diag-card-value {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+
+.diag-card.strong { background: #d1fae5; border-color: var(--success); }
+.diag-card.strong .diag-card-value { color: #065f46; }
+
+
+.diag-card.weak { background: #fef3c7; border-color: var(--yellow); }
+.diag-card.weak .diag-card-value { color: var(--yellow-dark); }
+
+
+/* VIDÉOS GRID */
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+}
+
+
+.video-card {
+  background: var(--ink);
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+
+.video-card:hover { transform: translateY(-2px); }
+
+
+.video-card.featured { grid-column: 1 / -1; }
+
+
+.video-thumb {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+
+.video-thumb::after {
+  content: '▶';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--ink);
+  padding-left: 4px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  transition: transform 0.2s;
+}
+
+
+.video-card.featured .video-thumb::after {
+  width: 80px;
+  height: 80px;
+  font-size: 28px;
+  padding-left: 6px;
+}
+
+
+.video-card:hover .video-thumb::after { transform: translate(-50%, -50%) scale(1.1); }
+
+
+.video-thumb-duration {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(0,0,0,0.85);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+
+.video-thumb-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #cc0000;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+
+.video-card-info {
+  padding: 16px;
+}
+
+
+.video-card-title {
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+
+.video-card.featured .video-card-title {
+  font-size: 18px;
+}
+
+
+.video-card-meta {
+  color: rgba(255,255,255,0.6);
+  font-size: 12px;
+}
+
+
+/* PRÉSENTATION DE SOL */
+.sol-presentation {
+  background: linear-gradient(135deg, var(--paper) 0%, var(--yellow-light) 100%);
+  border: 2px solid var(--yellow);
+}
+
+
+.sol-grid {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 28px;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+
+.sol-photo {
+  width: 180px;
+  height: 180px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+
+.sol-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--yellow) 0%, var(--yellow-dark) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  gap: 8px;
+}
+
+
+.sol-photo-placeholder span {
+  font-size: 48px;
+}
+
+
+.sol-photo-placeholder small {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  opacity: 0.9;
+}
+
+
+.sol-content h2 {
+  margin-bottom: 16px;
+}
+
+
+.sol-content p {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+
+@media (max-width: 540px) {
+  .sol-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .sol-photo {
+    margin: 0 auto;
+    width: 140px;
+    height: 140px;
+  }
+}
+
+
+/* AUTORITÉ */
+.authority-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 24px 0;
+}
+
+
+.authority-stat {
+  background: var(--ink);
+  color: white;
+  border-radius: 12px;
+  padding: 20px 16px;
+  text-align: center;
+}
+
+
+.authority-number {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--yellow);
+  line-height: 1;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+
+
+.authority-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  opacity: 0.85;
+  line-height: 1.3;
+}
+
+
+/* PLAN ÉTAPES */
+.steps {
+  display: grid;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+
+.step {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 20px;
+  background: var(--bg);
+  border-radius: 14px;
+  padding: 22px;
+  border: 1px solid var(--border);
+}
+
+
+.step-num {
+  width: 56px;
+  height: 56px;
+  background: var(--yellow);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--ink);
+}
+
+
+.step h4 {
+  font-size: 17px;
+  font-weight: 800;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+
+.step p {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+
+/* CTA */
+.cta-section {
+  background: var(--ink);
+  color: white;
+  border-radius: 20px;
+  padding: 40px 28px;
+  margin: 32px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+}
+
+
+.cta-eyebrow {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--ink);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+
+
+.cta-section h2 {
+  color: white;
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+
+.cta-section h2 .yellow {
+  color: var(--yellow);
+}
+
+
+.cta-section p {
+  font-size: 16px;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 24px;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.cta-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 24px 0;
+  text-align: left;
+}
+
+
+.cta-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.4;
+}
+
+
+.cta-feature-icon {
+  color: var(--yellow);
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+
+.btn-cta {
+  display: inline-block;
+  width: 100%;
+  max-width: 480px;
+  padding: 20px 32px;
+  background: var(--yellow);
+  color: var(--ink);
+  border: none;
+  border-radius: 14px;
+  font-size: 17px;
+  font-weight: 800;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  box-shadow: 0 6px 0 var(--yellow-dark);
+}
+
+
+.btn-cta:hover {
+  transform: translateY(2px);
+  box-shadow: 0 4px 0 var(--yellow-dark);
+}
+
+
+.btn-cta:active {
+  transform: translateY(6px);
+  box-shadow: 0 0 0 var(--yellow-dark);
+}
+
+
+.cta-trust {
+  margin-top: 16px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+}
+
+
+/* TÉMOIGNAGES — DÉFILEMENT VERTICAL INFINI (style Senja) */
+.testimonials-wall {
+  margin: 40px 0;
+  padding: 32px 0;
+  position: relative;
+}
+
+
+.testimonials-wall-header {
+  text-align: center;
+  margin-bottom: 32px;
+  padding: 0 16px;
+}
+
+
+.testimonials-wall-header h2 {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+
+.testimonials-wall-header p {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+
+.testimonials-vertical-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+  height: 720px;
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+
+.testi-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: scrollUp 40s linear infinite;
+}
+
+
+.testi-column.col-2 {
+  animation: scrollDown 50s linear infinite;
+}
+
+
+.testi-column.col-3 {
+  animation: scrollUp 45s linear infinite;
+  animation-delay: -10s;
+}
+
+
+@keyframes scrollUp {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+
+
+@keyframes scrollDown {
+  from { transform: translateY(-50%); }
+  to { transform: translateY(0); }
+}
+
+
+.testimonials-vertical-wrapper:hover .testi-column {
+  animation-play-state: paused;
+}
+
+
+.testi-card {
+  background: var(--paper);
+  border-radius: 14px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+
+.testi-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.testi-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--yellow), var(--yellow-dark));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 800;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+
+.testi-avatar.alt1 { background: linear-gradient(135deg, #10b981, #047857); }
+.testi-avatar.alt2 { background: linear-gradient(135deg, #3b82f6, #1e40af); }
+.testi-avatar.alt3 { background: linear-gradient(135deg, #8b5cf6, #5b21b6); }
+.testi-avatar.alt4 { background: linear-gradient(135deg, #ef4444, #991b1b); }
+
+
+.testi-name-block { flex: 1; }
+.testi-name {
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+
+.testi-role {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+
+.testi-stars {
+  color: var(--yellow);
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+
+.testi-quote {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #333;
+  flex: 1;
+}
+
+
+.testi-result {
+  display: inline-block;
+  background: var(--success);
+  color: white;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  align-self: flex-start;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+
+.testi-source {
+  font-size: 10px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border);
+}
+
+
+@media (max-width: 900px) {
+  .testimonials-vertical-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    height: 600px;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .testimonials-vertical-wrapper {
+    grid-template-columns: 1fr;
+    height: 500px;
+  }
+}
+
+
+/* SECONDARY CTA */
+.secondary-cta {
+  text-align: center;
+  padding: 24px;
+  background: var(--paper);
+  border: 2px dashed var(--border);
+  border-radius: 14px;
+  margin: 24px 0;
+}
+
+
+.secondary-cta p {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+
+.btn-secondary {
+  display: inline-block;
+  padding: 12px 24px;
+  background: transparent;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+
+.btn-secondary:hover {
+  background: var(--ink);
+  color: white;
+}
+
+
+/* RESTART */
+.restart-section {
+  text-align: center;
+  margin: 32px 0;
+  padding: 20px;
+}
+
+
+.restart-link {
+  color: var(--muted);
+  font-size: 13px;
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: inherit;
+}
+
+
+.restart-link:hover { color: var(--ink); }
+
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 24px 16px;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+
+.footer a {
+  color: var(--muted);
+  text-decoration: underline;
+}
+
+
+.footer-disclaimer {
+  max-width: 600px;
+  margin: 0 auto 12px;
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+
+@media (max-width: 540px) {
+  .container { padding: 16px 12px 60px; }
+  .section { padding: 28px 20px; border-radius: 16px; }
+  .result-banner { padding: 32px 20px; }
+  .result-banner h1 { font-size: 26px; }
+  .section h2 { font-size: 22px; }
+  .cta-section { padding: 32px 20px; }
+  .cta-section h2 { font-size: 24px; }
+  .diag-grid { grid-template-columns: 1fr; }
+  .authority-grid { grid-template-columns: 1fr; }
+  .cta-features { grid-template-columns: 1fr; }
+  .videos-grid { grid-template-columns: 1fr; }
+  .step { padding: 18px; gap: 14px; grid-template-columns: 48px 1fr; }
+  .step-num { width: 48px; height: 48px; font-size: 20px; }
+  .testi-card { width: 280px; }
+  .testimonials-wall-header h2 { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+
+
+<div class="container">
+
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo"><span class="logo-emoji">✒️</span>Le Copy Quiz</div>
+    <div class="header-result-label">Résultat de ton quiz</div>
+  </header>
+
+
+  <!-- RESULT BANNER -->
+  <div class="result-banner">
+    <div class="result-badge">✓ Ton profil</div>
+    <h1>T'es <span class="underline">Le Débutant Ambitieux</span></h1>
+    <div class="greeting">Et c'est <strong>pas</strong> ce que tu penses 👇</div>
+  </div>
+
+
+  <!-- BLOC 1 — QUI TU ES -->
+  <section class="section">
+    <h2>Laisse-moi te dire ce que je sais de toi.</h2>
+
+
+    <p>T'as découvert le copywriting récemment. Peut-être via une <strong>publicité</strong> qui te promettait "<em>3 000€/mois sans diplôme depuis ton canapé</em>". Peut-être via un pote qui s'est lancé. Peut-être en scrollant Insta.</p>
+
+
+    <p>Et là, ça a fait <span class="highlight-yellow">tilt dans ta tête</span>.</p>
+
+
+    <p>Une compétence qui se vend cher. Pas besoin de diplôme. Pas besoin d'investir dans du matos. Juste un cerveau, un ordi, et la capacité d'écrire des trucs qui font vendre. <strong>On est d'accord, c'est sexy !</strong></p>
+
+
+    <p>Sauf que toi, t'es <strong>complètement nouveau</strong> dans ce game.</p>
+
+
+    <p>T'as peut-être regardé <strong>une ou deux vidéos YouTube</strong>. Tu vois bien que ça a l'air sérieux, mais tu galères à comprendre par où commencer concrètement.</p>
+
+
+    <p>Et t'as raison de te poser des questions. Parce qu'aujourd'hui, ya <span class="underline-thick">une avalanche d'infos contradictoires</span> sur le copy ou le business en ligne en général.</p>
+
+
+    <p>Des gourous qui te promettent 10k/mois en 30 jours. Des <strong>formations à 3 000€</strong> vendues par des mecs qui ont eux-mêmes jamais signé un client. Des "méthodes secrètes" recyclées 1000 fois.</p>
+
+
+    <p>Ce que tu veux, toi, c'est juste <strong>savoir si ça vaut vraiment encore le coup</strong>. Si t'es capable. Si c'est pas trop tard pour toi. Et surtout : <span class="highlight-yellow">par où commencer sans te faire arnaquer</span>.</p>
+
+
+    <p>Et la bonne nouvelle, c'est que t'as un truc que la plupart des gens n'ont pas : <span class="highlight-marker">la patience d'apprendre avant de payer</span>. C'est ta plus grosse force aujourd'hui.</p>
+  </section>
+
+
+  <!-- BLOC 2 — OÙ TU EN ES -->
+  <section class="section">
+    <h2>Tu sais quoi ? Surtout, te précipite pas.</h2>
+
+
+    <p>Je vais être <strong>cash</strong> avec toi.</p>
+
+
+    <p>À ton niveau, la pire chose que tu puisses faire, c'est claquer <strong>2000€ ou 3000€</strong> dans une formation.</p>
+
+
+    <p>Pas parce que les formations sont mauvaises.</p>
+
+
+    <p>Mais parce que <span class="highlight-yellow">tu ne vas pas la consommer</span>.</p>
+
+
+    <p>Tu vas te dire "<em>cool, j'ai investi, maintenant je vais m'y mettre</em>". Tu vas regarder les 2 premiers modules à fond. Et au 3ème, tu vas te faire happer par autre chose. Au bout d'un mois, t'auras consommé 20% du programme. Au bout de 3 mois, t'y reviendras plus.</p>
+
+
+    <p>C'est ce qui arrive à <span class="underline-thick">80% des débutants qui achètent trop tôt</span>. Ils deviennent des <strong>copyRATEURS</strong>.</p>
+
+
+    <p>Ils sont entassés les uns sur les autres dans des coachings de groupe.</p>
+
+
+    <p>Ils ne sont qu'<span class="highlight-yellow">un numéro de plus dans un ordinateur</span>.</p>
+
+
+    <p>Et ils se retrouvent seuls face à des vidéos qu'ils ne regardent même plus.</p>
+
+
+    <p>Avant de mettre un seul euro, faut que tu valides 3 trucs sur toi-même :</p>
+
+
+    <p>👉 Est-ce que t'es capable de t'asseoir <strong>2h par jour</strong> pendant 30 jours pour apprendre une nouvelle compétence ? Parce que c'est ça que ça demande au début.</p>
+
+
+    <p>👉 Est-ce que le copy te plaît <strong>vraiment</strong> ? Ou est-ce que c'est juste la promesse "<em>+3k/mois</em>" qui t'attire ?</p>
+
+
+    <p>👉 Est-ce que t'as la <strong>discipline</strong> de finir ce que tu commences ? Sois honnête.</p>
+
+
+    <p>Mon conseil ? <span class="highlight-marker">Commence gratuit</span>. Va tester. Si après 4 semaines de pratique gratuite, t'es toujours là, tu kiffes et tu veux aller plus loin... alors là on parle d'investir. Pas avant.</p>
+  </section>
+
+
+  <!-- VIDÉO PRINCIPALE -->
+  <section class="section">
+    <h2>J'ai préparé +15h de formation gratuite pour les débutants comme toi.</h2>
+
+
+    <p>Avant qu'on parle d'investissement ou quoi que ce soit, va découvrir ça.</p>
+
+
+    <p>J'ai sorti une <strong>formation complète de 10 heures</strong> sur YouTube. Gratuite. Sans email à laisser, sans inscription, sans bullshit. Elle a déjà <span class="highlight-yellow">+17 000 vues</span> et les retours sont dingues.</p>
+
+
+    <p>J'ai également créé une communauté <strong>100% gratuite</strong> de plus de 1 000 copywriters. Ça s'appelle <strong>La Copy Team</strong> et chaque jour je partage du contenu exclusif sur ma vie de copywriter à +30k/m.</p>
+
+
+    <p>Tu vas y apprendre les bases solides : ce qu'est vraiment le copy, comment ça marche, comment écrire ta première page de vente, comment trouver tes premiers clients. <span class="underline-thick">Si tu consommes ça, t'as déjà 80% de ce dont t'as besoin pour démarrer</span>.</p>
+
+
+    <div class="videos-grid">
+      <div class="video-card featured" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+        <div class="video-thumb">
+          <div class="video-thumb-tag">▶ Formation complète</div>
+          <div class="video-thumb-duration">10:03:19</div>
+        </div>
+        <div class="video-card-info">
+          <div class="video-card-title">10 HEURES — COPYWRITING Formation Complète</div>
+          <div class="video-card-meta">YouTube · La formation gratuite référence</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PRÉSENTATION DE SOL -->
+  <section class="section sol-presentation">
+    <div class="sol-grid">
+      <div class="sol-photo">
+        <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/2lB0paK192CFU1cLz5eT/media/6980fc5018ecce176e2adbc2.png" alt="Sol — Copywriting" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:16px;display:block;">
+      </div>
+      <div class="sol-content">
+        <h2>Moi c'est Sol.</h2>
+        <p>Et je crois qu'on a un point commun : <strong>moi aussi j'ai démarré de zéro</strong>. J'étais à la fac et je lançais plein de petits business à côté des cours sans faire 1€ sur internet.</p>
+        <p>Lorsque je me suis lancé dans le copy, j'étais complètement perdu. J'ai mis <span class="underline-thick">10 mois</span> à signer mon premier client à 500€. Aujourd'hui, 4 ans plus tard, je fais <span class="highlight-marker">+30k€/mois</span> grâce au copy. Et j'ai créé une communauté de <strong>1 100+ copywriters</strong> qui partagent leurs progrès au quotidien — c'est gratuit aussi.</p>
+      </div>
+    </div>
+
+
+    <div class="authority-grid">
+      <div class="authority-stat">
+        <div class="authority-number">+6M€</div>
+        <div class="authority-label">Générés pour mes clients en copy</div>
+      </div>
+      <div class="authority-stat">
+        <div class="authority-number">+103</div>
+        <div class="authority-label">Copywriters accompagnés en 1-1 dans Big Brother</div>
+      </div>
+      <div class="authority-stat">
+        <div class="authority-number">1 100+</div>
+        <div class="authority-label">Membres dans ma communauté gratuite</div>
+      </div>
+    </div>
+
+
+    <p style="margin-top:24px;">Mon obsession : <span class="highlight-yellow">aider les débutants à pas se planter</span>. Parce que je sais à quel point c'est facile de se faire embarquer dans des fausses promesses quand on démarre.</p>
+  </section>
+
+
+  <!-- BLOC 3 — TA PROCHAINE ÉTAPE -->
+  <section class="section">
+    <h2>Voilà ce que je te recommande de faire <span class="underline-thick">cette semaine</span>.</h2>
+
+
+    <p>Quatre étapes simples, <strong>100% gratuites</strong>. Tu peux toutes les faire dans les 7 jours qui viennent.</p>
+
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">#1</div>
+        <div>
+          <h4>Bloque 2h dans ton agenda demain</h4>
+          <p>Pour regarder la formation de 10h. Pas tout d'un coup hein, juste les 2 premières heures. <span class="highlight-yellow">Note le rendez-vous avec toi-même</span>, c'est important.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">#2</div>
+        <div>
+          <h4>Inscris-toi à la Copy Team (gratuit)</h4>
+          <p>C'est ma communauté Skool. <strong>1 100+ copywriters</strong>, du contenu gratuit, des lives, des questions/réponses. Tu vas pouvoir rejoindre une communauté de copywriters comme toi en train de se lancer.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">#3</div>
+        <div>
+          <h4>Écris ton premier truc</h4>
+          <p>Pas une page de vente entière. Juste <strong>une accroche de 3 lignes</strong> pour un produit que t'aimes. Pour te prouver que t'es capable d'écrire quelque chose. C'est ton premier petit pas.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">#4</div>
+        <div>
+          <h4>Reviens vers moi dans 30 jours</h4>
+          <p>Si t'as tenu, si t'as kiffé, si t'as envie d'aller plus loin — <span class="highlight-yellow">je serai là pour te dire quelle est la suite</span>. Mais avant ça, t'as du taf gratuit à faire.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- BLOC 4 — CTA -->
+  <section class="cta-section">
+    <h2>Rejoins la Copy Team <span class="yellow">gratuitement</span></h2>
+    <p>Ma communauté avec +1 000 copywriters. Tout le contenu gratuit est dedans. Zéro carte bleue, juste ton email.</p>
+
+
+    <div class="cta-features">
+      <div class="cta-feature">
+        <span class="cta-feature-icon">✓</span>
+        <span>+15h de formation gratuite</span>
+      </div>
+      <div class="cta-feature">
+        <span class="cta-feature-icon">✓</span>
+        <span>Lives & Q&A réguliers avec Sol</span>
+      </div>
+      <div class="cta-feature">
+        <span class="cta-feature-icon">✓</span>
+        <span>Une vraie communauté qui s'entraide</span>
+      </div>
+    </div>
+
+
+    <a href="https://www.skool.com/la-copy-team/" target="_blank" rel="noopener" class="btn-cta">🚀 Rejoindre la Copy Team (gratuit)</a>
+    <div class="cta-trust">✓ Gratuit · Sans carte bleue · Inscription en 30s</div>
+  </section>
+
+
+</div>
+
+
+<!-- AUTRES VIDÉOS À REGARDER -->
+<div class="container" style="padding-top:0;">
+  <section class="section">
+    <h2>D'autres vidéos pour débuter du bon pied</h2>
+
+
+    <p>Quand t'auras consommé la formation de 10h, voilà <span class="highlight-yellow">trois autres pépites</span> pour aller plus loin sans claquer un euro :</p>
+
+
+    <div class="videos-grid">
+      <div class="video-card" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+        <div class="video-thumb">
+          <div class="video-thumb-tag">Méthode</div>
+          <div class="video-thumb-duration">12:12</div>
+        </div>
+        <div class="video-card-info">
+          <div class="video-card-title">COMMENT faire +3k€/m avec le copywriting (2026)</div>
+          <div class="video-card-meta">La méthode complète pour démarrer</div>
+        </div>
+      </div>
+
+
+      <div class="video-card" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+        <div class="video-thumb">
+          <div class="video-thumb-tag">Marché</div>
+          <div class="video-thumb-duration">20:45</div>
+        </div>
+        <div class="video-card-info">
+          <div class="video-card-title">Pourquoi le Copywriting EXPLOSE en 2026 ?</div>
+          <div class="video-card-meta">Pourquoi c'est le bon moment pour se lancer</div>
+        </div>
+      </div>
+
+
+      <div class="video-card" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+        <div class="video-thumb">
+          <div class="video-thumb-tag">Bases</div>
+          <div class="video-thumb-duration">17:38</div>
+        </div>
+        <div class="video-card-info">
+          <div class="video-card-title">8 Principes Psychologiques Pour Vendre N'importe Quoi</div>
+          <div class="video-card-meta">Les fondamentaux psycho du copy</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- MUR DE TÉMOIGNAGES — DÉFILEMENT VERTICAL INFINI -->
+<div class="testimonials-wall">
+  <div class="testimonials-wall-header">
+    <h2>Ils ont démarré de zéro <span class="underline-thick">eux aussi</span></h2>
+    <p>Des débutants comme toi qui se sont lancés <strong>sans rien dépenser au début</strong>. Survole pour mettre en pause.</p>
+  </div>
+
+
+  <div class="testimonials-vertical-wrapper">
+
+
+    <!-- COLONNE 1 -->
+    <div class="testi-column">
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar">K</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Kevin · 24 ans</div>
+            <div class="testi-role">A démarré de zéro</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'avais zéro idée de ce qu'était le copy. J'ai consommé la formation gratuite pendant 1 mois, j'ai pratiqué tous les jours. Au bout de 6 semaines, mon premier client à 800€."</p>
+        <span class="testi-result">+800€ premier client</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt1">LE</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Léna · 22 ans</div>
+            <div class="testi-role">Étudiante</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"À 22 ans, j'avais peur d'être pas prise au sérieux. Sol m'a montré que c'était même un avantage : j'avais plus de temps que les autres pour apprendre."</p>
+        <span class="testi-result">1 200€/mois</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt2">AN</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Antoine · 26 ans</div>
+            <div class="testi-role">Ex-livreur</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'étais livreur Uber Eats. J'ai consommé tout le contenu gratuit pendant 3 mois avant de payer quoi que ce soit. Ça m'a évité de me planter sur une formation hors de prix."</p>
+        <span class="testi-result">Premier client</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt3">LO</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Lou · 28 ans</div>
+            <div class="testi-role">En reconversion</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"La Copy Team gratuite a vraiment changé ma vie. Pas par magie. Mais parce que j'ai trouvé une vraie communauté qui comprenait ce que je vivais."</p>
+        <span class="testi-result">Communauté</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <!-- Duplicate for infinite loop -->
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar">K</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Kevin · 24 ans</div>
+            <div class="testi-role">A démarré de zéro</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'avais zéro idée de ce qu'était le copy. J'ai consommé la formation gratuite pendant 1 mois, j'ai pratiqué tous les jours. Au bout de 6 semaines, mon premier client à 800€."</p>
+        <span class="testi-result">+800€ premier client</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt1">LE</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Léna · 22 ans</div>
+            <div class="testi-role">Étudiante</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"À 22 ans, j'avais peur d'être pas prise au sérieux. Sol m'a montré que c'était même un avantage : j'avais plus de temps que les autres pour apprendre."</p>
+        <span class="testi-result">1 200€/mois</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt2">AN</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Antoine · 26 ans</div>
+            <div class="testi-role">Ex-livreur</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'étais livreur Uber Eats. J'ai consommé tout le contenu gratuit pendant 3 mois avant de payer quoi que ce soit. Ça m'a évité de me planter sur une formation hors de prix."</p>
+        <span class="testi-result">Premier client</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt3">LO</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Lou · 28 ans</div>
+            <div class="testi-role">En reconversion</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"La Copy Team gratuite a vraiment changé ma vie. Pas par magie. Mais parce que j'ai trouvé une vraie communauté qui comprenait ce que je vivais."</p>
+        <span class="testi-result">Communauté</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+    </div>
+
+
+    <!-- COLONNE 2 (défile dans l'autre sens) -->
+    <div class="testi-column col-2">
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt4">YA</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Yanis · 23 ans</div>
+            <div class="testi-role">Étudiant</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Le truc cool avec Sol c'est qu'il pousse pas à acheter. Il dit "commence gratuit". C'est rare dans le milieu. J'ai consommé pendant 4 mois avant de prendre Copy Pro."</p>
+        <span class="testi-result">Méthode honnête</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar">SO</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Sophie · 30 ans</div>
+            <div class="testi-role">Ex-vendeuse</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'avais zéro confiance en moi pour écrire. La Copy Team m'a fait voir que des gens encore plus débutants que moi y arrivaient. Ça m'a débloquée."</p>
+        <span class="testi-result">+1 500€/mois</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt1">TH</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Théo · 25 ans</div>
+            <div class="testi-role">Étudiant en école de co</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Je voulais pas dépenser des sous avant d'être sûr que ça me plaisait vraiment. 3 mois de contenu gratuit après, c'est validé."</p>
+        <span class="testi-result">Validation</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt2">MA</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Maïa · 27 ans</div>
+            <div class="testi-role">En reconversion</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Pour une fois, un mec dans le milieu marketing qui dit pas "achète ma formation à 2000€ tout de suite". Sol prend le temps. Ça change tout."</p>
+        <span class="testi-result">Approche honnête</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <!-- Duplicate for infinite loop -->
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt4">YA</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Yanis · 23 ans</div>
+            <div class="testi-role">Étudiant</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Le truc cool avec Sol c'est qu'il pousse pas à acheter. Il dit "commence gratuit". C'est rare dans le milieu. J'ai consommé pendant 4 mois avant de prendre Copy Pro."</p>
+        <span class="testi-result">Méthode honnête</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar">SO</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Sophie · 30 ans</div>
+            <div class="testi-role">Ex-vendeuse</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'avais zéro confiance en moi pour écrire. La Copy Team m'a fait voir que des gens encore plus débutants que moi y arrivaient. Ça m'a débloquée."</p>
+        <span class="testi-result">+1 500€/mois</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt1">TH</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Théo · 25 ans</div>
+            <div class="testi-role">Étudiant en école de co</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Je voulais pas dépenser des sous avant d'être sûr que ça me plaisait vraiment. 3 mois de contenu gratuit après, c'est validé."</p>
+        <span class="testi-result">Validation</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt2">MA</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Maïa · 27 ans</div>
+            <div class="testi-role">En reconversion</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Pour une fois, un mec dans le milieu marketing qui dit pas "achète ma formation à 2000€ tout de suite". Sol prend le temps. Ça change tout."</p>
+        <span class="testi-result">Approche honnête</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+    </div>
+
+
+    <!-- COLONNE 3 -->
+    <div class="testi-column col-3">
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt3">NA</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Nadia · 29 ans</div>
+            <div class="testi-role">Salariée en banque</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'ai mis 6 mois à me lancer pour de vrai. J'ai consommé tout le gratuit, j'ai pratiqué le weekend. Aujourd'hui je signe mes premiers contrats."</p>
+        <span class="testi-result">Premiers clients</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt4">GA</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Gabriel · 24 ans</div>
+            <div class="testi-role">Étudiant en master</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Pour un débutant comme moi, avoir +15h de formation gratuite c'est juste un game-changer. J'ai pas eu besoin de payer pour apprendre les bases solidement."</p>
+        <span class="testi-result">Bases solides</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar">IN</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Inès · 26 ans</div>
+            <div class="testi-role">Salariée</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Sol explique le copy comme personne. Sans jargon. Sans bullshit. Quand on débute c'est exactement ce qu'il faut."</p>
+        <span class="testi-result">Pédagogie au top</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt1">HU</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Hugo · 25 ans</div>
+            <div class="testi-role">En recherche d'emploi</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'ai trouvé la Copy Team par hasard sur YouTube. 3 mois plus tard j'ai signé mon premier client à 500€. Sans avoir dépensé un euro."</p>
+        <span class="testi-result">Premier client</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <!-- Duplicate for infinite loop -->
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt3">NA</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Nadia · 29 ans</div>
+            <div class="testi-role">Salariée en banque</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'ai mis 6 mois à me lancer pour de vrai. J'ai consommé tout le gratuit, j'ai pratiqué le weekend. Aujourd'hui je signe mes premiers contrats."</p>
+        <span class="testi-result">Premiers clients</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt4">GA</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Gabriel · 24 ans</div>
+            <div class="testi-role">Étudiant en master</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Pour un débutant comme moi, avoir +15h de formation gratuite c'est juste un game-changer. J'ai pas eu besoin de payer pour apprendre les bases solidement."</p>
+        <span class="testi-result">Bases solides</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar">IN</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Inès · 26 ans</div>
+            <div class="testi-role">Salariée</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Sol explique le copy comme personne. Sans jargon. Sans bullshit. Quand on débute c'est exactement ce qu'il faut."</p>
+        <span class="testi-result">Pédagogie au top</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt1">HU</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Hugo · 25 ans</div>
+            <div class="testi-role">En recherche d'emploi</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'ai trouvé la Copy Team par hasard sur YouTube. 3 mois plus tard j'ai signé mon premier client à 500€. Sans avoir dépensé un euro."</p>
+        <span class="testi-result">Premier client</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+
+<div class="container">
+
+
+  <!-- REFAIRE LE QUIZ -->
+  <div class="restart-section">
+    <button class="restart-link" onclick="window.location.href='index.html'">↻ Refaire le quiz</button>
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-disclaimer">Ce site n'est pas affilié à Meta, Inc. ni à aucune de ses marques. Meta est une marque déposée de Meta, Inc.</div>
+    <div>
+      © Sol Copywriting · <a href="#">Mentions légales</a> · <a href="#">Politique de confidentialité</a> · <a href="#">CGV</a>
+    </div>
+  </footer>
+
+
+</div>
+
+
+</body>
+</html>

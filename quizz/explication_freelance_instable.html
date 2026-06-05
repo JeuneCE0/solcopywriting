@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Freelance Instable — Ton plan d'action perso par Sol</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --yellow: #f5a623;
+  --yellow-dark: #d68a0a;
+  --yellow-light: #fff3d6;
+  --ink: #1a1a1a;
+  --paper: #ffffff;
+  --bg: #fafafa;
+  --border: #e5e5e5;
+  --muted: #6b6b6b;
+  --success: #10b981;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,0.12);
+  --shadow-xl: 0 20px 48px rgba(0,0,0,0.18);
+}
+
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px 16px 80px;
+}
+
+
+/* HEADER */
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+
+.logo {
+  display: inline-block;
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+
+.logo-emoji {
+  display: inline-block;
+  color: var(--yellow);
+  margin-right: 4px;
+}
+
+
+.credentials {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+
+.header-result-label {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 6px 14px;
+  background: var(--ink);
+  color: var(--yellow);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border-radius: 100px;
+}
+
+
+/* RESULT BANNER */
+.result-banner {
+  background: linear-gradient(135deg, var(--yellow) 0%, var(--yellow-dark) 100%);
+  border-radius: 20px;
+  padding: 40px 28px;
+  text-align: center;
+  color: var(--ink);
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+
+.result-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 60%;
+  height: 200%;
+  background: rgba(255,255,255,0.08);
+  transform: rotate(25deg);
+}
+
+
+.result-badge {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--yellow);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+
+.result-banner h1 {
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+
+.result-banner h1 .underline {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
+}
+
+
+.result-banner .greeting {
+  font-size: 16px;
+  font-weight: 600;
+  opacity: 0.85;
+  position: relative;
+}
+
+
+/* SECTIONS */
+.section {
+  background: var(--paper);
+  border-radius: 20px;
+  padding: 36px 28px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+}
+
+
+.section-eyebrow {
+  display: inline-block;
+  background: var(--yellow-light);
+  color: var(--yellow-dark);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+
+.section h2 {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+
+.section p {
+  font-size: 16px;
+  line-height: 1.65;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+
+.section p strong { color: var(--ink); font-weight: 700; }
+
+
+.highlight-yellow {
+  background: linear-gradient(180deg, transparent 60%, var(--yellow-light) 60%);
+  padding: 0 2px;
+  font-weight: 600;
+}
+
+
+.highlight-marker {
+  background: var(--yellow);
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+
+.underline-wavy {
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: var(--yellow);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  font-weight: 600;
+}
+
+
+.underline-thick {
+  border-bottom: 3px solid var(--yellow);
+  padding-bottom: 1px;
+  font-weight: 600;
+}
+
+
+/* HIGHLIGHT BOX */
+.highlight {
+  background: var(--yellow-light);
+  border-left: 4px solid var(--yellow);
+  padding: 20px 22px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+
+.highlight strong {
+  display: block;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--yellow-dark);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+
+.highlight p {
+  font-size: 15px;
+  margin-bottom: 0;
+  line-height: 1.55;
+}
+
+
+/* DIAGNOSTIC */
+.diag-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+
+.diag-card {
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid var(--border);
+}
+
+
+.diag-card-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+
+.diag-card-value {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+
+.diag-card.strong { background: #d1fae5; border-color: var(--success); }
+.diag-card.strong .diag-card-value { color: #065f46; }
+
+
+.diag-card.weak { background: #fef3c7; border-color: var(--yellow); }
+.diag-card.weak .diag-card-value { color: var(--yellow-dark); }
+
+
+/* VIDÉOS GRID */
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+}
+
+
+.video-card {
+  background: var(--ink);
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+
+.video-card:hover { transform: translateY(-2px); }
+
+
+.video-card.featured { grid-column: 1 / -1; }
+
+
+.video-thumb {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+
+.video-thumb::after {
+  content: '▶';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--ink);
+  padding-left: 4px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  transition: transform 0.2s;
+}
+
+
+.video-card.featured .video-thumb::after {
+  width: 80px;
+  height: 80px;
+  font-size: 28px;
+  padding-left: 6px;
+}
+
+
+.video-card:hover .video-thumb::after { transform: translate(-50%, -50%) scale(1.1); }
+
+
+.video-thumb-duration {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(0,0,0,0.85);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+
+.video-thumb-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #cc0000;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+
+.video-card-info {
+  padding: 16px;
+}
+
+
+.video-card-title {
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+
+.video-card.featured .video-card-title {
+  font-size: 18px;
+}
+
+
+.video-card-meta {
+  color: rgba(255,255,255,0.6);
+  font-size: 12px;
+}
+
+
+/* PRÉSENTATION DE SOL */
+.sol-presentation {
+  background: linear-gradient(135deg, var(--paper) 0%, var(--yellow-light) 100%);
+  border: 2px solid var(--yellow);
+}
+
+
+.sol-grid {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 28px;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+
+.sol-photo {
+  width: 180px;
+  height: 180px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+
+.sol-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--yellow) 0%, var(--yellow-dark) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  gap: 8px;
+}
+
+
+.sol-photo-placeholder span {
+  font-size: 48px;
+}
+
+
+.sol-photo-placeholder small {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  opacity: 0.9;
+}
+
+
+.sol-content h2 {
+  margin-bottom: 16px;
+}
+
+
+.sol-content p {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+
+@media (max-width: 540px) {
+  .sol-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .sol-photo {
+    margin: 0 auto;
+    width: 140px;
+    height: 140px;
+  }
+}
+
+
+/* AUTORITÉ */
+.authority-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 24px 0;
+}
+
+
+.authority-stat {
+  background: var(--ink);
+  color: white;
+  border-radius: 12px;
+  padding: 20px 16px;
+  text-align: center;
+}
+
+
+.authority-number {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--yellow);
+  line-height: 1;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+
+
+.authority-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  opacity: 0.85;
+  line-height: 1.3;
+}
+
+
+/* PLAN ÉTAPES */
+.steps {
+  display: grid;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+
+.step {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 20px;
+  background: var(--bg);
+  border-radius: 14px;
+  padding: 22px;
+  border: 1px solid var(--border);
+}
+
+
+.step-num {
+  width: 56px;
+  height: 56px;
+  background: var(--yellow);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--ink);
+}
+
+
+.step h4 {
+  font-size: 17px;
+  font-weight: 800;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+
+.step p {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+
+/* CTA */
+.cta-section {
+  background: var(--ink);
+  color: white;
+  border-radius: 20px;
+  padding: 40px 28px;
+  margin: 32px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+}
+
+
+.cta-eyebrow {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--ink);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+
+
+.cta-section h2 {
+  color: white;
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+
+.cta-section h2 .yellow {
+  color: var(--yellow);
+}
+
+
+.cta-section p {
+  font-size: 16px;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 24px;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.cta-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 24px 0;
+  text-align: left;
+}
+
+
+.cta-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.4;
+}
+
+
+.cta-feature-icon {
+  color: var(--yellow);
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+
+.btn-cta {
+  display: inline-block;
+  width: 100%;
+  max-width: 480px;
+  padding: 20px 32px;
+  background: var(--yellow);
+  color: var(--ink);
+  border: none;
+  border-radius: 14px;
+  font-size: 17px;
+  font-weight: 800;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  box-shadow: 0 6px 0 var(--yellow-dark);
+}
+
+
+.btn-cta:hover {
+  transform: translateY(2px);
+  box-shadow: 0 4px 0 var(--yellow-dark);
+}
+
+
+.btn-cta:active {
+  transform: translateY(6px);
+  box-shadow: 0 0 0 var(--yellow-dark);
+}
+
+
+.cta-trust {
+  margin-top: 16px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+}
+
+
+/* TÉMOIGNAGES — DÉFILEMENT VERTICAL INFINI (style Senja) */
+.testimonials-wall {
+  margin: 40px 0;
+  padding: 32px 0;
+  position: relative;
+}
+
+
+.testimonials-wall-header {
+  text-align: center;
+  margin-bottom: 32px;
+  padding: 0 16px;
+}
+
+
+.testimonials-wall-header h2 {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+
+.testimonials-wall-header p {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+
+.testimonials-vertical-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+  height: 720px;
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+
+.testi-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: scrollUp 40s linear infinite;
+}
+
+
+.testi-column.col-2 {
+  animation: scrollDown 50s linear infinite;
+}
+
+
+.testi-column.col-3 {
+  animation: scrollUp 45s linear infinite;
+  animation-delay: -10s;
+}
+
+
+@keyframes scrollUp {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+
+
+@keyframes scrollDown {
+  from { transform: translateY(-50%); }
+  to { transform: translateY(0); }
+}
+
+
+.testimonials-vertical-wrapper:hover .testi-column {
+  animation-play-state: paused;
+}
+
+
+.testi-card {
+  background: var(--paper);
+  border-radius: 14px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+
+.testi-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.testi-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--yellow), var(--yellow-dark));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 800;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+
+.testi-avatar.alt1 { background: linear-gradient(135deg, #10b981, #047857); }
+.testi-avatar.alt2 { background: linear-gradient(135deg, #3b82f6, #1e40af); }
+.testi-avatar.alt3 { background: linear-gradient(135deg, #8b5cf6, #5b21b6); }
+.testi-avatar.alt4 { background: linear-gradient(135deg, #ef4444, #991b1b); }
+
+
+.testi-name-block { flex: 1; }
+.testi-name {
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+
+.testi-role {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+
+.testi-stars {
+  color: var(--yellow);
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+
+.testi-quote {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #333;
+  flex: 1;
+}
+
+
+.testi-result {
+  display: inline-block;
+  background: var(--success);
+  color: white;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  align-self: flex-start;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+
+.testi-source {
+  font-size: 10px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border);
+}
+
+
+@media (max-width: 900px) {
+  .testimonials-vertical-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    height: 600px;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .testimonials-vertical-wrapper {
+    grid-template-columns: 1fr;
+    height: 500px;
+  }
+}
+
+
+/* SECONDARY CTA */
+.secondary-cta {
+  text-align: center;
+  padding: 24px;
+  background: var(--paper);
+  border: 2px dashed var(--border);
+  border-radius: 14px;
+  margin: 24px 0;
+}
+
+
+.secondary-cta p {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+
+.btn-secondary {
+  display: inline-block;
+  padding: 12px 24px;
+  background: transparent;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+
+.btn-secondary:hover {
+  background: var(--ink);
+  color: white;
+}
+
+
+/* RESTART */
+.restart-section {
+  text-align: center;
+  margin: 32px 0;
+  padding: 20px;
+}
+
+
+.restart-link {
+  color: var(--muted);
+  font-size: 13px;
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: inherit;
+}
+
+
+.restart-link:hover { color: var(--ink); }
+
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 24px 16px;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+
+.footer a {
+  color: var(--muted);
+  text-decoration: underline;
+}
+
+
+.footer-disclaimer {
+  max-width: 600px;
+  margin: 0 auto 12px;
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+
+@media (max-width: 540px) {
+  .container { padding: 16px 12px 60px; }
+  .section { padding: 28px 20px; border-radius: 16px; }
+  .result-banner { padding: 32px 20px; }
+  .result-banner h1 { font-size: 26px; }
+  .section h2 { font-size: 22px; }
+  .cta-section { padding: 32px 20px; }
+  .cta-section h2 { font-size: 24px; }
+  .diag-grid { grid-template-columns: 1fr; }
+  .authority-grid { grid-template-columns: 1fr; }
+  .cta-features { grid-template-columns: 1fr; }
+  .videos-grid { grid-template-columns: 1fr; }
+  .step { padding: 18px; gap: 14px; grid-template-columns: 48px 1fr; }
+  .step-num { width: 48px; height: 48px; font-size: 20px; }
+  .testi-card { width: 280px; }
+  .testimonials-wall-header h2 { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+
+
+<div class="container">
+
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo"><span class="logo-emoji">✒️</span>Le Copy Quiz</div>
+    <div class="header-result-label">Résultat de ton quiz</div>
+  </header>
+
+
+  <!-- RESULT BANNER -->
+  <div class="result-banner">
+    <div class="result-badge">✓ Ton profil</div>
+    <h1>T'es <span class="underline">Le Freelance Instable</span></h1>
+    <div class="greeting">Et c'est <strong>une vraie bonne nouvelle</strong> 👇</div>
+  </div>
+
+
+  <!-- BLOC 1 — QUI TU ES -->
+  <section class="section">
+    <h2>Tu sais quoi ? T'es déjà à 70% du chemin.</h2>
+
+
+    <p>Soyons clairs : t'es <span class="highlight-yellow">pas un débutant</span>. T'as déjà des missions de copy. T'as déjà signé des contrats. T'as déjà reçu de l'argent pour ton travail.</p>
+
+
+    <p>Ça, c'est <strong>énorme</strong>. La majorité des gens qui passent ce quiz rêvent d'en arriver à ton niveau. Toi t'y es déjà.</p>
+
+
+    <p>Mais y a un problème. <span class="underline-thick">Tes revenus sont instables</span>.</p>
+
+
+    <p>Un mois tu fais 1 800€, t'es content. Le mois d'après, 600€, t'as la boule au ventre. Le mois suivant, 2 500€, tu reprends confiance. Et là, <span class="highlight-yellow">3 semaines sans nouveau client</span>... le doute revient.</p>
+
+
+    <p>Tu vis sur des montagnes russes émotionnelles. Tu peux pas te projeter sur 6 mois. Tu peux pas vraiment quitter ton job alimentaire (si t'en as encore un) parce que t'as pas la sécurité.</p>
+
+
+    <p>Et le truc, c'est que t'en peux plus de cette instabilité. T'as besoin de <strong>vraiment vivre</strong> du copy. De pas plus avoir cette boule au ventre en fin de mois. De pouvoir te dire "<em>OK le mois prochain ça sera 2k minimum, c'est sûr</em>".</p>
+
+
+    <p>Tu sens que t'es à un tournant. Soit tu te débloques maintenant, soit tu vas <span class="highlight-marker">retourner dans le salariat dans 6 mois</span>.</p>
+  </section>
+
+
+  <!-- BLOC 2 — OÙ TU EN ES -->
+  <section class="section">
+    <h2>Ton problème, c'est pas le copy. C'est ton <span class="underline-thick">audace et ton positionnement</span>.</h2>
+
+
+    <p>Je vais te dire un truc que personne te dit dans le milieu freelance.</p>
+
+
+    <p>Trouver "une niche", c'est de <span class="highlight-marker">LA MERDE</span> !</p>
+
+
+    <p>Si tes revenus sont instables à ton niveau, c'est presque jamais à cause de la qualité de ton copy ou de ton travail. Sinon t'aurais pas signé de clients.</p>
+
+
+    <p>Le vrai problème, c'est <span class="highlight-yellow">comment tu te positionnes vis-à-vis de tes clients</span>.</p>
+
+
+    <p>Aujourd'hui, t'es probablement le "<em>copywriter à tout faire</em>".</p>
+
+
+    <p>Tu fais des emails, des pages de vente, du contenu, peut-être de la pub de tes clients. Tu prends ce qui passe. Mais tu factures rarement au-dessus de <strong>1 000€</strong> la mission.</p>
+
+
+    <p>Et tu sais quoi ? Y a <span class="underline-thick">10 000 autres copywriters comme toi</span> sur le marché francophone. Tous se battent pour les mêmes clients, aux mêmes tarifs.</p>
+
+
+    <p>Les freelances qui font 5k, 8k, 10k/mois ont tous un truc en commun :</p>
+
+
+    <p>👉 Ils ont arrêté d'être "que" de simples copywriters. Ils investissent du temps pour leurs clients et font entièrement partie de leur équipe. Et ça, ça passe par <strong>la façon dont tu te vends en appel</strong>.</p>
+
+
+    <p>👉 Ils ont <strong>monté en gamme</strong>. Au lieu de facturer 800€ une page de vente, ils facturent 3 000€ ou 4 000€. <span class="highlight-yellow">Pour le même temps de travail.</span></p>
+
+
+    <p>👉 Ils ont <strong>structuré leur prospection</strong>. Plus de "<em>j'envoie 50 messages quand j'ai pas de client</em>". Ils ont mis en place des flux réguliers qui attirent toutes les semaines.</p>
+
+
+    <p>Honnêtement, tu mets déjà en place juste ces 3 trucs, et <span class="highlight-marker">dans 90 jours tu peux stabiliser tes revenus et vivre confortablement</span>. C'est mathématique.</p>
+  </section>
+
+
+  <!-- VIDÉO PRINCIPALE -->
+  <section class="section">
+    <h2>Ce coaching live avec un copywriter <span class="underline-thick">comme toi</span></h2>
+
+
+    <p>Il y a 3 mois, j'ai invité un de mes clients chez moi en Géorgie… un copywriter qui faisait entre <strong>1k et 3k/mois</strong> de façon instable. Exactement ta situation.</p>
+
+
+    <p>On a fait un coaching complet d'1h pour l'aider à stabiliser ses revenus et passer à l'étape d'après.</p>
+
+
+    <p>J'ai filmé toute la session. Tu vas voir <span class="highlight-yellow">exactement comment on a restructuré son business en 63 minutes</span> : positionnement, prospection, pricing.</p>
+
+
+    <p>Et autant te dire que ça l'a aidé… car le mois suivant, il a dépassé les <span class="highlight-marker">+6 000€/mois</span>.</p>
+
+
+    <p>Pas par magie. Parce qu'il a appliqué ce qu'on a vu pendant ces 63 minutes.</p>
+
+
+    <div class="videos-grid">
+      <div class="video-card featured" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+        <div class="video-thumb">
+          <div class="video-thumb-tag">▶ Coaching live</div>
+          <div class="video-thumb-duration">1:03:22</div>
+        </div>
+        <div class="video-card-info">
+          <div class="video-card-title">J'aide ce copywriter à faire +100k/an en 63 min</div>
+          <div class="video-card-meta">YouTube · Coaching live d'un freelance instable</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PRÉSENTATION DE SOL -->
+  <section class="section sol-presentation">
+    <div class="sol-grid">
+      <div class="sol-photo">
+        <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/2lB0paK192CFU1cLz5eT/media/6980fc5018ecce176e2adbc2.png" alt="Sol — Copywriting" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:16px;display:block;">
+      </div>
+      <div class="sol-content">
+        <h2>Moi c'est Sol.</h2>
+        <p>Et pendant 2 ans en tant que copy, j'ai connu les <span class="highlight-yellow">montagnes russes</span>… Des mois à faire 3 000€, 5 000€, parfois même 10 000€ ! Mais retomber à 0€ sur le compte 6 mois plus tard.</p>
+        <p>Je connais mieux que personne cette peur permanente, cette fatigue mentale.</p>
+        <p>Ce qui a tout changé pour moi : c'est d'arrêter d'être ce "petit" copywriter à tout faire. Prendre mes responsabilités et apprendre à <strong>BIEN me vendre</strong>.</p>
+        <p>Aujourd'hui j'ai le meilleur portfolio de France. Je facture <span class="highlight-marker">3 000€ à 10 000€</span> par mission et j'aide les autres copywriters à faire pareil au sein de mon mentorat BIG BROTHER.</p>
+      </div>
+    </div>
+
+
+    <div class="authority-grid">
+      <div class="authority-stat">
+        <div class="authority-number">+6M€</div>
+        <div class="authority-label">Générés pour mes clients en copy</div>
+      </div>
+      <div class="authority-stat">
+        <div class="authority-number">+103</div>
+        <div class="authority-label">Copywriters accompagnés en 1-1 dans Big Brother</div>
+      </div>
+      <div class="authority-stat">
+        <div class="authority-number">1 100+</div>
+        <div class="authority-label">Membres dans ma communauté gratuite</div>
+      </div>
+    </div>
+
+
+    <p style="margin-top:24px;">Avec <strong>BIG BROTHER</strong>, j'accompagne les copywriters (et freelances) à <span class="highlight-yellow">monter en gamme et stabiliser leurs revenus</span>. Pas en leur apprenant à écrire ou à mieux taffer (ils savent déjà) — mais en leur apprenant à se positionner correctement et à pricer plus cher. T'apprendre à gagner x3 fois plus en travaillant 3x moins.</p>
+  </section>
+
+
+  <!-- BLOC 3 — TA PROCHAINE ÉTAPE -->
+  <section class="section">
+    <h2>Voilà ce que je te recommande de faire <span class="underline-thick">cette semaine</span>.</h2>
+
+
+    <p>Quatre étapes, aucune te coûte un euro pour démarrer.</p>
+
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">#1</div>
+        <div>
+          <h4>Regarde le coaching live de 63 min</h4>
+          <p>Tu vas voir <span class="highlight-yellow">tout le processus de restructuration</span> appliqué à un freelance comme toi. Pose ton téléphone, prends des notes.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">#2</div>
+        <div>
+          <h4>D'où vient l'argent que tu fais aujourd'hui</h4>
+          <p>Identifie pour tes 3 dernières missions lesquelles ont été <strong>les plus rentables et les plus agréables</strong>. Comment tu aurais pu facturer plus cher ? Et comment trouver d'autres clients de la sorte ?</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">#3</div>
+        <div>
+          <h4>On en parle 30 min au téléphone</h4>
+          <p>On se prend un rdv ensemble, on analyse ton positionnement actuel, ton pricing, ta prospection. <strong>Je te dis cash où tu perds du temps et de l'argent.</strong> Tu repars avec un plan d'action pour dépasser les <span class="highlight-yellow">5 000€/mois sur 100 jours</span>.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">#4</div>
+        <div>
+          <h4>Tu choisis comment avancer</h4>
+          <p>Soit tu appliques le plan en solo. Soit on bosse ensemble en rejoignant <strong>Big Brother</strong> pour passer le cap des 5k/mois en 100 jours. <span class="highlight-yellow">Je te dirai honnêtement ce qui te convient le mieux.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- BLOC 4 — CTA -->
+  <section class="cta-section">
+    <h2>On débloque ça en <span class="yellow">30 min ensemble</span> ?</h2>
+    <p>Je regarde ta situation actuelle, on identifie ce qui te bloque pour passer à 5k/mois stable, et tu repars avec un plan — qu'on bosse ensemble ou pas après.</p>
+
+
+    <div class="cta-features">
+      <div class="cta-feature">
+        <span class="cta-feature-icon">✓</span>
+        <span>Diagnostic de ton positionnement actuel</span>
+      </div>
+      <div class="cta-feature">
+        <span class="cta-feature-icon">✓</span>
+        <span>Plan pour stabiliser à +5k/mois</span>
+      </div>
+      <div class="cta-feature">
+        <span class="cta-feature-icon">✓</span>
+        <span>Sans pression. Tu décides après.</span>
+      </div>
+    </div>
+
+
+    <a href="reserver.html" class="btn-cta">📞 Réserver un appel offert</a>
+    <div class="cta-trust">⏱ 30 min · Offert · Sans engagement</div>
+  </section>
+
+
+</div>
+
+
+<!-- AUTRES VIDÉOS À REGARDER -->
+<div class="container" style="padding-top:0;">
+  <section class="section">
+    <h2>Trois autres vidéos pour scaler ton freelance</h2>
+
+
+    <p>Si tu veux creuser avant qu'on se parle, voilà <span class="highlight-yellow">trois vidéos clés</span> sur le scaling freelance :</p>
+
+
+    <div class="videos-grid">
+      <div class="video-card" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+        <div class="video-thumb">
+          <div class="video-thumb-tag">Rétention</div>
+          <div class="video-thumb-duration">19:15</div>
+        </div>
+        <div class="video-card-info">
+          <div class="video-card-title">Comment rendre tes clients accros à ton copywriting ?</div>
+          <div class="video-card-meta">Comment les fidéliser pour stabiliser tes revenus</div>
+        </div>
+      </div>
+
+
+      <div class="video-card" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+        <div class="video-thumb">
+          <div class="video-thumb-tag">Email</div>
+          <div class="video-thumb-duration">15:10</div>
+        </div>
+        <div class="video-card-info">
+          <div class="video-card-title">Comment j'ai ajouté +45.588€ en Mars pour mon client (email)</div>
+          <div class="video-card-meta">L'angle email pour facturer haut</div>
+        </div>
+      </div>
+
+
+      <div class="video-card" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+        <div class="video-thumb">
+          <div class="video-thumb-tag">Scaling</div>
+          <div class="video-thumb-duration">12:49</div>
+        </div>
+        <div class="video-card-info">
+          <div class="video-card-title">3 conseils d'un copywriter à +30k/m</div>
+          <div class="video-card-meta">Les habitudes qui font la différence</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- MUR DE TÉMOIGNAGES — DÉFILEMENT VERTICAL INFINI -->
+<div class="testimonials-wall">
+  <div class="testimonials-wall-header">
+    <h2>Ils ont stabilisé <span class="underline-thick">comme toi</span></h2>
+    <p>Des freelances qui sont passés de l'instabilité à <strong>+5k/mois récurrents</strong>. Survole pour mettre en pause.</p>
+  </div>
+
+
+  <div class="testimonials-vertical-wrapper">
+
+
+    <!-- COLONNE 1 -->
+    <div class="testi-column">
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar">TH</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Thibault · 32 ans</div>
+            <div class="testi-role">Ex-freelance instable</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Je faisais entre 800 et 2 500€/mois. Très instable. En 3 mois de BigBrother, j'ai stabilisé à 4 500€/mois. La clé : me spécialiser sur l'email e-com."</p>
+        <span class="testi-result">+4 500€/mois stable</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt1">AL</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Alicia · 30 ans</div>
+            <div class="testi-role">Freelance depuis 2 ans</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Sol m'a forcée à monter mes prix. J'avais peur. J'ai testé. Mes clients ont accepté. Aujourd'hui je facture 3x plus pour le même boulot."</p>
+        <span class="testi-result">Pricing x3</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt2">MA</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Mathieu · 34 ans</div>
+            <div class="testi-role">Généraliste devenu spé</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'étais le "copywriter à tout faire". Sol m'a aidé à me spécialiser sur les VSL. Mon CA a doublé en 4 mois sans plus bosser."</p>
+        <span class="testi-result">CA x2</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt3">FA</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Fanny · 29 ans</div>
+            <div class="testi-role">Instabilité revenus</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Avant : 1k un mois, 3k le suivant, 500€ après. Maintenant : 5k/mois minimum, parfois plus. Le système est fait pour ça."</p>
+        <span class="testi-result">5k minimum</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <!-- Duplicate for infinite loop -->
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar">TH</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Thibault · 32 ans</div>
+            <div class="testi-role">Ex-freelance instable</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Je faisais entre 800 et 2 500€/mois. Très instable. En 3 mois de BigBrother, j'ai stabilisé à 4 500€/mois. La clé : me spécialiser sur l'email e-com."</p>
+        <span class="testi-result">+4 500€/mois stable</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt1">AL</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Alicia · 30 ans</div>
+            <div class="testi-role">Freelance depuis 2 ans</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Sol m'a forcée à monter mes prix. J'avais peur. J'ai testé. Mes clients ont accepté. Aujourd'hui je facture 3x plus pour le même boulot."</p>
+        <span class="testi-result">Pricing x3</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt2">MA</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Mathieu · 34 ans</div>
+            <div class="testi-role">Généraliste devenu spé</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'étais le "copywriter à tout faire". Sol m'a aidé à me spécialiser sur les VSL. Mon CA a doublé en 4 mois sans plus bosser."</p>
+        <span class="testi-result">CA x2</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt3">FA</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Fanny · 29 ans</div>
+            <div class="testi-role">Instabilité revenus</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Avant : 1k un mois, 3k le suivant, 500€ après. Maintenant : 5k/mois minimum, parfois plus. Le système est fait pour ça."</p>
+        <span class="testi-result">5k minimum</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+    </div>
+
+
+    <!-- COLONNE 2 (défile dans l'autre sens) -->
+    <div class="testi-column col-2">
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt4">GR</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Grégoire · 36 ans</div>
+            <div class="testi-role">Freelance qui scale</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'ai arrêté de prospecter au pif. Sol m'a aidé à construire un système d'acquisition régulier. Plus jamais de mois creux depuis 6 mois."</p>
+        <span class="testi-result">0 mois creux</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar">LA</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Laura · 31 ans</div>
+            <div class="testi-role">Stabilisation</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Le truc qui m'a sauvée : Sol m'a forcée à dire NON aux mauvais clients. Y a 6 mois, je disais oui à tout. Aujourd'hui je choisis."</p>
+        <span class="testi-result">Choix des clients</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt1">SE</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Sébastien · 33 ans</div>
+            <div class="testi-role">Ex-burnout</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'étais en burnout à force de courir après les clients. Sol m'a appris à structurer. Aujourd'hui je bosse 25h/sem pour 6k/mois."</p>
+        <span class="testi-result">25h pour 6k</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt2">OR</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Oriane · 28 ans</div>
+            <div class="testi-role">Pricing débloqué</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Je facturais 600€ une page de vente. Sol m'a poussée à passer à 2 500€. Premier client à ce tarif en 3 semaines. Game changer."</p>
+        <span class="testi-result">Pricing 4x</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <!-- Duplicate for infinite loop -->
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt4">GR</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Grégoire · 36 ans</div>
+            <div class="testi-role">Freelance qui scale</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'ai arrêté de prospecter au pif. Sol m'a aidé à construire un système d'acquisition régulier. Plus jamais de mois creux depuis 6 mois."</p>
+        <span class="testi-result">0 mois creux</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar">LA</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Laura · 31 ans</div>
+            <div class="testi-role">Stabilisation</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Le truc qui m'a sauvée : Sol m'a forcée à dire NON aux mauvais clients. Y a 6 mois, je disais oui à tout. Aujourd'hui je choisis."</p>
+        <span class="testi-result">Choix des clients</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt1">SE</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Sébastien · 33 ans</div>
+            <div class="testi-role">Ex-burnout</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'étais en burnout à force de courir après les clients. Sol m'a appris à structurer. Aujourd'hui je bosse 25h/sem pour 6k/mois."</p>
+        <span class="testi-result">25h pour 6k</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt2">OR</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Oriane · 28 ans</div>
+            <div class="testi-role">Pricing débloqué</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Je facturais 600€ une page de vente. Sol m'a poussée à passer à 2 500€. Premier client à ce tarif en 3 semaines. Game changer."</p>
+        <span class="testi-result">Pricing 4x</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+    </div>
+
+
+    <!-- COLONNE 3 -->
+    <div class="testi-column col-3">
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt3">NA</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Nathan · 35 ans</div>
+            <div class="testi-role">Freelance depuis 3 ans</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Je plafonnais à 3k/mois depuis 18 mois. En 90 jours de BigBrother je suis passé à 7k. Pas par technique. Par positionnement."</p>
+        <span class="testi-result">Plafond cassé</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt4">SO</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Soraya · 32 ans</div>
+            <div class="testi-role">Email marketer</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Sol m'a aidée à me positionner spécialiste email pour e-com français. Niche précise. Aujourd'hui les clients viennent à moi."</p>
+        <span class="testi-result">Inbound prospection</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar">VI</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Vincent · 37 ans</div>
+            <div class="testi-role">Stabilisé après 2 ans</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"2 ans de galère en freelance. 90 jours avec Sol et j'ai trouvé ma niche. VSL pour coachs sport. CA stabilisé depuis."</p>
+        <span class="testi-result">Niche trouvée</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt1">EM</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Emma · 30 ans</div>
+            <div class="testi-role">Quitté son job alimentaire</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'avais encore un job à mi-temps pour la sécurité. Sol m'a aidée à stabiliser le copy à 5k. J'ai pu quitter le job alimentaire."</p>
+        <span class="testi-result">100% copywriter</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <!-- Duplicate for infinite loop -->
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt3">NA</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Nathan · 35 ans</div>
+            <div class="testi-role">Freelance depuis 3 ans</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Je plafonnais à 3k/mois depuis 18 mois. En 90 jours de BigBrother je suis passé à 7k. Pas par technique. Par positionnement."</p>
+        <span class="testi-result">Plafond cassé</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt4">SO</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Soraya · 32 ans</div>
+            <div class="testi-role">Email marketer</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Sol m'a aidée à me positionner spécialiste email pour e-com français. Niche précise. Aujourd'hui les clients viennent à moi."</p>
+        <span class="testi-result">Inbound prospection</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar">VI</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Vincent · 37 ans</div>
+            <div class="testi-role">Stabilisé après 2 ans</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"2 ans de galère en freelance. 90 jours avec Sol et j'ai trouvé ma niche. VSL pour coachs sport. CA stabilisé depuis."</p>
+        <span class="testi-result">Niche trouvée</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt1">EM</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Emma · 30 ans</div>
+            <div class="testi-role">Quitté son job alimentaire</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'avais encore un job à mi-temps pour la sécurité. Sol m'a aidée à stabiliser le copy à 5k. J'ai pu quitter le job alimentaire."</p>
+        <span class="testi-result">100% copywriter</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+
+<div class="container">
+
+
+  <!-- REFAIRE LE QUIZ -->
+  <div class="restart-section">
+    <button class="restart-link" onclick="window.location.href='index.html'">↻ Refaire le quiz</button>
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-disclaimer">Ce site n'est pas affilié à Meta, Inc. ni à aucune de ses marques. Meta est une marque déposée de Meta, Inc.</div>
+    <div>
+      © Sol Copywriting · <a href="#">Mentions légales</a> · <a href="#">Politique de confidentialité</a> · <a href="#">CGV</a>
+    </div>
+  </footer>
+
+
+</div>
+
+
+</body>
+</html>

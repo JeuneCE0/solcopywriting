@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Découvre les 4 étapes pour atteindre 3 000€/mois en copywriting — Le Copy Quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --yellow: #f5a623;
+  --yellow-dark: #d68a0a;
+  --yellow-light: #fff3d6;
+  --ink: #1a1a1a;
+  --paper: #ffffff;
+  --bg: #fafafa;
+  --border: #e5e5e5;
+  --muted: #6b6b6b;
+  --success: #10b981;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,0.12);
+}
+
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  padding: 24px 16px;
+}
+
+
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+
+/* HEADER */
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+
+.logo {
+  display: inline-block;
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+
+.logo-emoji {
+  display: inline-block;
+  color: var(--yellow);
+  margin-right: 4px;
+}
+
+
+.credentials {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+
+/* PROGRESS */
+.progress-wrap {
+  margin: 24px 0 32px;
+  display: none;
+}
+
+
+.progress-wrap.visible { display: block; }
+
+
+.progress-bar {
+  height: 6px;
+  background: var(--border);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+
+.progress-fill {
+  height: 100%;
+  background: var(--yellow);
+  border-radius: 100px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 0%;
+}
+
+
+.progress-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+
+.progress-text-right {
+  color: var(--yellow-dark);
+}
+
+
+/* CARDS */
+.card {
+  background: var(--paper);
+  border-radius: 20px;
+  padding: 40px 32px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  animation: fadeIn 0.4s ease;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+.card.hidden { display: none; }
+
+
+/* INTRO CARD */
+.intro h1 {
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+
+.intro h1 .accent {
+  color: var(--yellow-dark);
+}
+
+
+.intro .subtitle {
+  font-size: 15px;
+  color: var(--muted);
+  text-align: center;
+  margin-bottom: 24px;
+  line-height: 1.55;
+}
+
+
+.intro .subtitle strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+
+.intro-stats {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+
+.intro-stat {
+  background: var(--yellow-light);
+  border: 1px solid var(--yellow);
+  padding: 8px 14px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--yellow-dark);
+}
+
+
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 18px 24px;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+
+
+.btn-primary:hover {
+  background: var(--yellow);
+  color: var(--ink);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+
+.btn-primary:active { transform: translateY(0); }
+
+
+.intro-trust {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+
+/* === V2 INTRO ENHANCEMENTS === */
+.intro-badge-top {
+  display: flex;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  gap: 6px;
+  background: var(--ink);
+  color: var(--yellow);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 20px;
+}
+
+
+.intro-badge-top .live-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #10b981;
+  border-radius: 50%;
+  animation: livePulse 1.5s ease-in-out infinite;
+}
+
+
+@keyframes livePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.4); }
+}
+
+
+.intro h1 .highlight-yellow {
+  background: linear-gradient(180deg, transparent 55%, var(--yellow-light) 55%);
+  padding: 0 4px;
+}
+
+
+.intro h1 .underline-thick {
+  border-bottom: 5px solid var(--yellow);
+  padding-bottom: 2px;
+}
+
+
+.intro h1 .yellow {
+  color: var(--yellow-dark);
+}
+
+
+.steps-preview {
+  background: var(--bg);
+  border-radius: 14px;
+  padding: 20px;
+  margin: 24px 0;
+  border: 2px dashed var(--border);
+}
+
+
+.steps-preview-label {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+
+.steps-preview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+
+.step-locked {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.step-locked::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(245,166,35,0.04),
+    rgba(245,166,35,0.04) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+  pointer-events: none;
+}
+
+
+.step-locked-num {
+  width: 32px;
+  height: 32px;
+  background: var(--ink);
+  color: var(--yellow);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+
+.step-locked-content {
+  flex: 1;
+  min-width: 0;
+}
+
+
+.step-locked-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+
+
+.step-locked-status {
+  font-size: 10px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+
+.step-locked-lock {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 12px;
+  opacity: 0.4;
+  z-index: 1;
+}
+
+
+.intro-promise {
+  background: var(--yellow-light);
+  border-left: 4px solid var(--yellow);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 16px 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+}
+
+
+.intro-promise strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+
+.intro-stats-v2 {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+
+.intro-stat-v2 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+
+.intro-stat-v2-icon {
+  color: var(--success);
+  font-weight: 900;
+}
+
+
+@media (max-width: 540px) {
+  .steps-preview-grid { grid-template-columns: 1fr; }
+  .intro h1 { font-size: 24px; }
+  .intro-stats-v2 { gap: 10px; flex-direction: column; }
+  .intro-promise { font-size: 13px; padding: 12px 14px; }
+}
+
+
+/* QUESTION CARD */
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s;
+}
+
+
+.back-btn:hover {
+  color: var(--ink);
+}
+
+
+.question h2 {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+
+
+.question-hint {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+
+.option {
+  background: var(--paper);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 15px;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  font-family: inherit;
+  width: 100%;
+}
+
+
+.option:hover {
+  border-color: var(--yellow);
+  background: var(--yellow-light);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+
+.option.selected {
+  border-color: var(--ink);
+  background: var(--yellow);
+  font-weight: 600;
+}
+
+
+.option-emoji {
+  flex-shrink: 0;
+  font-size: 22px;
+  width: 32px;
+  text-align: center;
+}
+
+
+.option-text { flex: 1; }
+
+
+/* FORM CARD */
+.form-card h2 {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+
+.form-card .subtitle {
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 28px;
+}
+
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+
+.form-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+
+.form-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  font-size: 16px;
+  font-family: inherit;
+  transition: border-color 0.2s;
+  background: var(--paper);
+}
+
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--yellow);
+}
+
+
+.form-error {
+  display: none;
+  background: #fee2e2;
+  color: #dc2626;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+
+.form-error.visible {
+  display: block;
+}
+
+
+.form-trust {
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 16px;
+}
+
+
+/* RESULT CARD */
+.result {
+  text-align: center;
+}
+
+
+.result-badge {
+  display: inline-block;
+  background: var(--success);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 20px;
+}
+
+
+.result h2 {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+
+.result .profile-name {
+  color: var(--yellow-dark);
+}
+
+
+.result-summary {
+  background: var(--yellow-light);
+  border-radius: 14px;
+  padding: 20px;
+  margin: 24px 0;
+  text-align: left;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+
+.result-summary strong {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--yellow-dark);
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+
+.result-redirect {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 20px 0;
+}
+
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 24px 16px;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+
+.footer a {
+  color: var(--muted);
+  text-decoration: underline;
+}
+
+
+.footer-disclaimer {
+  max-width: 600px;
+  margin: 0 auto 12px;
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+
+@media (max-width: 540px) {
+  body { padding: 16px 12px; }
+  .card { padding: 28px 20px; border-radius: 16px; }
+  .intro h1 { font-size: 26px; }
+  .question h2 { font-size: 20px; }
+  .result h2 { font-size: 24px; }
+  .option { padding: 14px 16px; font-size: 14px; }
+}
+</style>
+</head>
+<body>
+
+
+<div class="container">
+
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo"><span class="logo-emoji">✒️</span>Le Copy Quiz</div>
+    <div class="credentials">Par Sol · +6M€ générés pour mes clients · 1 100+ membres formés</div>
+  </header>
+
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-text">
+      <span id="progressLeft">Question 1 sur 9</span>
+      <span class="progress-text-right" id="progressRight">Plus que 8</span>
+    </div>
+  </div>
+
+
+  <!-- INTRO -->
+  <div class="card intro" id="screenIntro">
+    <div class="intro-badge-top">
+      <span class="live-dot"></span>
+      <span>Quiz · 100% offert</span>
+    </div>
+
+
+    <h1>Découvre les <span class="yellow">4 étapes</span> pour atteindre <span class="highlight-yellow">3 000€/mois</span> en tant que copywriter <span class="underline-thick">en moins de 100 jours</span></h1>
+
+
+    <p class="subtitle">Réponds à <strong>9 questions</strong> et reçois ton plan personnalisé selon ton profil.</p>
+
+
+    <div class="intro-stats-v2">
+      <div class="intro-stat-v2"><span class="intro-stat-v2-icon">✓</span> 90 secondes</div>
+      <div class="intro-stat-v2"><span class="intro-stat-v2-icon">✓</span> 100% anonyme</div>
+      <div class="intro-stat-v2"><span class="intro-stat-v2-icon">✓</span> 100% offert</div>
+    </div>
+
+
+    <button class="btn-primary" onclick="startQuiz()">🚀 Démarrer le quiz maintenant</button>
+    <p class="intro-trust">Tes résultats arriveront par email. Aucun spam, jamais.</p>
+  </div>
+
+
+  <!-- QUESTIONS CONTAINER -->
+  <div id="questionsContainer"></div>
+
+
+  <!-- FORM -->
+  <div class="card form-card hidden" id="screenForm">
+    <h2>Une dernière étape pour recevoir ton résultat 👇</h2>
+    <p class="subtitle">Je t'envoie ton profil détaillé + ton plan d'action perso. Et je te contacte sur WhatsApp pour t'expliquer la suite.</p>
+
+
+    <div class="form-group">
+      <label class="form-label" for="firstname">Ton prénom *</label>
+      <input type="text" id="firstname" class="form-input" placeholder="Alex" required>
+    </div>
+
+
+    <div class="form-group">
+      <label class="form-label" for="email">Ton email *</label>
+      <input type="email" id="email" class="form-input" placeholder="alex@gmail.com" required>
+    </div>
+
+
+    <div class="form-group">
+      <label class="form-label" for="phone">Ton numéro WhatsApp *</label>
+      <input type="tel" id="phone" class="form-input" placeholder="+33 6 12 34 56 78" required>
+    </div>
+
+
+    <div class="form-error" id="formError"></div>
+
+
+    <button class="btn-primary" onclick="submitForm()">Voir mes résultats →</button>
+    <p class="form-trust">🔒 100% confidentiel. Pas de spam, jamais.</p>
+  </div>
+
+
+  <!-- RESULT -->
+  <div class="card result hidden" id="screenResult">
+    <div class="result-badge">✓ Profil identifié</div>
+    <h2>Tu es <span class="profile-name" id="profileName">…</span></h2>
+    <div class="result-summary" id="resultSummary"></div>
+    <p class="result-redirect">Tu vas être redirigé dans <span id="countdown">5</span> secondes vers ta page personnalisée…</p>
+    <button class="btn-primary" onclick="redirectNow()">Y aller maintenant →</button>
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-disclaimer">Ce site n'est pas affilié à Meta, Inc. ni à aucune de ses marques. Meta est une marque déposée de Meta, Inc.</div>
+    <div>
+      © Sol Copywriting · <a href="#">Mentions légales</a> · <a href="#">Politique de confidentialité</a> · <a href="#">CGV</a>
+    </div>
+  </footer>
+
+
+</div>
+
+
+<script>
+// ============================================
+// CONFIG — à remplir avant mise en ligne
+// ============================================
+const CONFIG = {
+  // Inbound Webhook GoHighLevel (déclencheur de workflow "Inbound Webhook").
+  // Le workflow mappe le payload vers les Custom Fields du contact + crée l'opportunité.
+  // Laisser vide = pas d'envoi (le quiz fonctionne quand même).
+  ghlWebhookUrl: ""
+};
+
+// Envoie le lead à GoHighLevel. Non bloquant : n'empêche jamais l'affichage du résultat.
+// `keepalive` garantit que la requête aboutit malgré la redirection 5 s plus tard.
+function sendLeadToGHL() {
+  if (!CONFIG.ghlWebhookUrl) return;
+  const p = PROFILES[detectedProfile] || {};
+  const payload = {
+    firstName: userData.firstname,
+    email: userData.email,
+    phone: userData.phone,
+    source: "Le Copy Quiz",
+    quiz_version: "B",
+    quiz_profile_code: detectedProfile,        // p1..p6
+    quiz_profile_name: p.name || "",
+    quiz_score_p1: scores.p1,
+    quiz_score_p2: scores.p2,
+    quiz_score_p3: scores.p3,
+    quiz_score_p4: scores.p4,
+    quiz_score_p5: scores.p5,
+    quiz_score_p6: scores.p6,
+    quiz_scores: JSON.stringify(scores),
+    quiz_answers: JSON.stringify(answers),
+    completed_at: new Date().toISOString()
+  };
+  try {
+    fetch(CONFIG.ghlWebhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      keepalive: true
+    }).catch(function(){});
+  } catch (e) {}
+}
+
+// ============================================
+// QUIZ DATA
+// ============================================
+
+
+const QUESTIONS = [
+  {
+    id: 'q1_situation',
+    title: "Où tu en es aujourd'hui ?",
+    hint: "Pour t'aider vraiment, j'ai besoin de comprendre ta situation réelle.",
+    options: [
+      { emoji: '🌱', text: "J'ai un job ou des études. Le copy m'attire mais je ne sais pas par où commencer.", score: { p1: 3 } },
+      { emoji: '📚', text: "J'ai déjà suivi des formations. Mais je n'ai pas encore eu de vrais résultats concrets.", score: { p3: 3 } },
+      { emoji: '💼', text: "Je suis freelance, je fais déjà quelques missions. Mais mes revenus sont trop instables pour en vivre.", score: { p4: 3 } },
+      { emoji: '🚀', text: "Je gagne déjà +2 000€ par mois avec mon activité. Et je veux maintenant passer un cap supérieur.", score: { p5: 4 } },
+      { emoji: '🎯', text: "J'ai déjà un business ou un projet qui marche. Je veux apprendre le copy pour mieux vendre MES produits.", score: { p6: 4 } }
+    ]
+  },
+  {
+    id: 'q2_driver',
+    title: "Au fond... pourquoi le copywriting t'attire autant ?",
+    hint: "Il y a toujours une vraie raison derrière ce choix. Laquelle est la tienne ?",
+    options: [
+      { emoji: '🔓', text: "Me libérer d'un patron, d'un salaire fixe et reprendre le contrôle de ma vie.", score: { p2: 2, p1: 1 } },
+      { emoji: '🌍', text: "Voyager, travailler depuis n'importe où et vivre selon mes propres règles.", score: { p2: 2, p4: 1 } },
+      { emoji: '🎯', text: "Travailler sur des projets qui ont du sens et collaborer avec des business ambitieux.", score: { p4: 2, p5: 1 } },
+      { emoji: '💰', text: "Générer des revenus solides pour investir et construire quelque chose de plus grand.", score: { p5: 2, p6: 2 } }
+    ]
+  },
+  {
+    id: 'q3_niveau',
+    title: "Honnêtement... où tu en es avec le copywriting aujourd'hui ?",
+    hint: "Pas de jugement — cette réponse va me permettre de t'orienter vers ce dont tu as vraiment besoin.",
+    options: [
+      { emoji: '🌱', text: "Je débute complètement. Je connais le concept mais je n'ai jamais vraiment pratiqué.", score: { p1: 3 } },
+      { emoji: '📖', text: "J'ai des bases. J'ai suivi des contenus gratuits ou une formation mais je manque de pratique réelle.", score: { p3: 2, p1: 1 } },
+      { emoji: '✅', text: "Je sais écrire du bon copy. Mais je ne sais pas comment convaincre des clients de me payer correctement.", score: { p3: 2, p4: 2 } },
+      { emoji: '💼', text: "J'ai déjà des clients. Mais je veux monter en gamme et facturer beaucoup plus cher.", score: { p4: 2, p5: 2 } }
+    ]
+  },
+  {
+    id: 'q4_vision',
+    title: "Si tout se passe comme tu le souhaites... à quoi ressemble ta vie dans 12 mois ?",
+    hint: "Ferme les yeux deux secondes et imagine vraiment...",
+    options: [
+      { emoji: '🎯', text: "J'ai signé mes premiers clients et je prouve que le copy peut vraiment me rapporter de l'argent.", score: { p1: 2, p3: 1 } },
+      { emoji: '🏆', text: "J'ai quitté mon job. Et je vis à 100% de mon activité de copywriter.", score: { p2: 3, p4: 1 } },
+      { emoji: '✈️', text: "Je travaille depuis n'importe où dans le monde. Et le copy me finance cette liberté totale.", score: { p2: 2, p5: 1 } },
+      { emoji: '📈', text: "Mon business a explosé grâce à mon copy. Mes ventes ont doublé ou triplé.", score: { p6: 3 } }
+    ]
+  },
+  {
+    id: 'q5_revenus',
+    title: "Pour vivre cette vie... quel niveau de revenus te permettrait de te sentir vraiment libre ?",
+    hint: "Sois honnête — ce n'est pas une question piège.",
+    options: [
+      { emoji: '💡', text: "500€ - 1 000€/mois. Un premier complément pour valider que ça marche.", score: { p1: 2 } },
+      { emoji: '🏠', text: "1 000€ - 1 500€/mois. De quoi vivre sereinement dans un pays au coût de vie accessible.", score: { p1: 1, p3: 1 } },
+      { emoji: '💪', text: "1 500€ - 3 000€/mois. Remplacer mon job et avoir un vrai salaire de copywriter.", score: { p2: 2, p3: 1, p4: 1 } },
+      { emoji: '🔥', text: "+3 000€/mois. Être totalement libre, voyager et commencer à investir.", score: { p2: 2, p5: 2, p6: 1 } }
+    ]
+  },
+  {
+    id: 'q6_priorite',
+    title: "À quel point tu es prêt à faire de ce projet une vraie priorité ?",
+    hint: "Sois honnête avec toi-même... c'est important pour la suite.",
+    options: [
+      { emoji: '💯', text: "Je suis prêt à m'engager à fond. Je veux que 2026 soit l'année où tout change pour moi.", score: { p2: 2, p4: 1 } },
+      { emoji: '🤔', text: "Je suis motivé mais j'ai encore des doutes. J'ai besoin d'être rassuré avant de me lancer.", score: { p3: 2, p1: 1 } },
+      { emoji: '👀', text: "Je veux d'abord comprendre la méthode. Et voir si c'est vraiment fait pour moi.", score: { p1: 2 } },
+      { emoji: '🚀', text: "Je suis déjà dedans. Je veux juste accélérer maintenant.", score: { p5: 2, p4: 1, p6: 1 } }
+    ]
+  },
+  {
+    id: 'q7_investissement',
+    title: "Imagine que tu as une méthode éprouvée et garantie pour atteindre +3 000€/mois en copywriting d'ici 100 jours...",
+    hint: "Combien serais-tu prêt à investir pour suivre cette méthode ?",
+    options: [
+      { emoji: '🌱', text: "Quelques centaines d'euros. Je veux m'assurer que ça marche avant d'aller plus loin.", score: { p1: 3 } },
+      { emoji: '📈', text: "Entre 500€ et 1 500€. Je sais qu'il faut investir sur soi, mais je n'ai pas un capital infini.", score: { p3: 2, p4: 1 } },
+      { emoji: '🚀', text: "Entre 1 500€ et 3 000€. Si ce système me permet de changer de vie en 100 jours, je suis prêt à m'investir à fond.", score: { p2: 3, p4: 1 } },
+      { emoji: '💼', text: "Le prix n'est pas ma priorité. Si le résultat est garanti, je ferais ce qu'il faut pour y arriver.", score: { p2: 2, p5: 3, p6: 2 } }
+    ]
+  },
+  {
+    id: 'q8_engagement',
+    title: "Si je te montre les 4 étapes pour atteindre 3 000€/mois en moins de 100 jours...",
+    hint: "Est-ce que tu serais prêt à te lancer ?",
+    options: [
+      { emoji: '🔥', text: "Oui, je suis prêt. Je veux découvrir ces 4 étapes et dans 100 jours je vis du copywriting.", score: { p2: 3, p4: 1 } },
+      { emoji: '🤔', text: "Probablement oui. J'aimerais d'abord en discuter avec un expert avant de me lancer.", score: { p3: 2, p4: 1, p1: 1 } },
+      { emoji: '👀', text: "Je suis curieux. Je veux d'abord voir la méthode avant de m'engager sur quoi que ce soit.", score: { p1: 2, p3: 1 } },
+      { emoji: '❌', text: "Je ferme cette page. Et je continue de voir les autres réussir sans passer à l'action.", score: { p1: 1 } }
+    ]
+  },
+  {
+    id: 'q9_timing',
+    title: "Dernière question... quand veux-tu vraiment commencer ?",
+    hint: "Le bon moment, c'est souvent maintenant.",
+    options: [
+      { emoji: '⚡', text: "Maintenant. Je n'ai pas envie d'attendre. Plus vite je commence, plus vite j'ai des résultats.", score: { p2: 2, p4: 1, p5: 1 } },
+      { emoji: '📅', text: "Dans les 30 prochains jours. Je veux être prêt et bien démarrer.", score: { p2: 1, p3: 1, p4: 1 } },
+      { emoji: '🤷', text: "Je ne sais pas encore. Ça dépend de plein de choses.", score: { p1: 2 } },
+      { emoji: '🎯', text: "Quand j'aurai trouvé LA bonne formation pour me lancer. Je ne veux pas perdre mon temps.", score: { p2: 1, p3: 1 } }
+    ]
+  }
+];
+
+
+const PROFILES = {
+  p1: {
+    name: "Le Débutant Ambitieux",
+    summary: "Tu fais partie des gens qui sentent qu'il y a quelque chose à explorer dans le copywriting. Tu as raison — mais il faut commencer par le bon endroit, pas par claquer 2000€ dans une formation que tu n'utiliseras pas.",
+    label: "Tu pars de zéro — et c'est une force",
+    redirect: "explication_debutant_total.html"
+  },
+  p2: {
+    name: "Le Reconverti Motivé",
+    summary: "Tu fais partie de ceux qui ont décidé de reprendre le contrôle de leur vie. Tu cherches une voie concrète pour remplacer ton salaire et tu en as les moyens. Le profil idéal pour un accompagnement rapproché.",
+    label: "Tu es prêt à changer de vie",
+    redirect: "explication_reconverti_motive_v2.html"
+  },
+  p3: {
+    name: "Le Formé Bloqué",
+    summary: "Tu as fait l'effort de te former, tu connais la théorie, mais quelque chose t'empêche d'aller plus loin. Spoiler : ton problème n'est presque jamais technique. C'est la prospection ou la prise d'action.",
+    label: "Tu as les bases — il te manque le déclic",
+    redirect: "explication_forme_bloque.html"
+  },
+  p4: {
+    name: "Le Freelance Instable",
+    summary: "Tu as déjà prouvé que tu peux faire du copy ton métier. Mais tu vis le pire des deux mondes : pas la sécurité d'un salaire, pas la stabilité d'un freelance qui scale. Il est temps de monter en gamme.",
+    label: "Tu signes — mais tu veux la stabilité",
+    redirect: "explication_freelance_instable.html"
+  },
+  p5: {
+    name: "Le Plafond Invisible",
+    summary: "Tu fais partie des 5% qui ont vraiment réussi à faire de l'argent en ligne. Tu gagnes déjà bien ta vie, mais tu sens un plafond invisible. Ce qui te manque, c'est pas la technique — c'est quelqu'un qui peut te challenger pour passer le cap.",
+    label: "Tu sens un plafond invisible",
+    redirect: "explication_scaler.html"
+  },
+  p6: {
+    name: "L'Entrepreneur",
+    summary: "Tu n'es pas là pour devenir copywriter. Tu es là parce que tu sais que ton business pourrait vendre 2 à 5x plus avec un meilleur copy. C'est exactement comme ça que je raisonne quand j'analyse un tunnel.",
+    label: "Tu veux mieux vendre TES produits",
+    redirect: "explication_entrepreneur.html"
+  }
+};
+
+
+// ============================================
+// STATE
+// ============================================
+
+
+let currentQuestion = 0;
+let scores = { p1: 0, p2: 0, p3: 0, p4: 0, p5: 0, p6: 0 };
+let answers = {};
+let userData = {};
+let detectedProfile = null;
+
+
+// ============================================
+// QUIZ LOGIC
+// ============================================
+
+
+function startQuiz() {
+  document.getElementById('screenIntro').classList.add('hidden');
+  document.getElementById('progressWrap').classList.add('visible');
+  renderQuestion(0);
+}
+
+
+function renderQuestion(index) {
+  currentQuestion = index;
+  const q = QUESTIONS[index];
+  const container = document.getElementById('questionsContainer');
+  const previousAnswer = answers[q.id];
+
+
+  container.innerHTML = `
+    <div class="card question" id="question-${index}">
+      ${index > 0 ? `<button class="back-btn" onclick="goBack()">← Revenir en arrière</button>` : ''}
+      <h2>${q.title}</h2>
+      <p class="question-hint">${q.hint}</p>
+      <div class="options">
+        ${q.options.map((opt, i) => `
+          <button class="option ${previousAnswer === i ? 'selected' : ''}" onclick="selectOption(${index}, ${i})" data-index="${i}">
+            <span class="option-emoji">${opt.emoji}</span>
+            <span class="option-text">${opt.text}</span>
+          </button>
+        `).join('')}
+      </div>
+    </div>
+  `;
+
+
+  updateProgress(index);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+function goBack() {
+  if (currentQuestion > 0) {
+    renderQuestion(currentQuestion - 1);
+  }
+}
+
+
+function recalculateScores() {
+  // Recalcule tous les scores à partir des réponses enregistrées
+  // (évite les doublons quand l'utilisateur revient en arrière et change sa réponse)
+  scores = { p1: 0, p2: 0, p3: 0, p4: 0, p5: 0, p6: 0 };
+  Object.entries(answers).forEach(([qId, optIndex]) => {
+    const question = QUESTIONS.find(q => q.id === qId);
+    if (question && question.options[optIndex]) {
+      Object.entries(question.options[optIndex].score).forEach(([profile, points]) => {
+        scores[profile] = (scores[profile] || 0) + points;
+      });
+    }
+  });
+}
+
+
+function selectOption(qIndex, optIndex) {
+  const q = QUESTIONS[qIndex];
+
+
+  // Save answer
+  answers[q.id] = optIndex;
+
+
+  // Recalcule tous les scores à partir des réponses (gère le changement de réponse)
+  recalculateScores();
+
+
+  // Visual feedback
+  const buttons = document.querySelectorAll(`#question-${qIndex} .option`);
+  buttons.forEach((b, i) => {
+    if (i === optIndex) b.classList.add('selected');
+    else b.classList.remove('selected');
+  });
+
+
+  // Next
+  setTimeout(() => {
+    if (qIndex < QUESTIONS.length - 1) {
+      renderQuestion(qIndex + 1);
+    } else {
+      showForm();
+    }
+  }, 350);
+}
+
+
+function updateProgress(index) {
+  const total = QUESTIONS.length;
+  const current = index + 1;
+  const percent = (current / total) * 100;
+
+
+  document.getElementById('progressFill').style.width = percent + '%';
+  document.getElementById('progressLeft').textContent = `Question ${current} sur ${total}`;
+  const remaining = total - current;
+  document.getElementById('progressRight').textContent = remaining === 0 ? 'Dernière étape !' : `Plus que ${remaining}`;
+}
+
+
+function showForm() {
+  document.getElementById('questionsContainer').innerHTML = '';
+  document.getElementById('progressFill').style.width = '100%';
+  document.getElementById('progressLeft').textContent = 'Quiz terminé';
+  document.getElementById('progressRight').textContent = 'Tes infos pour recevoir tes résultats';
+  document.getElementById('screenForm').classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+function submitForm() {
+  const firstname = document.getElementById('firstname').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const errorEl = document.getElementById('formError');
+
+
+  // Validation des 3 champs obligatoires
+  if (!firstname) {
+    showFormError('Indique ton prénom pour continuer.');
+    return;
+  }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    showFormError('Indique un email valide pour recevoir tes résultats.');
+    return;
+  }
+  if (!phone || phone.replace(/[^0-9]/g, '').length < 8) {
+    showFormError('Indique ton numéro WhatsApp pour qu\'on puisse te contacter.');
+    return;
+  }
+
+
+  errorEl.classList.remove('visible');
+
+
+  userData = { firstname, email, phone };
+  detectedProfile = detectProfile();
+
+
+  sendLeadToGHL();
+
+
+  showResult();
+}
+
+
+function showFormError(message) {
+  const errorEl = document.getElementById('formError');
+  errorEl.textContent = '⚠ ' + message;
+  errorEl.classList.add('visible');
+}
+
+
+function detectProfile() {
+  let maxScore = -1;
+  let topProfile = 'p1';
+  Object.entries(scores).forEach(([profile, score]) => {
+    if (score > maxScore) {
+      maxScore = score;
+      topProfile = profile;
+    }
+  });
+  return topProfile;
+}
+
+
+function showResult() {
+  document.getElementById('screenForm').classList.add('hidden');
+  document.getElementById('progressWrap').classList.remove('visible');
+
+
+  const profile = PROFILES[detectedProfile];
+  document.getElementById('profileName').textContent = profile.name;
+  document.getElementById('resultSummary').innerHTML = `
+    <strong>${profile.label}</strong>
+    ${profile.summary}
+  `;
+  document.getElementById('countdown').textContent = '5';
+  document.getElementById('screenResult').classList.remove('hidden');
+
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+
+  // Countdown auto-redirect
+  let count = 5;
+  const countdownEl = document.getElementById('countdown');
+  const interval = setInterval(() => {
+    count--;
+    if (count >= 0 && countdownEl) countdownEl.textContent = count;
+    if (count <= 0) {
+      clearInterval(interval);
+      redirectNow();
+    }
+  }, 1000);
+}
+
+
+function redirectNow() {
+  const profile = PROFILES[detectedProfile];
+  // Stocker les data en localStorage pour la page de destination (optionnel)
+  try {
+    localStorage.setItem('quiz_profile', detectedProfile);
+    localStorage.setItem('quiz_user', JSON.stringify(userData));
+    localStorage.setItem('quiz_scores', JSON.stringify(scores));
+  } catch(e) {}
+
+
+  // Redirection vraie vers la page d'explication adaptée au profil
+  window.location.href = profile.redirect;
+}
+</script>
+
+
+</body>
+</html>

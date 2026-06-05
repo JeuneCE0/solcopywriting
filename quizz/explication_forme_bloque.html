@@ -1,0 +1,1759 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Formé Bloqué — Ton plan d'action perso par Sol</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --yellow: #f5a623;
+  --yellow-dark: #d68a0a;
+  --yellow-light: #fff3d6;
+  --ink: #1a1a1a;
+  --paper: #ffffff;
+  --bg: #fafafa;
+  --border: #e5e5e5;
+  --muted: #6b6b6b;
+  --success: #10b981;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,0.12);
+  --shadow-xl: 0 20px 48px rgba(0,0,0,0.18);
+}
+
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px 16px 80px;
+}
+
+
+/* HEADER */
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+
+.logo {
+  display: inline-block;
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+
+.logo-emoji {
+  display: inline-block;
+  color: var(--yellow);
+  margin-right: 4px;
+}
+
+
+.credentials {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+
+.header-result-label {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 6px 14px;
+  background: var(--ink);
+  color: var(--yellow);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border-radius: 100px;
+}
+
+
+/* RESULT BANNER */
+.result-banner {
+  background: linear-gradient(135deg, var(--yellow) 0%, var(--yellow-dark) 100%);
+  border-radius: 20px;
+  padding: 40px 28px;
+  text-align: center;
+  color: var(--ink);
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+
+.result-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 60%;
+  height: 200%;
+  background: rgba(255,255,255,0.08);
+  transform: rotate(25deg);
+}
+
+
+.result-badge {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--yellow);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+
+.result-banner h1 {
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+
+.result-banner h1 .underline {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
+}
+
+
+.result-banner .greeting {
+  font-size: 16px;
+  font-weight: 600;
+  opacity: 0.85;
+  position: relative;
+}
+
+
+/* SECTIONS */
+.section {
+  background: var(--paper);
+  border-radius: 20px;
+  padding: 36px 28px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+}
+
+
+.section-eyebrow {
+  display: inline-block;
+  background: var(--yellow-light);
+  color: var(--yellow-dark);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+
+.section h2 {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+
+.section p {
+  font-size: 16px;
+  line-height: 1.65;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+
+.section p strong { color: var(--ink); font-weight: 700; }
+
+
+.highlight-yellow {
+  background: linear-gradient(180deg, transparent 60%, var(--yellow-light) 60%);
+  padding: 0 2px;
+  font-weight: 600;
+}
+
+
+.highlight-marker {
+  background: var(--yellow);
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+
+.underline-wavy {
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: var(--yellow);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  font-weight: 600;
+}
+
+
+.underline-thick {
+  border-bottom: 3px solid var(--yellow);
+  padding-bottom: 1px;
+  font-weight: 600;
+}
+
+
+/* HIGHLIGHT BOX */
+.highlight {
+  background: var(--yellow-light);
+  border-left: 4px solid var(--yellow);
+  padding: 20px 22px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+
+.highlight strong {
+  display: block;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--yellow-dark);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+
+.highlight p {
+  font-size: 15px;
+  margin-bottom: 0;
+  line-height: 1.55;
+}
+
+
+/* DIAGNOSTIC */
+.diag-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+
+.diag-card {
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid var(--border);
+}
+
+
+.diag-card-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+
+.diag-card-value {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+
+.diag-card.strong { background: #d1fae5; border-color: var(--success); }
+.diag-card.strong .diag-card-value { color: #065f46; }
+
+
+.diag-card.weak { background: #fef3c7; border-color: var(--yellow); }
+.diag-card.weak .diag-card-value { color: var(--yellow-dark); }
+
+
+/* VIDÉOS GRID */
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+}
+
+
+.video-card {
+  background: var(--ink);
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+
+.video-card:hover { transform: translateY(-2px); }
+
+
+.video-card.featured { grid-column: 1 / -1; }
+
+
+.video-thumb {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+
+.video-thumb::after {
+  content: '▶';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--ink);
+  padding-left: 4px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  transition: transform 0.2s;
+}
+
+
+.video-card.featured .video-thumb::after {
+  width: 80px;
+  height: 80px;
+  font-size: 28px;
+  padding-left: 6px;
+}
+
+
+.video-card:hover .video-thumb::after { transform: translate(-50%, -50%) scale(1.1); }
+
+
+.video-thumb-duration {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(0,0,0,0.85);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+
+.video-thumb-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #cc0000;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+
+.video-card-info {
+  padding: 16px;
+}
+
+
+.video-card-title {
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+
+.video-card.featured .video-card-title {
+  font-size: 18px;
+}
+
+
+.video-card-meta {
+  color: rgba(255,255,255,0.6);
+  font-size: 12px;
+}
+
+
+/* PRÉSENTATION DE SOL */
+.sol-presentation {
+  background: linear-gradient(135deg, var(--paper) 0%, var(--yellow-light) 100%);
+  border: 2px solid var(--yellow);
+}
+
+
+.sol-grid {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 28px;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+
+.sol-photo {
+  width: 180px;
+  height: 180px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+
+.sol-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--yellow) 0%, var(--yellow-dark) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  gap: 8px;
+}
+
+
+.sol-photo-placeholder span {
+  font-size: 48px;
+}
+
+
+.sol-photo-placeholder small {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  opacity: 0.9;
+}
+
+
+.sol-content h2 {
+  margin-bottom: 16px;
+}
+
+
+.sol-content p {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+
+@media (max-width: 540px) {
+  .sol-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .sol-photo {
+    margin: 0 auto;
+    width: 140px;
+    height: 140px;
+  }
+}
+
+
+/* AUTORITÉ */
+.authority-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 24px 0;
+}
+
+
+.authority-stat {
+  background: var(--ink);
+  color: white;
+  border-radius: 12px;
+  padding: 20px 16px;
+  text-align: center;
+}
+
+
+.authority-number {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--yellow);
+  line-height: 1;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+
+
+.authority-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  opacity: 0.85;
+  line-height: 1.3;
+}
+
+
+/* PLAN ÉTAPES */
+.steps {
+  display: grid;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+
+.step {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 20px;
+  background: var(--bg);
+  border-radius: 14px;
+  padding: 22px;
+  border: 1px solid var(--border);
+}
+
+
+.step-num {
+  width: 56px;
+  height: 56px;
+  background: var(--yellow);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--ink);
+}
+
+
+.step h4 {
+  font-size: 17px;
+  font-weight: 800;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+
+.step p {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+
+/* CTA */
+.cta-section {
+  background: var(--ink);
+  color: white;
+  border-radius: 20px;
+  padding: 40px 28px;
+  margin: 32px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+}
+
+
+.cta-eyebrow {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--ink);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+
+
+.cta-section h2 {
+  color: white;
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+
+.cta-section h2 .yellow {
+  color: var(--yellow);
+}
+
+
+.cta-section p {
+  font-size: 16px;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 24px;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.cta-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 24px 0;
+  text-align: left;
+}
+
+
+.cta-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.4;
+}
+
+
+.cta-feature-icon {
+  color: var(--yellow);
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+
+.btn-cta {
+  display: inline-block;
+  width: 100%;
+  max-width: 480px;
+  padding: 20px 32px;
+  background: var(--yellow);
+  color: var(--ink);
+  border: none;
+  border-radius: 14px;
+  font-size: 17px;
+  font-weight: 800;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  box-shadow: 0 6px 0 var(--yellow-dark);
+}
+
+
+.btn-cta:hover {
+  transform: translateY(2px);
+  box-shadow: 0 4px 0 var(--yellow-dark);
+}
+
+
+.btn-cta:active {
+  transform: translateY(6px);
+  box-shadow: 0 0 0 var(--yellow-dark);
+}
+
+
+.cta-trust {
+  margin-top: 16px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+}
+
+
+/* TÉMOIGNAGES — DÉFILEMENT VERTICAL INFINI (style Senja) */
+.testimonials-wall {
+  margin: 40px 0;
+  padding: 32px 0;
+  position: relative;
+}
+
+
+.testimonials-wall-header {
+  text-align: center;
+  margin-bottom: 32px;
+  padding: 0 16px;
+}
+
+
+.testimonials-wall-header h2 {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+
+.testimonials-wall-header p {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+
+.testimonials-vertical-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+  height: 720px;
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+
+.testi-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: scrollUp 40s linear infinite;
+}
+
+
+.testi-column.col-2 {
+  animation: scrollDown 50s linear infinite;
+}
+
+
+.testi-column.col-3 {
+  animation: scrollUp 45s linear infinite;
+  animation-delay: -10s;
+}
+
+
+@keyframes scrollUp {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+
+
+@keyframes scrollDown {
+  from { transform: translateY(-50%); }
+  to { transform: translateY(0); }
+}
+
+
+.testimonials-vertical-wrapper:hover .testi-column {
+  animation-play-state: paused;
+}
+
+
+.testi-card {
+  background: var(--paper);
+  border-radius: 14px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+
+.testi-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.testi-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--yellow), var(--yellow-dark));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 800;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+
+.testi-avatar.alt1 { background: linear-gradient(135deg, #10b981, #047857); }
+.testi-avatar.alt2 { background: linear-gradient(135deg, #3b82f6, #1e40af); }
+.testi-avatar.alt3 { background: linear-gradient(135deg, #8b5cf6, #5b21b6); }
+.testi-avatar.alt4 { background: linear-gradient(135deg, #ef4444, #991b1b); }
+
+
+.testi-name-block { flex: 1; }
+.testi-name {
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+
+.testi-role {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+
+.testi-stars {
+  color: var(--yellow);
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+
+.testi-quote {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #333;
+  flex: 1;
+}
+
+
+.testi-result {
+  display: inline-block;
+  background: var(--success);
+  color: white;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  align-self: flex-start;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+
+.testi-source {
+  font-size: 10px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border);
+}
+
+
+@media (max-width: 900px) {
+  .testimonials-vertical-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    height: 600px;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .testimonials-vertical-wrapper {
+    grid-template-columns: 1fr;
+    height: 500px;
+  }
+}
+
+
+/* SECONDARY CTA */
+.secondary-cta {
+  text-align: center;
+  padding: 24px;
+  background: var(--paper);
+  border: 2px dashed var(--border);
+  border-radius: 14px;
+  margin: 24px 0;
+}
+
+
+.secondary-cta p {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+
+.btn-secondary {
+  display: inline-block;
+  padding: 12px 24px;
+  background: transparent;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+
+.btn-secondary:hover {
+  background: var(--ink);
+  color: white;
+}
+
+
+/* RESTART */
+.restart-section {
+  text-align: center;
+  margin: 32px 0;
+  padding: 20px;
+}
+
+
+.restart-link {
+  color: var(--muted);
+  font-size: 13px;
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: inherit;
+}
+
+
+.restart-link:hover { color: var(--ink); }
+
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 24px 16px;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+
+.footer a {
+  color: var(--muted);
+  text-decoration: underline;
+}
+
+
+.footer-disclaimer {
+  max-width: 600px;
+  margin: 0 auto 12px;
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+
+@media (max-width: 540px) {
+  .container { padding: 16px 12px 60px; }
+  .section { padding: 28px 20px; border-radius: 16px; }
+  .result-banner { padding: 32px 20px; }
+  .result-banner h1 { font-size: 26px; }
+  .section h2 { font-size: 22px; }
+  .cta-section { padding: 32px 20px; }
+  .cta-section h2 { font-size: 24px; }
+  .diag-grid { grid-template-columns: 1fr; }
+  .authority-grid { grid-template-columns: 1fr; }
+  .cta-features { grid-template-columns: 1fr; }
+  .videos-grid { grid-template-columns: 1fr; }
+  .step { padding: 18px; gap: 14px; grid-template-columns: 48px 1fr; }
+  .step-num { width: 48px; height: 48px; font-size: 20px; }
+  .testi-card { width: 280px; }
+  .testimonials-wall-header h2 { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+
+
+<div class="container">
+
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo"><span class="logo-emoji">✒️</span>Le Copy Quiz</div>
+    <div class="header-result-label">Résultat de ton quiz</div>
+  </header>
+
+
+  <!-- RESULT BANNER -->
+  <div class="result-banner">
+    <div class="result-badge">✓ Ton profil</div>
+    <h1>T'es <span class="underline">Le Formé Bloqué</span></h1>
+    <div class="greeting">Et je vais t'expliquer pourquoi 👇</div>
+  </div>
+
+
+  <!-- BLOC 1 — QUI TU ES -->
+  <section class="section">
+    <h2>Laisse-moi deviner ton parcours.</h2>
+
+
+    <p>T'as commencé à t'intéresser au copy il y a quelques mois. Voire <strong>un ou deux ans</strong>.</p>
+
+
+    <p>T'as <span class="highlight-yellow">consommé du contenu comme un dingue</span>. YouTube, Insta, peut-être des podcasts.</p>
+
+
+    <p>Tu connais quelques noms célèbres du copy : Schwartz, Halbert, Ogilvy.</p>
+
+
+    <p>Tu sais ce qu'est un VSL, une page de capture, une séquence email.</p>
+
+
+    <p>Tu pourrais expliquer le AIDA à ta grand-mère.</p>
+
+
+    <p>T'as même probablement <strong>investi dans une formation</strong>. Peut-être plusieurs. Tu te souviens encore du jour où t'as cliqué sur "<em>payer maintenant</em>" pour la première fois, persuadé que c'était LE truc qui allait débloquer ta carrière (et changer ta vie…).</p>
+
+
+    <p>Sauf qu'aujourd'hui, t'es <span class="underline-thick">encore au même point</span>.</p>
+
+
+    <p>T'as la théorie. T'écris peut-être même <strong>du bon copy</strong> quand tu te poses. Mais y a un truc qui bloque.</p>
+
+
+    <p>👉 Soit t'arrives pas à passer à l'action pour prospecter (et tu te trouves <strong>1000 excuses</strong> à chaque fois).</p>
+
+
+    <p>👉 Soit tu prospectes mais tu te fais ghoster, et tu remets ça à plus tard.</p>
+
+
+    <p>👉 Soit t'as eu un ou deux clients, mais rien de stable, rien qui ressemble à un vrai business.</p>
+
+
+    <p>Et le pire ? <span class="highlight-yellow">T'as l'impression d'avoir tout fait correctement</span>. T'as suivi les formations. T'as fait les exos. T'as pris des notes. Tu comprends la théorie. Donc... <strong>pourquoi ça marche pas</strong> ?</p>
+  </section>
+
+
+  <!-- BLOC 2 — OÙ TU EN ES -->
+  <section class="section">
+    <h2>Voilà la vérité que personne te dit.</h2>
+
+
+    <p>Ton problème, <span class="underline-thick">c'est pas le copy</span>.</p>
+
+
+    <p>Vraiment. T'as les bases. Probablement même plus que ça.</p>
+
+
+    <p>Et si tu montrais une de tes pages de vente à 10 copywriters confirmés, 9 te diraient "<em>c'est plutôt bon ton truc</em>".</p>
+
+
+    <p>Ton vrai problème, c'est la <strong>prospection</strong>. Ou plus exactement : <span class="highlight-yellow">ton système de prospection</span>.</p>
+
+
+    <p>Tu vois, lorsque tu gagnes vraiment de l'argent en tant que copywriter… tes textes représentent seulement <strong>30% du job</strong>. Les 70% restants, c'est :</p>
+
+
+    <p>👉 <strong>Trouver les bons clients</strong> à contacter (pas Tonton Patrick qui a une page Facebook)<br>
+    👉 <strong>Te démarquer</strong> des 200 autres copywriters qui font la même chose<br>
+    👉 <strong>Suivre tes prospects</strong> sans être lourd ni te ghoster toi-même<br>
+    👉 <strong>Tenir tes prix</strong> quand le client négocie<br>
+    👉 <strong>Recommencer</strong> chaque semaine, même quand t'es démotivé<br>
+    👉 <strong>Avoir confiance en toi</strong> et arriver confiant en appel<br>
+    👉 Et plus important : <span class="highlight-marker">AVOIR DES COUI**ES</span></p>
+
+
+    <p>Ne pas avoir de système…</p>
+
+
+    <p>C'est ça qui te bloque. Pas le fait que tu connaisses pas assez bien la théorie.</p>
+
+
+    <p>Et le truc, c'est qu'<span class="underline-thick">aucune formation te dit ça franchement</span>.</p>
+
+
+    <p>(car 90% des formateurs ne sont plus copywriters eux-mêmes 🤡)</p>
+
+
+    <p>La prospection, tu peux pas l'enseigner dans un PDF, des messages à copier-coller et une vidéo de 15min.</p>
+
+
+    <p>Y a pas de "<em>méthode secrète en 5 étapes</em>".</p>
+
+
+    <p>C'est une question de discipline, de régularité, et d'avoir un mentor qui te donne des feedbacks constants.</p>
+
+
+    <p>C'est ce qui te manque. <span class="highlight-marker">C'est un cadre pour avancer correctement et dans la bonne direction.</span></p>
+  </section>
+
+
+  <!-- VIDÉO PRINCIPALE -->
+  <section class="section">
+    <h2>Sam, lui, a débloqué tout ça en <span class="underline-thick">1 semaine</span>.</h2>
+
+
+    <p>Sam était exactement dans ta situation y a quelques mois. Il avait suivi 2 formations, il connaissait sa théorie sur le bout des doigts, mais au final il avait zéro client.</p>
+
+
+    <p>Il s'est mis sérieusement à la prospection avec une méthode propre et en ayant un mentor à ses côtés...</p>
+
+
+    <p>Résultat : il a trouvé <span class="highlight-yellow">3 clients en 7 jours</span>.</p>
+
+
+    <p>Pas par chance. Mais grâce à mes méthodes.</p>
+
+
+    <p>Regarde son interview sur YouTube, c'est <span class="highlight-marker">16 minutes</span> qui peuvent débloquer ce qui te plombe depuis des mois.</p>
+
+
+    <div class="videos-grid">
+      <div class="video-card featured" onclick="window.open('https://youtu.be/HM1ln2oA8EU?si=p9LmW1xVqCCahTH0', '_blank')">
+        <div class="video-thumb">
+          <div class="video-thumb-tag">▶ Interview client</div>
+          <div class="video-thumb-duration">16:10</div>
+        </div>
+        <div class="video-card-info">
+          <div class="video-card-title">Il trouve 3 clients en 1 semaine (interview Sam Copywriting)</div>
+          <div class="video-card-meta">YouTube · Interview du formé qui s'est débloqué</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- VIDÉO SECONDAIRE — JIMMY 100K -->
+  <section class="section">
+    <h2>Comment atteindre les 100k/an en tant que copywriter ?</h2>
+
+
+    <p>Dans la même idée, j'ai sorti une vidéo avec mon meilleur élève <strong>Jimmy</strong>.</p>
+
+
+    <p>Il est venu passer 3 semaines à la maison en février et j'en ai profité pour tourner une vidéo juste <span class="highlight-yellow">INCROYABLE</span>.</p>
+
+
+    <p>Le genre de conseil que tu ne retrouveras NULLE part sur internet.</p>
+
+
+    <p>Tout simplement car personne n'ose en parler.</p>
+
+
+    <p>Je suis même prêt à t'envoyer <strong>100€ de ma poche</strong> si tu trouves les mêmes infos ailleurs 🤣</p>
+
+
+    <p><span class="highlight-marker">63min de pure valeur</span> qui vont directement te faire passer au stade de copywriter professionnel.</p>
+
+
+    <div class="videos-grid">
+      <div class="video-card featured" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+        <div class="video-thumb">
+          <div class="video-thumb-tag">▶ Coaching live</div>
+          <div class="video-thumb-duration">1:03:00</div>
+        </div>
+        <div class="video-card-info">
+          <div class="video-card-title">J'aide ce copywriter à faire +100k / an en 63 min (fais pareil)</div>
+          <div class="video-card-meta">YouTube · Avec Jimmy, mon meilleur élève</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PRÉSENTATION DE SOL -->
+  <section class="section sol-presentation">
+    <div class="sol-grid">
+      <div class="sol-photo">
+        <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/2lB0paK192CFU1cLz5eT/media/6980fc5018ecce176e2adbc2.png" alt="Sol — Copywriting" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:16px;display:block;">
+      </div>
+      <div class="sol-content">
+        <h2>Moi c'est Sol.</h2>
+        <p>Et je connais <span class="highlight-yellow">par cœur ton blocage</span>. Parce que je l'ai vécu, et parce que j'ai accompagné en 1-1 plus de <strong>+100 copywriters</strong> qui étaient exactement au même point que toi.</p>
+        <p>Mon constat après avoir aidé des dizaines de copywriters à faire leurs premiers milliers d'euros : <span class="underline-thick">ton blocage n'est jamais technique</span>. C'est toujours une question de régularité, de cadre et de méthode de prospection.</p>
+      </div>
+    </div>
+
+
+    <div class="authority-grid">
+      <div class="authority-stat">
+        <div class="authority-number">+6M€</div>
+        <div class="authority-label">Générés pour mes clients en copy</div>
+      </div>
+      <div class="authority-stat">
+        <div class="authority-number">+103</div>
+        <div class="authority-label">Copywriters accompagnés en 1-1 avec Big Brother</div>
+      </div>
+      <div class="authority-stat">
+        <div class="authority-number">1 100+</div>
+        <div class="authority-label">Membres dans ma communauté Skool</div>
+      </div>
+    </div>
+
+
+    <p style="margin-top:24px;">Aujourd'hui ce dont tu as besoin, c'est d'avoir <span class="highlight-yellow">quelqu'un qui te pousse au cul chaque semaine</span> jusqu'à ce que tu signes ton premier vrai client. Crois-moi... Après, ça déroule tout seul.</p>
+  </section>
+
+
+  <!-- BLOC 3 — TA PROCHAINE ÉTAPE -->
+  <section class="section">
+    <h2>Voilà ce que je te recommande maintenant.</h2>
+
+
+    <p>Quatre étapes, <strong>aucune ne coûte un euro</strong> au début. Tu peux toutes les faire cette semaine.</p>
+
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">#1</div>
+        <div>
+          <h4>Regarde l'interview de Sam</h4>
+          <p>16 minutes. Tu vas voir <span class="highlight-yellow">exactement ce qui a changé pour lui</span>. Spoiler : c'est pas une révélation technique.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">#2</div>
+        <div>
+          <h4>Liste tes 3 derniers blocages réels</h4>
+          <p>Pas la théorie. Les vrais. Le moment où tu t'es arrêté la dernière fois. <strong>Écris-les noir sur blanc</strong>. C'est le point de départ pour avancer.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">#3</div>
+        <div>
+          <h4>On en parle 30 min au téléphone</h4>
+          <p>Je te dis <strong>cash</strong> ce que je vois dans ton parcours. Quels blocages sont mentaux, quels sont méthodologiques. Tu repars avec un plan — qu'on bosse ensemble ou pas.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">#4</div>
+        <div>
+          <h4>Choisis ta voie pour la suite</h4>
+          <p>Soit tu te lances en solo avec mes conseils. Soit on bosse ensemble en BigBrother pour <span class="highlight-yellow">débloquer ça en 100 jours max</span>. Pas de pression — je te dirai franchement ce qui te convient le mieux.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- BLOC 4 — CTA -->
+  <section class="cta-section">
+    <h2>On s'appelle <span class="yellow">30 min</span> pour débloquer tout ça ?</h2>
+    <p>Pas de pitch déguisé. Je regarde ton parcours, je te dis ce qui te bloque vraiment, et tu repars avec un plan d'action concret — qu'on bosse ensemble ou pas après.</p>
+
+
+    <div class="cta-features">
+      <div class="cta-feature">
+        <span class="cta-feature-icon">✓</span>
+        <span>Diagnostic précis de ton blocage</span>
+      </div>
+      <div class="cta-feature">
+        <span class="cta-feature-icon">✓</span>
+        <span>Plan d'action sur 30 jours</span>
+      </div>
+      <div class="cta-feature">
+        <span class="cta-feature-icon">✓</span>
+        <span>Zéro pression. C'est non si c'est non.</span>
+      </div>
+    </div>
+
+
+    <a href="reserver.html" class="btn-cta">📞 Réserver un appel offert</a>
+    <div class="cta-trust">⏱ 30 min · Offert · Sans engagement</div>
+  </section>
+
+
+</div>
+
+
+<!-- AUTRES VIDÉOS À REGARDER -->
+<div class="container" style="padding-top:0;">
+  <section class="section">
+    <h2>Trois autres vidéos pour débloquer ta prospection</h2>
+
+
+    <p>Si tu veux creuser le sujet par toi-même avant qu'on se parle, voilà <span class="highlight-yellow">trois pépites</span> qui parlent directement à ton blocage :</p>
+
+
+    <div class="videos-grid">
+      <div class="video-card" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+        <div class="video-thumb">
+          <div class="video-thumb-tag">Prospection</div>
+          <div class="video-thumb-duration">7:11</div>
+        </div>
+        <div class="video-card-info">
+          <div class="video-card-title">Comment Trouver Un Client en 45 jours — garanti</div>
+          <div class="video-card-meta">La méthode qui résout 80% des blocages</div>
+        </div>
+      </div>
+
+
+      <div class="video-card" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+        <div class="video-thumb">
+          <div class="video-thumb-tag">À voir avant</div>
+          <div class="video-thumb-duration">4:14</div>
+        </div>
+        <div class="video-card-info">
+          <div class="video-card-title">Ne prospecte PAS avant d'avoir vu cette vidéo</div>
+          <div class="video-card-meta">Les erreurs classiques de la prospection</div>
+        </div>
+      </div>
+
+
+      <div class="video-card" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+        <div class="video-thumb">
+          <div class="video-thumb-tag">Guide complet</div>
+          <div class="video-thumb-duration">14:31</div>
+        </div>
+        <div class="video-card-info">
+          <div class="video-card-title">COMMENT signer un client en copywriting en 20 jours</div>
+          <div class="video-card-meta">De l'envoi du DM à la signature du contrat</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- MUR DE TÉMOIGNAGES — DÉFILEMENT VERTICAL INFINI -->
+<div class="testimonials-wall">
+  <div class="testimonials-wall-header">
+    <h2>Ils étaient bloqués <span class="underline-thick">comme toi</span></h2>
+    <p>Des copywriters formés qui n'arrivaient pas à passer à l'action. Voilà ce que ça a donné. Survole pour mettre en pause.</p>
+  </div>
+
+
+  <div class="testimonials-vertical-wrapper">
+
+
+    <!-- COLONNE 1 -->
+    <div class="testi-column">
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar">SA</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Sam · 31 ans</div>
+            <div class="testi-role">Ex-formé bloqué</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'avais suivi 2 formations à 2k chacune. Zéro client. Avec Sol, en 1 semaine de méthode propre, j'ai signé 3 clients. Le blocage était pas technique."</p>
+        <span class="testi-result">3 clients en 7 jours</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt1">JO</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Jordan · 33 ans</div>
+            <div class="testi-role">Formé sans résultats</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'avais la théorie. Sol m'a forcé à passer à l'action chaque semaine. C'est ça qui manquait. Pas une nouvelle formation. Un cadre."</p>
+        <span class="testi-result">+4 500€/mois</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt2">PA</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Pauline · 29 ans</div>
+            <div class="testi-role">Avait abandonné</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'allais abandonner le copy après 18 mois sans rien signer. BigBrother m'a remis sur les rails. 3 mois après je signe régulièrement."</p>
+        <span class="testi-result">Stabilisation</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt3">OL</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Olivier · 36 ans</div>
+            <div class="testi-role">Ex-formation à 3k</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'avais dépensé 3 000€ dans une formation premium. Aucun résultat. Sol a identifié mon vrai blocage en 30 min d'appel. La prospection."</p>
+        <span class="testi-result">Blocage levé</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <!-- Duplicate for infinite loop -->
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar">SA</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Sam · 31 ans</div>
+            <div class="testi-role">Ex-formé bloqué</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'avais suivi 2 formations à 2k chacune. Zéro client. Avec Sol, en 1 semaine de méthode propre, j'ai signé 3 clients. Le blocage était pas technique."</p>
+        <span class="testi-result">3 clients en 7 jours</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt1">JO</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Jordan · 33 ans</div>
+            <div class="testi-role">Formé sans résultats</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'avais la théorie. Sol m'a forcé à passer à l'action chaque semaine. C'est ça qui manquait. Pas une nouvelle formation. Un cadre."</p>
+        <span class="testi-result">+4 500€/mois</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt2">PA</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Pauline · 29 ans</div>
+            <div class="testi-role">Avait abandonné</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'allais abandonner le copy après 18 mois sans rien signer. BigBrother m'a remis sur les rails. 3 mois après je signe régulièrement."</p>
+        <span class="testi-result">Stabilisation</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt3">OL</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Olivier · 36 ans</div>
+            <div class="testi-role">Ex-formation à 3k</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'avais dépensé 3 000€ dans une formation premium. Aucun résultat. Sol a identifié mon vrai blocage en 30 min d'appel. La prospection."</p>
+        <span class="testi-result">Blocage levé</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+    </div>
+
+
+    <!-- COLONNE 2 (défile dans l'autre sens) -->
+    <div class="testi-column col-2">
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt4">CL</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Clara · 32 ans</div>
+            <div class="testi-role">Formée depuis 2 ans</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Je connaissais tous les noms : Schwartz, Halbert, Cialdini. Et pourtant zéro client. Sol m'a fait comprendre que mon problème c'était mes peurs, pas mon copy."</p>
+        <span class="testi-result">Mindset débloqué</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar">TE</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Téo · 28 ans</div>
+            <div class="testi-role">Procrastinateur</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Je remettais toujours à plus tard. Sol m'a mis un cadre dur de 100 jours en BigBrother. J'ai signé 5 clients en 90 jours."</p>
+        <span class="testi-result">5 clients en 90j</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt1">AU</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Aurélie · 34 ans</div>
+            <div class="testi-role">Formée mais ghostée</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Je prospectais, mais que des silences. Sol m'a appris à pivoter mon approche. Résultat : ratio de réponse à 25% au lieu de 2%."</p>
+        <span class="testi-result">Ratio x12</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt2">MA</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Mathis · 27 ans</div>
+            <div class="testi-role">Théoricien</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Je passais mon temps à apprendre la théorie pour repousser le moment d'agir. Sol a vu ça en 5 minutes. Il m'a forcé à prospecter dès le 2ème jour."</p>
+        <span class="testi-result">Passage à l'action</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <!-- Duplicate for infinite loop -->
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt4">CL</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Clara · 32 ans</div>
+            <div class="testi-role">Formée depuis 2 ans</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Je connaissais tous les noms : Schwartz, Halbert, Cialdini. Et pourtant zéro client. Sol m'a fait comprendre que mon problème c'était mes peurs, pas mon copy."</p>
+        <span class="testi-result">Mindset débloqué</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar">TE</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Téo · 28 ans</div>
+            <div class="testi-role">Procrastinateur</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Je remettais toujours à plus tard. Sol m'a mis un cadre dur de 100 jours en BigBrother. J'ai signé 5 clients en 90 jours."</p>
+        <span class="testi-result">5 clients en 90j</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt1">AU</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Aurélie · 34 ans</div>
+            <div class="testi-role">Formée mais ghostée</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Je prospectais, mais que des silences. Sol m'a appris à pivoter mon approche. Résultat : ratio de réponse à 25% au lieu de 2%."</p>
+        <span class="testi-result">Ratio x12</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt2">MA</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Mathis · 27 ans</div>
+            <div class="testi-role">Théoricien</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Je passais mon temps à apprendre la théorie pour repousser le moment d'agir. Sol a vu ça en 5 minutes. Il m'a forcé à prospecter dès le 2ème jour."</p>
+        <span class="testi-result">Passage à l'action</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+    </div>
+
+
+    <!-- COLONNE 3 -->
+    <div class="testi-column col-3">
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt3">SY</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Sylvain · 38 ans</div>
+            <div class="testi-role">5 ans en théorie</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"5 ans à "vouloir me lancer". 3 mois avec Sol et j'avais 2 clients récurrents. Le copy ça paie quand on arrête de procrastiner."</p>
+        <span class="testi-result">Premier vrai job</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt4">EL</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Elise · 30 ans</div>
+            <div class="testi-role">Avait abandonné 2 fois</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"C'était ma 3ème tentative en copy. Sol m'a mis face à mes patterns d'abandon. Ça a fait mal. Et ça m'a sauvée."</p>
+        <span class="testi-result">Plus jamais d'abandon</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar">VI</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Victor · 35 ans</div>
+            <div class="testi-role">Formé depuis 1 an</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'ai compris en parlant avec Sol que mon problème c'était la peur d'être un imposteur. Une fois ça réglé, j'ai signé en 2 semaines."</p>
+        <span class="testi-result">Premier client</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt1">CE</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Céline · 33 ans</div>
+            <div class="testi-role">Avait tout testé</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'avais lu tous les livres, fait toutes les formations YouTube. Sol m'a dit cash : "t'as pas un problème de copy, t'as un problème d'action". Bingo."</p>
+        <span class="testi-result">Action débloquée</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <!-- Duplicate for infinite loop -->
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt3">SY</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Sylvain · 38 ans</div>
+            <div class="testi-role">5 ans en théorie</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"5 ans à "vouloir me lancer". 3 mois avec Sol et j'avais 2 clients récurrents. Le copy ça paie quand on arrête de procrastiner."</p>
+        <span class="testi-result">Premier vrai job</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt4">EL</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Elise · 30 ans</div>
+            <div class="testi-role">Avait abandonné 2 fois</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"C'était ma 3ème tentative en copy. Sol m'a mis face à mes patterns d'abandon. Ça a fait mal. Et ça m'a sauvée."</p>
+        <span class="testi-result">Plus jamais d'abandon</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar">VI</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Victor · 35 ans</div>
+            <div class="testi-role">Formé depuis 1 an</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'ai compris en parlant avec Sol que mon problème c'était la peur d'être un imposteur. Une fois ça réglé, j'ai signé en 2 semaines."</p>
+        <span class="testi-result">Premier client</span>
+        <div class="testi-source">📺 Vidéo YouTube</div>
+      </div>
+
+
+      <div class="testi-card">
+        <div class="testi-header">
+          <div class="testi-avatar alt1">CE</div>
+          <div class="testi-name-block">
+            <div class="testi-name">Céline · 33 ans</div>
+            <div class="testi-role">Avait tout testé</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"J'avais lu tous les livres, fait toutes les formations YouTube. Sol m'a dit cash : "t'as pas un problème de copy, t'as un problème d'action". Bingo."</p>
+        <span class="testi-result">Action débloquée</span>
+        <div class="testi-source">⭐ Senja · Vérifié</div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+
+<div class="container">
+
+
+  <!-- REFAIRE LE QUIZ -->
+  <div class="restart-section">
+    <button class="restart-link" onclick="window.location.href='index.html'">↻ Refaire le quiz</button>
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-disclaimer">Ce site n'est pas affilié à Meta, Inc. ni à aucune de ses marques. Meta est une marque déposée de Meta, Inc.</div>
+    <div>
+      © Sol Copywriting · <a href="#">Mentions légales</a> · <a href="#">Politique de confidentialité</a> · <a href="#">CGV</a>
+    </div>
+  </footer>
+
+
+</div>
+
+
+</body>
+</html>
