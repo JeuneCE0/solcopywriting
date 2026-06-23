@@ -8,7 +8,7 @@
     {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "quizz.solcopywriting.com" }],
-      "destination": "/quizz/:path*"
+      "destination": "/quiz/:path*"
     }
   ]
 }

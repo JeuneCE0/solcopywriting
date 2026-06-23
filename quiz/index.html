@@ -35,12 +35,16 @@ body {
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
   padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
 }
 
 
+/* margin:auto en flex column = centrage vertical ET horizontal, sans rogner le haut quand le contenu dépasse la hauteur du viewport */
 .container {
+  width: 100%;
   max-width: 680px;
-  margin: 0 auto;
+  margin: auto;
 }
 
 
