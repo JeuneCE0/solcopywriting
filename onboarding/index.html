@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Questionnaire d'intégration — Big Brother</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --yellow:#f5a623; --yellow-dark:#d68a0a; --yellow-light:#fff3d6;
+  --ink:#1a1a1a; --ink-soft:#2c2c2c; --paper:#ffffff; --bg:#fafafa;
+  --border:#e5e5e5; --muted:#6b6b6b; --success:#10b981; --success-dark:#047857;
+  --danger:#dc2626; --danger-light:#fee2e2;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.05); --shadow-md:0 4px 12px rgba(0,0,0,.08);
+  --shadow-lg:0 12px 32px rgba(0,0,0,.12);
+  --r:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--bg); color:var(--ink); line-height:1.6;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  padding-bottom:96px;
+}
+
+/* ===== APP BAR ===== */
+.appbar{
+  position:sticky; top:0; z-index:50; background:rgba(255,255,255,.92);
+  backdrop-filter:blur(8px); border-bottom:1px solid var(--border);
+}
+.appbar-row{
+  max-width:740px; margin:0 auto; padding:14px 20px;
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+}
+.logo{font-weight:900; font-size:19px; letter-spacing:-.02em; display:flex; align-items:center; gap:7px;}
+.logo .em{color:var(--yellow)}
+.logo small{display:block; font-size:10px; font-weight:700; color:var(--muted); letter-spacing:.12em; text-transform:uppercase; margin-top:1px;}
+.step-counter{font-size:12px; font-weight:800; color:var(--muted); letter-spacing:.06em; white-space:nowrap;}
+.step-counter b{color:var(--ink)}
+.progress-track{height:4px; background:var(--border); width:100%;}
+.progress-fill{height:100%; width:0%; background:linear-gradient(90deg,var(--yellow),var(--yellow-dark)); transition:width .45s cubic-bezier(.4,0,.2,1);}
+
+/* ===== WIZARD ===== */
+.wizard{max-width:720px; margin:0 auto; padding:34px 20px 40px;}
+.step{display:none}
+.step.active{display:block; animation:stepIn .5s cubic-bezier(.16,1,.3,1)}
+@keyframes stepIn{from{opacity:0; transform:translateY(14px)} to{opacity:1; transform:none}}
+
+.step-head{margin-bottom:30px}
+.part-tag{
+  display:inline-block; background:var(--ink); color:var(--yellow);
+  padding:5px 13px; border-radius:100px; font-size:11px; font-weight:800;
+  letter-spacing:.12em; text-transform:uppercase; margin-bottom:14px;
+}
+.step-head h2{font-size:30px; font-weight:900; line-height:1.12; letter-spacing:-.025em; margin-bottom:12px;}
+.step-head .lead{font-size:16px; color:var(--muted); max-width:560px;}
+.step-head .lead b{color:var(--ink-soft); font-weight:700;}
+
+/* ===== QUESTIONS ===== */
+.question{margin-bottom:26px; animation:qIn .5s both;}
+.step.active .question:nth-child(2){animation-delay:.04s}
+.step.active .question:nth-child(3){animation-delay:.08s}
+.step.active .question:nth-child(4){animation-delay:.12s}
+.step.active .question:nth-child(5){animation-delay:.16s}
+.step.active .question:nth-child(6){animation-delay:.20s}
+@keyframes qIn{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none}}
+
+.q-title{font-size:17px; font-weight:800; line-height:1.35; margin-bottom:4px; display:block;}
+.q-title .req{color:var(--yellow-dark); margin-left:3px;}
+.q-hint{font-size:13.5px; color:var(--muted); margin-bottom:12px; line-height:1.5;}
+.q-error{display:none; color:var(--danger); font-size:13px; font-weight:700; margin-top:8px;}
+.question.error .q-error{display:block}
+.question.error .field,
+.question.error textarea{border-color:var(--danger); background:#fff;}
+.question.error{animation:shake .35s}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+
+/* text inputs */
+.field, textarea{
+  width:100%; font-family:inherit; font-size:15.5px; color:var(--ink);
+  background:var(--paper); border:1.5px solid var(--border); border-radius:12px;
+  padding:14px 16px; transition:border-color .18s, box-shadow .18s; margin-top:8px;
+}
+textarea{margin-top:0; min-height:120px; resize:vertical; line-height:1.55;}
+.field:focus, textarea:focus{outline:none; border-color:var(--yellow); box-shadow:0 0 0 4px rgba(245,166,35,.14);}
+.field::placeholder, textarea::placeholder{color:#b3b3b3}
+
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+.grid2 .question{margin-bottom:0}
+
+/* option cards */
+.options{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:10px;}
+.options.stack{grid-template-columns:1fr}
+.option{
+  position:relative; text-align:left; font-family:inherit; cursor:pointer;
+  background:var(--paper); border:1.5px solid var(--border); border-radius:12px;
+  padding:15px 44px 15px 16px; font-size:15px; font-weight:600; color:var(--ink-soft);
+  transition:border-color .15s, background .15s, transform .12s, box-shadow .15s;
+  display:flex; align-items:center; gap:10px; line-height:1.35;
+}
+.option .opt-em{font-size:18px; flex-shrink:0;}
+.option:hover{border-color:var(--yellow); transform:translateY(-1px); box-shadow:var(--shadow-sm);}
+.option::after{
+  content:''; position:absolute; right:14px; top:50%; transform:translateY(-50%);
+  width:20px; height:20px; border-radius:50%; border:2px solid var(--border);
+  transition:all .15s; background-size:12px; background-repeat:no-repeat; background-position:center;
+}
+.option.selected{border-color:var(--yellow); background:var(--yellow-light); color:var(--ink); font-weight:700;}
+.option.selected::after{
+  border-color:var(--yellow-dark); background-color:var(--yellow-dark);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+}
+.options[data-multi] .option::after{border-radius:6px}
+.option:focus-visible{outline:2px solid var(--yellow-dark); outline-offset:2px;}
+
+/* reveal (Autre / conditional) */
+.reveal{margin-top:10px}
+.reveal[hidden]{display:none}
+
+/* scale slider */
+.scale-wrap{margin-top:14px}
+.scale-val{
+  display:block; text-align:center; font-size:46px; font-weight:900; color:var(--yellow-dark);
+  letter-spacing:-.03em; line-height:1; margin-bottom:14px;
+}
+.scale-val span{font-size:20px; color:var(--muted); font-weight:700;}
+input[type=range]{
+  -webkit-appearance:none; appearance:none; width:100%; height:8px; border-radius:100px;
+  background:var(--border); outline:none; cursor:pointer;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none; appearance:none; width:26px; height:26px; border-radius:50%;
+  background:var(--ink); border:4px solid var(--yellow); box-shadow:var(--shadow-md); cursor:pointer;
+}
+input[type=range]::-moz-range-thumb{
+  width:26px; height:26px; border-radius:50%; background:var(--ink);
+  border:4px solid var(--yellow); box-shadow:var(--shadow-md); cursor:pointer;
+}
+.scale-labels{display:flex; justify-content:space-between; font-size:12px; font-weight:700; color:var(--muted); margin-top:10px; text-transform:uppercase; letter-spacing:.05em;}
+
+/* confirmations */
+.confirm-list{display:flex; flex-direction:column; gap:10px; margin-top:6px;}
+.confirm-item{
+  display:flex; gap:14px; align-items:flex-start; cursor:pointer;
+  background:var(--paper); border:1.5px solid var(--border); border-radius:12px;
+  padding:16px 18px; transition:border-color .15s, background .15s;
+}
+.confirm-item:hover{border-color:var(--yellow)}
+.confirm-item input{position:absolute; opacity:0; width:0; height:0;}
+.confirm-box{
+  flex-shrink:0; width:24px; height:24px; border-radius:7px; border:2px solid var(--border);
+  background:var(--paper); margin-top:1px; transition:all .15s; position:relative;
+}
+.confirm-item input:checked ~ .confirm-box{background:var(--success); border-color:var(--success);}
+.confirm-item input:checked ~ .confirm-box::after{
+  content:''; position:absolute; inset:0;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/15px no-repeat;
+}
+.confirm-item input:checked ~ .confirm-text{color:var(--ink); font-weight:600;}
+.confirm-text{font-size:14.5px; color:var(--ink-soft); line-height:1.45; padding-top:1px;}
+.confirm-item input:focus-visible ~ .confirm-box{outline:2px solid var(--yellow-dark); outline-offset:2px;}
+.question.error .confirm-box{border-color:var(--danger)}
+
+/* ===== INTRO ===== */
+.intro{text-align:center; padding:20px 0 0;}
+.intro .badge{
+  display:inline-block; background:var(--yellow-light); color:var(--yellow-dark);
+  border:1px solid var(--yellow); padding:7px 16px; border-radius:100px;
+  font-size:12px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin-bottom:22px;
+}
+.intro h1{font-size:40px; font-weight:900; line-height:1.08; letter-spacing:-.03em; margin-bottom:24px;}
+.intro h1 .hl{position:relative; white-space:nowrap;}
+.intro h1 .hl::after{content:''; position:absolute; left:0; right:0; bottom:4px; height:10px; background:var(--yellow); opacity:.45; z-index:-1; border-radius:2px;}
+.intro-copy{max-width:540px; margin:0 auto 28px; text-align:left;}
+.intro-copy p{font-size:16.5px; color:var(--ink-soft); margin-bottom:14px;}
+.intro-copy p.line{font-weight:700; color:var(--ink);}
+.intro-copy p:last-child{margin-bottom:0; color:var(--muted); font-size:15px;}
+.intro-meta{
+  display:inline-flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:center;
+  font-size:13px; color:var(--muted); font-weight:600; margin-bottom:30px;
+  background:var(--paper); border:1px solid var(--border); border-radius:100px; padding:10px 18px;
+}
+.intro-meta .dot{width:5px; height:5px; border-radius:50%; background:var(--border)}
+
+/* ===== BUTTONS ===== */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  font-family:inherit; font-size:16px; font-weight:800; cursor:pointer; border:none;
+  padding:16px 30px; border-radius:13px; transition:all .18s; text-decoration:none;
+}
+.btn-primary{background:var(--yellow); color:var(--ink); box-shadow:0 4px 0 var(--yellow-dark);}
+.btn-primary:hover{transform:translateY(2px); box-shadow:0 2px 0 var(--yellow-dark);}
+.btn-primary:active{transform:translateY(4px); box-shadow:0 0 0 var(--yellow-dark);}
+.btn-primary:disabled{opacity:.6; cursor:wait; transform:none; box-shadow:0 4px 0 var(--yellow-dark);}
+.btn-ghost{background:transparent; color:var(--muted); padding:16px 18px; font-weight:700;}
+.btn-ghost:hover{color:var(--ink)}
+.btn-lg{font-size:17px; padding:18px 40px;}
+
+/* ===== FOOTER NAV ===== */
+.appfooter{
+  position:fixed; bottom:0; left:0; right:0; z-index:40; background:rgba(255,255,255,.95);
+  backdrop-filter:blur(8px); border-top:1px solid var(--border); padding:14px 20px;
+  display:none;
+}
+.appfooter.show{display:block}
+.footer-row{max-width:720px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:12px;}
+.autosave{font-size:11.5px; color:var(--muted); display:flex; align-items:center; gap:6px; font-weight:600;}
+.autosave .save-dot{width:7px; height:7px; border-radius:50%; background:var(--success); box-shadow:0 0 0 3px rgba(16,185,129,.18);}
+
+/* ===== COMPLETION ===== */
+.done{text-align:center; padding:30px 0;}
+.done-check{
+  width:96px; height:96px; border-radius:50%; background:var(--success); margin:0 auto 26px;
+  display:flex; align-items:center; justify-content:center; box-shadow:0 12px 32px rgba(16,185,129,.35);
+  animation:pop .5s cubic-bezier(.16,1.4,.5,1) both;
+}
+@keyframes pop{from{transform:scale(0)} to{transform:scale(1)}}
+.done-check svg{width:48px; height:48px; stroke:#fff; stroke-width:4; fill:none; stroke-linecap:round; stroke-linejoin:round;}
+.done h2{font-size:34px; font-weight:900; letter-spacing:-.025em; line-height:1.1; margin-bottom:16px;}
+.done p{font-size:16.5px; color:var(--ink-soft); max-width:480px; margin:0 auto 12px;}
+.done .sig{margin-top:24px; font-size:16px; color:var(--muted); font-style:italic;}
+.done .sig b{color:var(--yellow-dark); font-style:normal;}
+.page-footer{text-align:center; font-size:11px; color:var(--muted); padding:30px 16px 10px;}
+
+@media (max-width:640px){
+  .wizard{padding:26px 16px 32px}
+  .step-head h2{font-size:24px}
+  .intro h1{font-size:30px}
+  .intro-copy p{font-size:15.5px}
+  .grid2{grid-template-columns:1fr}
+  .options{grid-template-columns:1fr}
+  .done h2{font-size:26px}
+  .btn,.btn-lg{font-size:15px; padding:15px 26px}
+  .scale-val{font-size:38px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important; transition:none!important; scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== APP BAR ===================== -->
+<div class="appbar">
+  <div class="appbar-row">
+    <div class="logo"><span class="em">✒️</span><span>Big Brother<small>Better Call Sol</small></span></div>
+    <div class="step-counter" id="counter" style="visibility:hidden">Partie <b id="cur">1</b> / 9</div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="bar"></div></div>
+</div>
+
+<div class="wizard">
+
+  <!-- ================= STEP 0 — INTRO ================= -->
+  <section class="step active" data-type="intro">
+    <div class="intro">
+      <div class="badge">Questionnaire d'intégration</div>
+      <h1>Bienvenue dans <span class="hl">Big Brother</span>.</h1>
+      <div class="intro-copy">
+        <p class="line">Avant qu'on attaque, j'ai besoin de mieux te connaître.</p>
+        <p>Ce questionnaire a deux objectifs simples.</p>
+        <p><b>Un :</b> adapter ton accompagnement à TON profil, tes contraintes et tes objectifs.</p>
+        <p><b>Deux :</b> m'assurer que ce que tu attends colle avec la réalité du programme.</p>
+        <p>Ici, chacun avance à son rythme. Plus je comprends ta situation, mieux je peux t'aider.</p>
+        <p>Prends quelques minutes. Réponds avec sincérité. Il n'y a pas de mauvaise réponse — juste la tienne.</p>
+      </div>
+      <div class="intro-meta">
+        <span>⏱ Environ 8 minutes</span><span class="dot"></span><span>Tes réponses sont enregistrées au fur et à mesure</span>
+      </div>
+      <div>
+        <button class="btn btn-primary btn-lg" onclick="start()">Commencer →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STEP 1 — PROFIL ================= -->
+  <section class="step" data-type="content" data-part="Ton profil">
+    <div class="step-head">
+      <span class="part-tag">Partie 1 · Ton profil</span>
+      <h2>On commence par les bases.</h2>
+      <p class="lead">Qui tu es, où tu es. Ça prend 30 secondes.</p>
+    </div>
+
+    <div class="grid2">
+      <div class="question" data-required>
+        <label class="q-title" for="prenom">Ton prénom<span class="req">*</span></label>
+        <input class="field" id="prenom" data-key="prenom" type="text" placeholder="Ton prénom">
+        <div class="q-error">Renseigne ton prénom.</div>
+      </div>
+      <div class="question" data-required>
+        <label class="q-title" for="nom">Ton nom<span class="req">*</span></label>
+        <input class="field" id="nom" data-key="nom" type="text" placeholder="Ton nom">
+        <div class="q-error">Renseigne ton nom.</div>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-top:14px">
+      <div class="question" data-required>
+        <label class="q-title" for="age">Ton âge<span class="req">*</span></label>
+        <input class="field" id="age" data-key="age" type="number" min="14" max="99" placeholder="Ex : 28">
+        <div class="q-error">Renseigne ton âge.</div>
+      </div>
+      <div class="question" data-required>
+        <label class="q-title" for="ville">Ta ville<span class="req">*</span></label>
+        <input class="field" id="ville" data-key="ville" type="text" placeholder="Ta ville">
+        <div class="q-error">Renseigne ta ville.</div>
+      </div>
+    </div>
+
+    <div class="question" data-required style="margin-top:14px">
+      <label class="q-title" for="pays">Ton pays<span class="req">*</span></label>
+      <input class="field" id="pays" data-key="pays" type="text" placeholder="Ton pays">
+      <div class="q-error">Renseigne ton pays.</div>
+    </div>
+
+    <div class="question">
+      <label class="q-title" for="situation_pro">Ta situation professionnelle actuelle</label>
+      <input class="field" id="situation_pro" data-key="situation_pro" type="text" placeholder="Ex : développeur web, en poste / en recherche…">
+    </div>
+
+    <div class="question">
+      <label class="q-title" for="situation_familiale">Ta situation familiale</label>
+      <input class="field" id="situation_familiale" data-key="situation_familiale" type="text" placeholder="Ex : célibataire, en couple, 2 enfants…">
+    </div>
+
+    <div class="grid2">
+      <div class="question">
+        <label class="q-title" for="linkedin">Ton LinkedIn</label>
+        <input class="field" id="linkedin" data-key="linkedin" type="url" placeholder="lien (facultatif)">
+      </div>
+      <div class="question">
+        <label class="q-title" for="site">Ton site / portfolio</label>
+        <input class="field" id="site" data-key="site" type="url" placeholder="lien (facultatif)">
+      </div>
+    </div>
+
+    <div class="question">
+      <label class="q-title" for="reseaux">Tes réseaux sociaux principaux</label>
+      <input class="field" id="reseaux" data-key="reseaux" type="text" placeholder="Insta, X, TikTok… (facultatif)">
+    </div>
+  </section>
+
+  <!-- ============ STEP 2 — COMMENT TU NOUS AS CONNUS (NOUVEAU) ============ -->
+  <section class="step" data-type="content" data-part="Comment tu nous as connus">
+    <div class="step-head">
+      <span class="part-tag">Partie 2 · Comment tu nous as connus</span>
+      <h2>Comment t'as atterri ici ?</h2>
+      <p class="lead">Avant d'aller plus loin, j'aimerais comprendre ton parcours jusqu'à nous. Ça m'aide à savoir ce qui marche vraiment de notre côté. <b>Sois cash, ça reste entre nous.</b></p>
+    </div>
+
+    <div class="question" data-required>
+      <span class="q-title">Comment tu as connu Sol / Better Call Sol ?<span class="req">*</span></span>
+      <div class="q-hint">Le canal par lequel tu nous as découverts en premier.</div>
+      <div class="options" data-key="acquisition_canal">
+        <button type="button" class="option" data-value="YouTube"><span class="opt-em">▶️</span>YouTube</button>
+        <button type="button" class="option" data-value="Instagram"><span class="opt-em">📸</span>Instagram</button>
+        <button type="button" class="option" data-value="TikTok"><span class="opt-em">🎵</span>TikTok</button>
+        <button type="button" class="option" data-value="Recommandation d'un proche"><span class="opt-em">🗣️</span>Recommandation d'un proche</button>
+        <button type="button" class="option" data-value="Un autre élève / membre"><span class="opt-em">🤝</span>Un autre élève / membre</button>
+        <button type="button" class="option" data-value="Podcast"><span class="opt-em">🎙️</span>Podcast</button>
+        <button type="button" class="option" data-value="Email / Newsletter"><span class="opt-em">✉️</span>Email / Newsletter</button>
+        <button type="button" class="option" data-value="Publicité"><span class="opt-em">📢</span>Publicité (pub Insta, FB, YouTube…)</button>
+        <button type="button" class="option" data-value="Google / recherche"><span class="opt-em">🔎</span>Google / recherche</button>
+        <button type="button" class="option" data-value="Autre" data-reveal="acquisition_canal_autre"><span class="opt-em">➕</span>Autre</button>
+      </div>
+      <div class="reveal" data-reveal-for="acquisition_canal_autre" hidden>
+        <input class="field" data-key="acquisition_canal_autre" type="text" placeholder="Précise…">
+      </div>
+      <div class="q-error">Choisis comment tu nous as connus.</div>
+    </div>
+
+    <div class="question">
+      <span class="q-title">Depuis combien de temps tu nous suis ?</span>
+      <div class="options" data-key="suivi_depuis">
+        <button type="button" class="option" data-value="Moins d'une semaine">Moins d'une semaine</button>
+        <button type="button" class="option" data-value="Quelques semaines">Quelques semaines</button>
+        <button type="button" class="option" data-value="Quelques mois">Quelques mois</button>
+        <button type="button" class="option" data-value="Plus d'un an">Plus d'un an</button>
+      </div>
+    </div>
+
+    <div class="question" data-required>
+      <label class="q-title" for="contenu_declencheur">Quelle vidéo, quel contenu ou quel thème t'a donné assez confiance pour nous rejoindre ?<span class="req">*</span></label>
+      <div class="q-hint">Une vidéo précise ? Un post ? Un email ? Un thème qui t'a parlé ? Dis-moi ce qui a fait pencher la balance.</div>
+      <textarea id="contenu_declencheur" data-key="contenu_declencheur" placeholder="Le contenu ou le moment exact qui m'a convaincu, c'est…"></textarea>
+      <div class="q-error">Cette réponse compte pour nous — dis-nous ce qui t'a convaincu.</div>
+    </div>
+
+    <div class="question">
+      <span class="q-title">Qu'est-ce qui t'a le plus convaincu chez nous ?</span>
+      <div class="q-hint">Plusieurs choix possibles.</div>
+      <div class="options stack" data-key="convaincu_par" data-multi>
+        <button type="button" class="option" data-value="L'approche / la philosophie de Sol">L'approche, la philosophie de Sol</button>
+        <button type="button" class="option" data-value="La méthode de copy">La méthode de copy</button>
+        <button type="button" class="option" data-value="Les résultats des élèves">Les résultats des élèves</button>
+        <button type="button" class="option" data-value="La transparence / l'authenticité">La transparence, l'authenticité</button>
+        <button type="button" class="option" data-value="La qualité du contenu gratuit">La qualité du contenu gratuit</button>
+        <button type="button" class="option" data-value="Le côté humain / l'accompagnement">Le côté humain, l'accompagnement</button>
+        <button type="button" class="option" data-value="Le feeling, tout simplement">Le feeling, tout simplement</button>
+        <button type="button" class="option" data-value="Autre" data-reveal="convaincu_par_autre">Autre</button>
+      </div>
+      <div class="reveal" data-reveal-for="convaincu_par_autre" hidden>
+        <input class="field" data-key="convaincu_par_autre" type="text" placeholder="Précise…">
+      </div>
+    </div>
+
+    <div class="question" data-required>
+      <label class="q-title" for="pourquoi_nous">Pourquoi nous avoir choisi nous, plutôt qu'un autre formateur en copywriting ?<span class="req">*</span></label>
+      <div class="q-hint">Sois honnête. Qu'est-ce qui a fait qu'on est sortis du lot pour toi ?</div>
+      <textarea id="pourquoi_nous" data-key="pourquoi_nous" placeholder="Ce qui m'a fait vous choisir vous, c'est…"></textarea>
+      <div class="q-error">Dis-nous pourquoi tu nous as choisis.</div>
+    </div>
+  </section>
+
+  <!-- ================= STEP 3 — SITUATION ACTUELLE ================= -->
+  <section class="step" data-type="content" data-part="Ta situation actuelle">
+    <div class="step-head">
+      <span class="part-tag">Partie 3 · Ta situation actuelle</span>
+      <h2>Où tu en es aujourd'hui.</h2>
+      <p class="lead">Avec le copywriting. Sans te survendre, sans te rabaisser.</p>
+    </div>
+
+    <div class="question">
+      <label class="q-title" for="copy_depuis">Depuis combien de temps tu t'intéresses au copywriting ?</label>
+      <input class="field" id="copy_depuis" data-key="copy_depuis" type="text" placeholder="Ex : 6 mois, 2 ans…">
+    </div>
+
+    <div class="question">
+      <label class="q-title" for="formation_anterieure">As-tu déjà suivi une formation en copywriting ? Si oui, laquelle ?</label>
+      <input class="field" id="formation_anterieure" data-key="formation_anterieure" type="text" placeholder="Nom de la formation, ou « aucune »">
+    </div>
+
+    <div class="question">
+      <span class="q-title">As-tu déjà réalisé des missions de copywriting ?</span>
+      <div class="options" data-key="deja_missions">
+        <button type="button" class="option" data-value="Oui">Oui</button>
+        <button type="button" class="option" data-value="Non">Non</button>
+      </div>
+    </div>
+
+    <div class="question">
+      <label class="q-title" for="deja_clients">As-tu déjà eu des clients ? Si oui, combien ?</label>
+      <input class="field" id="deja_clients" data-key="deja_clients" type="text" placeholder="Ex : 3 clients, ou « pas encore »">
+    </div>
+
+    <div class="question" data-required>
+      <span class="q-title">Quel est ton niveau aujourd'hui, selon toi ?<span class="req">*</span></span>
+      <div class="options" data-key="niveau">
+        <button type="button" class="option" data-value="Débutant complet">Débutant complet</button>
+        <button type="button" class="option" data-value="Débutant avec quelques bases">Débutant avec quelques bases</button>
+        <button type="button" class="option" data-value="Intermédiaire">Intermédiaire</button>
+        <button type="button" class="option" data-value="Avancé">Avancé</button>
+      </div>
+      <div class="q-error">Indique ton niveau.</div>
+    </div>
+
+    <div class="question">
+      <span class="q-title">As-tu actuellement une activité professionnelle ?</span>
+      <div class="options" data-key="activite">
+        <button type="button" class="option" data-value="Salarié">Salarié</button>
+        <button type="button" class="option" data-value="Freelance">Freelance</button>
+        <button type="button" class="option" data-value="Entrepreneur">Entrepreneur</button>
+        <button type="button" class="option" data-value="Étudiant">Étudiant</button>
+        <button type="button" class="option" data-value="Sans activité">Sans activité</button>
+        <button type="button" class="option" data-value="Autre" data-reveal="activite_autre">Autre</button>
+      </div>
+      <div class="reveal" data-reveal-for="activite_autre" hidden>
+        <input class="field" data-key="activite_autre" type="text" placeholder="Précise…">
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STEP 4 — OBJECTIFS ================= -->
+  <section class="step" data-type="content" data-part="Tes objectifs">
+    <div class="step-head">
+      <span class="part-tag">Partie 4 · Tes objectifs</span>
+      <h2>Le cœur du truc.</h2>
+      <p class="lead">Pourquoi t'es là, et où tu veux aller.</p>
+    </div>
+
+    <div class="question">
+      <label class="q-title" for="pourquoi_bb">Pourquoi as-tu rejoint Big Brother ?</label>
+      <textarea id="pourquoi_bb" data-key="pourquoi_bb" placeholder="Écris librement…"></textarea>
+    </div>
+
+    <div class="question">
+      <label class="q-title" for="pourquoi_maintenant">Pourquoi maintenant, plutôt que dans 6 mois ou 1 an ?</label>
+      <textarea id="pourquoi_maintenant" data-key="pourquoi_maintenant" placeholder="Pourquoi aujourd'hui ?"></textarea>
+    </div>
+
+    <div class="question" data-required>
+      <label class="q-title" for="objectif_principal">Dans 12 mois, qu'est-ce qui te ferait dire : « Rejoindre Big Brother a été l'une des meilleures décisions que j'ai prises » ?<span class="req">*</span></label>
+      <textarea id="objectif_principal" data-key="objectif_principal" placeholder="Dans 12 mois, je veux pouvoir dire que…"></textarea>
+      <div class="q-error">Décris ton objectif à 12 mois.</div>
+    </div>
+
+    <div class="question">
+      <span class="q-title">Quels sont tes objectifs ?</span>
+      <div class="q-hint">Plusieurs choix possibles.</div>
+      <div class="options stack" data-key="objectifs" data-multi>
+        <button type="button" class="option" data-value="Trouver mes premiers clients">Trouver mes premiers clients</button>
+        <button type="button" class="option" data-value="Générer un complément de revenu">Générer un complément de revenu</button>
+        <button type="button" class="option" data-value="Vivre du copywriting">Vivre du copywriting</button>
+        <button type="button" class="option" data-value="Devenir freelance">Devenir freelance</button>
+        <button type="button" class="option" data-value="Développer mon activité actuelle">Développer mon activité actuelle</button>
+        <button type="button" class="option" data-value="Améliorer mes compétences en vente">Améliorer mes compétences en vente</button>
+        <button type="button" class="option" data-value="Construire une activité en ligne">Construire une activité en ligne</button>
+        <button type="button" class="option" data-value="Autre" data-reveal="objectifs_autre">Autre</button>
+      </div>
+      <div class="reveal" data-reveal-for="objectifs_autre" hidden>
+        <input class="field" data-key="objectifs_autre" type="text" placeholder="Précise…">
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STEP 5 — TEMPS DISPONIBLE ================= -->
+  <section class="step" data-type="content" data-part="Ton temps disponible">
+    <div class="step-head">
+      <span class="part-tag">Partie 5 · Ton temps disponible</span>
+      <h2>Soyons concrets.</h2>
+      <p class="lead">Le temps que tu peux <b>vraiment</b> y mettre.</p>
+    </div>
+
+    <div class="question" data-required>
+      <span class="q-title">Combien d'heures tu es CERTAIN de pouvoir consacrer au copywriting chaque semaine, pendant les 3 prochains mois ?<span class="req">*</span></span>
+      <div class="options" data-key="disponibilite">
+        <button type="button" class="option" data-value="2 à 5 heures">2 à 5 heures</button>
+        <button type="button" class="option" data-value="5 à 10 heures">5 à 10 heures</button>
+        <button type="button" class="option" data-value="10 à 20 heures">10 à 20 heures</button>
+        <button type="button" class="option" data-value="Plus de 20 heures">Plus de 20 heures</button>
+      </div>
+      <div class="q-error">Indique ta disponibilité réelle.</div>
+    </div>
+
+    <div class="question">
+      <span class="q-title">Quels éléments pourraient ralentir ton avancée ?</span>
+      <div class="q-hint">Plusieurs choix possibles.</div>
+      <div class="options" data-key="freins" data-multi>
+        <button type="button" class="option" data-value="Travail salarié">Travail salarié</button>
+        <button type="button" class="option" data-value="Enfants / famille">Enfants / famille</button>
+        <button type="button" class="option" data-value="Études">Études</button>
+        <button type="button" class="option" data-value="Manque de temps">Manque de temps</button>
+        <button type="button" class="option" data-value="Organisation">Organisation</button>
+        <button type="button" class="option" data-value="Santé">Santé</button>
+        <button type="button" class="option" data-value="Contraintes financières">Contraintes financières</button>
+        <button type="button" class="option" data-value="Autre" data-reveal="freins_autre">Autre</button>
+      </div>
+      <div class="reveal" data-reveal-for="freins_autre" hidden>
+        <input class="field" data-key="freins_autre" type="text" placeholder="Précise…">
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STEP 6 — FONCTIONNEMENT ================= -->
+  <section class="step" data-type="content" data-part="Ton fonctionnement">
+    <div class="step-head">
+      <span class="part-tag">Partie 6 · Ton fonctionnement</span>
+      <h2>Comment tu bosses.</h2>
+      <p class="lead">Comment tu réagis, ce qui te fait avancer. Pour que je m'adapte à toi.</p>
+    </div>
+
+    <div class="question">
+      <span class="q-title">Quand tu rencontres une difficulté, tu es plutôt :</span>
+      <div class="options stack" data-key="face_difficulte">
+        <button type="button" class="option" data-value="Je cherche seul avant de demander de l'aide">Je cherche seul avant de demander de l'aide</button>
+        <button type="button" class="option" data-value="Je demande rapidement de l'aide">Je demande rapidement de l'aide</button>
+        <button type="button" class="option" data-value="Ça dépend des situations">Ça dépend des situations</button>
+      </div>
+    </div>
+
+    <div class="question">
+      <span class="q-title">Quand tu reçois une critique ou un feedback sur ton travail :</span>
+      <div class="options stack" data-key="face_feedback">
+        <button type="button" class="option" data-value="J'adore ça">J'adore ça</button>
+        <button type="button" class="option" data-value="Je l'accepte facilement">Je l'accepte facilement</button>
+        <button type="button" class="option" data-value="J'ai parfois du mal">J'ai parfois du mal</button>
+        <button type="button" class="option" data-value="Je le vis difficilement">Je le vis difficilement</button>
+      </div>
+    </div>
+
+    <div class="question">
+      <span class="q-title">Tu te considères comme :</span>
+      <div class="options stack" data-key="autonomie">
+        <button type="button" class="option" data-value="Très autonome">Très autonome</button>
+        <button type="button" class="option" data-value="Plutôt autonome">Plutôt autonome</button>
+        <button type="button" class="option" data-value="J'ai besoin d'un cadre régulier">J'ai besoin d'un cadre régulier</button>
+        <button type="button" class="option" data-value="J'ai besoin d'un accompagnement rapproché">J'ai besoin d'un accompagnement rapproché</button>
+      </div>
+    </div>
+
+    <div class="question">
+      <span class="q-title">Quel type d'accompagnement te fait progresser le plus ?</span>
+      <div class="q-hint">Plusieurs choix possibles.</div>
+      <div class="options" data-key="accompagnement_pref" data-multi>
+        <button type="button" class="option" data-value="Un cadre strict">Un cadre strict</button>
+        <button type="button" class="option" data-value="Beaucoup d'autonomie">Beaucoup d'autonomie</button>
+        <button type="button" class="option" data-value="Des feedbacks fréquents">Des feedbacks fréquents</button>
+        <button type="button" class="option" data-value="Des défis réguliers">Des défis réguliers</button>
+        <button type="button" class="option" data-value="Les échanges de groupe">Les échanges de groupe</button>
+        <button type="button" class="option" data-value="Le suivi individuel">Le suivi individuel</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STEP 7 — OBSTACLES ================= -->
+  <section class="step" data-type="content" data-part="Les obstacles">
+    <div class="step-head">
+      <span class="part-tag">Partie 7 · Les obstacles</span>
+      <h2>Parlons de ce qui peut te freiner.</h2>
+      <p class="lead">Le voir, c'est déjà la moitié du chemin.</p>
+    </div>
+
+    <div class="question">
+      <span class="q-title">Selon toi, quel sera ton plus grand défi durant Big Brother ?</span>
+      <div class="options" data-key="plus_grand_defi">
+        <button type="button" class="option" data-value="Motivation">Motivation</button>
+        <button type="button" class="option" data-value="Discipline">Discipline</button>
+        <button type="button" class="option" data-value="Organisation">Organisation</button>
+        <button type="button" class="option" data-value="Prospection">Prospection</button>
+        <button type="button" class="option" data-value="Confiance en soi">Confiance en soi</button>
+        <button type="button" class="option" data-value="Syndrome de l'imposteur">Syndrome de l'imposteur</button>
+        <button type="button" class="option" data-value="Passage à l'action">Passage à l'action</button>
+        <button type="button" class="option" data-value="Gestion du temps">Gestion du temps</button>
+        <button type="button" class="option" data-value="Autre" data-reveal="defi_autre">Autre</button>
+      </div>
+      <div class="reveal" data-reveal-for="defi_autre" hidden>
+        <input class="field" data-key="defi_autre" type="text" placeholder="Précise…">
+      </div>
+    </div>
+
+    <div class="question">
+      <label class="q-title" for="ce_qui_a_empeche">Qu'est-ce qui t'a empêché d'atteindre tes objectifs jusqu'à aujourd'hui ?</label>
+      <textarea id="ce_qui_a_empeche" data-key="ce_qui_a_empeche" placeholder="Écris librement…"></textarea>
+    </div>
+
+    <div class="question">
+      <span class="q-title">As-tu déjà abandonné une formation ou un accompagnement ?</span>
+      <div class="options" data-key="deja_abandonne">
+        <button type="button" class="option" data-value="Oui" data-reveal="abandon_pourquoi">Oui</button>
+        <button type="button" class="option" data-value="Non">Non</button>
+      </div>
+      <div class="reveal" data-reveal-for="abandon_pourquoi" hidden>
+        <textarea data-key="abandon_pourquoi" placeholder="Si oui, pourquoi ?"></textarea>
+      </div>
+    </div>
+
+    <div class="question">
+      <span class="q-title">Sur une échelle de 1 à 10, à quel point tu es prêt à sortir de ta zone de confort pour atteindre tes objectifs ?</span>
+      <div class="scale-wrap">
+        <span class="scale-val" id="zone_val">5<span> / 10</span></span>
+        <input type="range" min="1" max="10" value="5" step="1" data-key="zone_confort" id="zone_confort" oninput="updateScale(this)">
+        <div class="scale-labels"><span>1 · Très peu</span><span>Totalement · 10</span></div>
+      </div>
+    </div>
+
+    <div class="question">
+      <label class="q-title" for="reaction_2mois">Si dans 2 mois tu n'as pas encore les résultats espérés, quelle sera ta réaction ?</label>
+      <textarea id="reaction_2mois" data-key="reaction_2mois" placeholder="Ma réaction serait…"></textarea>
+    </div>
+  </section>
+
+  <!-- ================= STEP 8 — ALIGNEMENT DES ATTENTES ================= -->
+  <section class="step" data-type="content" data-part="Alignement des attentes">
+    <div class="step-head">
+      <span class="part-tag">Partie 8 · Alignement des attentes</span>
+      <h2>On se met d'accord.</h2>
+      <p class="lead">Avant de démarrer, lis bien ces points et coche pour valider. C'est important.</p>
+    </div>
+
+    <div class="question" data-required>
+      <div class="confirm-list">
+        <label class="confirm-item"><input type="checkbox" class="confirm-input" data-key="confirm_1"><span class="confirm-box"></span><span class="confirm-text">Big Brother est un accompagnement, pas un service fait à ma place.</span></label>
+        <label class="confirm-item"><input type="checkbox" class="confirm-input" data-key="confirm_2"><span class="confirm-box"></span><span class="confirm-text">Les résultats dépendent directement de mon implication.</span></label>
+        <label class="confirm-item"><input type="checkbox" class="confirm-input" data-key="confirm_3"><span class="confirm-box"></span><span class="confirm-text">Je devrai appliquer les exercices et recommandations proposés.</span></label>
+        <label class="confirm-item"><input type="checkbox" class="confirm-input" data-key="confirm_4"><span class="confirm-box"></span><span class="confirm-text">Sol me fournit une méthode, mais ne peut pas agir à ma place.</span></label>
+        <label class="confirm-item"><input type="checkbox" class="confirm-input" data-key="confirm_5"><span class="confirm-box"></span><span class="confirm-text">Le copywriting est une compétence qui demande de la pratique et de la répétition.</span></label>
+        <label class="confirm-item"><input type="checkbox" class="confirm-input" data-key="confirm_6"><span class="confirm-box"></span><span class="confirm-text">Les résultats varient selon le niveau d'implication de chacun.</span></label>
+        <label class="confirm-item"><input type="checkbox" class="confirm-input" data-key="confirm_7"><span class="confirm-box"></span><span class="confirm-text">Je comprends que la progression demande du temps, de la régularité et des efforts.</span></label>
+      </div>
+      <div class="q-error">Coche tous les points pour continuer.</div>
+    </div>
+  </section>
+
+  <!-- ================= STEP 9 — ENGAGEMENT ================= -->
+  <section class="step" data-type="content" data-part="Ton engagement">
+    <div class="step-head">
+      <span class="part-tag">Partie 9 · Ton engagement</span>
+      <h2>Dernière ligne droite.</h2>
+      <p class="lead">Deux questions, et c'est dans la boîte.</p>
+    </div>
+
+    <div class="question" data-required>
+      <label class="q-title" for="engagement">Pourquoi tu es prêt à faire les efforts nécessaires pour réussir ?<span class="req">*</span></label>
+      <textarea id="engagement" data-key="engagement" placeholder="Je suis prêt à m'investir parce que…"></textarea>
+      <div class="q-error">Dis-nous ce qui te pousse.</div>
+    </div>
+
+    <div class="question">
+      <label class="q-title" for="message_futur">Imagine que tu relises ce questionnaire dans 6 mois. Quel message tu aimerais te laisser aujourd'hui pour te rappeler pourquoi tu as commencé ?</label>
+      <div class="q-hint">Parle à ton futur toi.</div>
+      <textarea id="message_futur" data-key="message_futur" placeholder="Cher futur moi…"></textarea>
+    </div>
+  </section>
+
+  <!-- ================= STEP 10 — COMPLETION ================= -->
+  <section class="step" data-type="done">
+    <div class="done">
+      <div class="done-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <h2>C'est envoyé. <br>Bienvenue dans Big Brother.</h2>
+      <p>Merci pour tes réponses, <span id="done-name">à toi</span>. Je vais les lire en détail pour caler ton accompagnement au plus juste.</p>
+      <p>On se met au travail très vite.</p>
+      <p class="sig">À très vite, <b>Sol</b> — Copywriting</p>
+    </div>
+    <div class="page-footer">© Better Call Sol · Big Brother</div>
+  </section>
+
+</div>
+
+<!-- ===================== FOOTER NAV ===================== -->
+<div class="appfooter" id="footer">
+  <div class="footer-row">
+    <button class="btn btn-ghost" id="btn-back" onclick="back()">← Retour</button>
+    <div class="autosave"><span class="save-dot"></span>Enregistré</div>
+    <button class="btn btn-primary" id="btn-next" onclick="next()">Continuer →</button>
+  </div>
+</div>
+
+<script>
+/* =================================================================
+   CONFIG — 👉 RUDY : à compléter avant la mise en ligne
+   ----------------------------------------------------------------
+   WEBHOOK_URL  : URL du webhook GHL (Workflow → Trigger "Inbound Webhook")
+                  qui recevra les réponses en JSON.
+                  Ex : "https://services.leadconnectorhq.com/hooks/XXXX/webhook-trigger/YYYY"
+                  Si vide → les données sont juste loguées dans la console.
+   REDIRECT_URL : (facultatif) page vers laquelle rediriger après l'envoi.
+                  Si vide → on affiche l'écran de remerciement intégré.
+   NB : si le POST est bloqué par CORS côté GHL, un fallback "no-cors"
+        est tenté automatiquement (l'envoi passe, la réponse n'est pas lue).
+   ================================================================= */
+const CONFIG = {
+  WEBHOOK_URL: "",
+  REDIRECT_URL: ""
+};
+
+const LS_KEY = "bb_onboarding";          // sauvegarde de progression
+const LS_DONE = "bb_onboarding_submitted"; // backup local de la soumission
+
+const steps = Array.from(document.querySelectorAll('.step'));
+const contentSteps = steps.filter(s => s.dataset.type === 'content');
+const lastContentIndex = steps.indexOf(contentSteps[contentSteps.length - 1]);
+let current = 0;
+
+const bar = document.getElementById('bar');
+const counter = document.getElementById('counter');
+const curEl = document.getElementById('cur');
+const footer = document.getElementById('footer');
+const btnBack = document.getElementById('btn-back');
+const btnNext = document.getElementById('btn-next');
+
+/* ---------- NAVIGATION ---------- */
+function goTo(i){
+  if(i < 0 || i >= steps.length) return;
+  steps[current].classList.remove('active');
+  current = i;
+  const step = steps[current];
+  step.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+
+  const type = step.dataset.type;
+  // progress
+  const contentPos = contentSteps.indexOf(step);
+  let pct = 0;
+  if(type === 'intro') pct = 0;
+  else if(type === 'done') pct = 100;
+  else pct = Math.round(((contentPos + 1) / contentSteps.length) * 100);
+  bar.style.width = pct + '%';
+
+  // counter
+  if(type === 'content'){
+    counter.style.visibility = 'visible';
+    curEl.textContent = contentPos + 1;
+  } else {
+    counter.style.visibility = 'hidden';
+  }
+
+  // footer nav
+  if(type === 'content'){
+    footer.classList.add('show');
+    btnBack.style.visibility = 'visible';
+    btnNext.innerHTML = (current === lastContentIndex) ? 'Envoyer mes réponses ✓' : 'Continuer →';
+  } else {
+    footer.classList.remove('show');
+  }
+  saveProgress();
+}
+
+function start(){ goTo(steps.indexOf(contentSteps[0])); }
+
+function next(){
+  const step = steps[current];
+  if(!validateStep(step)) return;
+  if(current === lastContentIndex){ submitForm(); return; }
+  goTo(current + 1);
+}
+function back(){
+  const prev = current - 1;
+  // depuis la 1re partie, le retour ramène à l'intro
+  goTo(prev);
+}
+
+/* ---------- OPTIONS (single / multi) ---------- */
+document.addEventListener('click', e => {
+  const opt = e.target.closest('.option');
+  if(!opt) return;
+  const group = opt.closest('.options');
+  const multi = group.hasAttribute('data-multi');
+  if(multi){
+    opt.classList.toggle('selected');
+  } else {
+    group.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+  }
+  clearError(opt.closest('.question'));
+  syncReveals(group);
+  saveProgress();
+});
+
+/* affiche/masque les champs conditionnels (Autre, etc.) */
+function syncReveals(group){
+  group.querySelectorAll('.option[data-reveal]').forEach(o => {
+    const key = o.dataset.reveal;
+    const target = group.closest('.question').querySelector('.reveal[data-reveal-for="'+key+'"]');
+    if(!target) return;
+    const show = o.classList.contains('selected');
+    target.hidden = !show;
+    if(!show){ // on vide le champ masqué pour garder un payload propre
+      target.querySelectorAll('[data-key]').forEach(f => f.value = '');
+    }
+  });
+}
+
+/* ---------- SCALE ---------- */
+function updateScale(input){
+  const pct = ((input.value - input.min) / (input.max - input.min)) * 100;
+  input.style.background =
+    `linear-gradient(90deg, var(--yellow) 0%, var(--yellow) ${pct}%, var(--border) ${pct}%, var(--border) 100%)`;
+  const valEl = document.getElementById('zone_val');
+  if(valEl) valEl.innerHTML = input.value + '<span> / 10</span>';
+}
+
+/* ---------- INPUTS : clear error on type ---------- */
+document.addEventListener('input', e => {
+  if(e.target.matches('.field, textarea')){
+    clearError(e.target.closest('.question'));
+    saveProgress();
+  }
+});
+document.addEventListener('change', e => {
+  if(e.target.matches('.confirm-input')){
+    clearError(e.target.closest('.question'));
+    saveProgress();
+  }
+});
+
+/* ---------- VALIDATION ---------- */
+function setError(q, on){ if(q) q.classList.toggle('error', on); }
+function clearError(q){ if(q) q.classList.remove('error'); }
+
+function validateStep(stepEl){
+  let ok = true, firstErr = null;
+  stepEl.querySelectorAll('.question[data-required]').forEach(q => {
+    let filled = false;
+    const opts = q.querySelector('.options');
+    const confirms = q.querySelector('.confirm-list');
+    const field = q.querySelector('input[data-key]:not([type=checkbox]), textarea[data-key]');
+    if(confirms){
+      filled = Array.from(confirms.querySelectorAll('.confirm-input')).every(c => c.checked);
+    } else if(opts){
+      filled = !!opts.querySelector('.option.selected');
+    } else if(field){
+      filled = field.value.trim() !== '';
+    }
+    setError(q, !filled);
+    if(!filled){ ok = false; if(!firstErr) firstErr = q; }
+  });
+  if(firstErr) firstErr.scrollIntoView({behavior:'smooth', block:'center'});
+  return ok;
+}
+
+/* ---------- COLLECT ---------- */
+function collectData(){
+  const data = {};
+  // text / textarea / range
+  document.querySelectorAll('input[data-key]:not([type=checkbox]), textarea[data-key]').forEach(el => {
+    data[el.dataset.key] = (el.value || '').trim();
+  });
+  // option groups
+  document.querySelectorAll('.options[data-key]').forEach(group => {
+    const key = group.dataset.key;
+    const selected = Array.from(group.querySelectorAll('.option.selected')).map(o => o.dataset.value);
+    data[key] = group.hasAttribute('data-multi') ? selected : (selected[0] || '');
+  });
+  // confirmations
+  document.querySelectorAll('.confirm-input[data-key]').forEach(c => {
+    data[c.dataset.key] = !!c.checked;
+  });
+  return data;
+}
+
+/* ---------- PERSISTENCE (localStorage) ---------- */
+function saveProgress(){
+  try{
+    localStorage.setItem(LS_KEY, JSON.stringify({ step: current, data: collectData() }));
+  }catch(e){}
+}
+function restoreProgress(){
+  let saved = null;
+  try{ saved = JSON.parse(localStorage.getItem(LS_KEY)); }catch(e){}
+  if(!saved || !saved.data) return false;
+  const d = saved.data;
+  // text / textarea / range
+  document.querySelectorAll('input[data-key]:not([type=checkbox]), textarea[data-key]').forEach(el => {
+    if(d[el.dataset.key] != null && d[el.dataset.key] !== '') el.value = d[el.dataset.key];
+  });
+  // options
+  document.querySelectorAll('.options[data-key]').forEach(group => {
+    const val = d[group.dataset.key];
+    if(val == null) return;
+    const vals = Array.isArray(val) ? val : [val];
+    group.querySelectorAll('.option').forEach(o => {
+      if(vals.includes(o.dataset.value)) o.classList.add('selected');
+    });
+    syncReveals(group);
+  });
+  // confirmations
+  document.querySelectorAll('.confirm-input[data-key]').forEach(c => {
+    if(d[c.dataset.key]) c.checked = true;
+  });
+  // re-render scale
+  const z = document.getElementById('zone_confort'); if(z) updateScale(z);
+  return true;
+}
+
+/* ---------- SUBMIT ---------- */
+async function submitForm(){
+  btnNext.disabled = true;
+  btnNext.textContent = 'Envoi…';
+
+  const data = collectData();
+  data._meta = {
+    submitted_at: new Date().toISOString(),
+    source: 'big_brother_onboarding',
+    page_url: location.href
+  };
+
+  try{ localStorage.setItem(LS_DONE, JSON.stringify(data)); }catch(e){}
+
+  if(CONFIG.WEBHOOK_URL){
+    try{
+      await fetch(CONFIG.WEBHOOK_URL, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(data)
+      });
+    }catch(err){
+      console.warn('[Big Brother] POST bloqué (CORS ?), tentative no-cors…', err);
+      try{
+        await fetch(CONFIG.WEBHOOK_URL, {
+          method:'POST', mode:'no-cors',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify(data)
+        });
+      }catch(e2){ console.error('[Big Brother] Envoi échoué', e2); }
+    }
+  } else {
+    console.log('[Big Brother] Aucune WEBHOOK_URL configurée. Réponses :', data);
+  }
+
+  try{ localStorage.removeItem(LS_KEY); }catch(e){}
+
+  // prénom sur l'écran final
+  const nameEl = document.getElementById('done-name');
+  if(nameEl && data.prenom) nameEl.textContent = data.prenom;
+
+  if(CONFIG.REDIRECT_URL){ window.location.href = CONFIG.REDIRECT_URL; return; }
+  goTo(steps.length - 1);
+}
+
+/* ---------- INIT ---------- */
+(function init(){
+  // init slider visuel
+  const z = document.getElementById('zone_confort'); if(z) updateScale(z);
+
+  // restaure une éventuelle progression
+  restoreProgress();
+
+  // pré-remplissage du prénom depuis le tunnel quiz (même clé que la page de remerciement)
+  const prenomField = document.getElementById('prenom');
+  if(prenomField && !prenomField.value){
+    try{
+      const qu = JSON.parse(localStorage.getItem('quiz_user'));
+      if(qu && qu.firstname && qu.firstname !== 'Dev') prenomField.value = qu.firstname;
+    }catch(e){}
+  }
+
+  // on démarre toujours sur l'intro (la progression de contenu est conservée en mémoire)
+  goTo(0);
+})();
+</script>
+</body>
+</html>
