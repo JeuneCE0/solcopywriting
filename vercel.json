@@ -1,24 +1,9 @@
 {
-  "rewrites": [
-    {
-      "source": "/((?!api/).*)",
-      "has": [{ "type": "host", "value": "ia.solcopywriting.com" }],
-      "destination": "/ia/$1"
-    },
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "quizz.solcopywriting.com" }],
-      "destination": "/quiz/:path*"
-    },
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "lecopyquiz.com" }],
-      "destination": "/quiz/:path*"
-    },
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.lecopyquiz.com" }],
-      "destination": "/quiz/:path*"
-    }
+  "routes": [
+    { "has": [{ "type": "host", "value": "lecopyquiz.com" }],          "src": "/(.*)",         "dest": "/quiz/$1" },
+    { "has": [{ "type": "host", "value": "www.lecopyquiz.com" }],      "src": "/(.*)",         "dest": "/quiz/$1" },
+    { "has": [{ "type": "host", "value": "quizz.solcopywriting.com" }], "src": "/(.*)",         "dest": "/quiz/$1" },
+    { "has": [{ "type": "host", "value": "ia.solcopywriting.com" }],   "src": "/((?!api/).*)", "dest": "/ia/$1" },
+    { "handle": "filesystem" }
   ]
 }
