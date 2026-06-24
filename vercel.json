@@ -9,6 +9,16 @@
       "source": "/:path*",
       "has": [{ "type": "host", "value": "quizz.solcopywriting.com" }],
       "destination": "/quiz/:path*"
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "lecopyquiz.com" }],
+      "destination": "/quiz/:path*"
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.lecopyquiz.com" }],
+      "destination": "/quiz/:path*"
     }
   ]
 }
