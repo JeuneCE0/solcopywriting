@@ -3,1247 +3,670 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Découvre les 4 étapes pour atteindre 3 000€/mois en copywriting — Le Copy Quiz</title>
+<title>Le Copy Quiz — Ton plan copywriting pour 3 000€/mois</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root {
-  --yellow: #f5a623;
-  --yellow-dark: #d68a0a;
-  --yellow-light: #fff3d6;
-  --ink: #1a1a1a;
-  --paper: #ffffff;
-  --bg: #fafafa;
-  --border: #e5e5e5;
-  --muted: #6b6b6b;
-  --success: #10b981;
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
-  --shadow-lg: 0 12px 32px rgba(0,0,0,0.12);
-}
-
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--bg);
-  color: var(--ink);
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
-  padding: 24px 16px;
-  display: flex;
-  flex-direction: column;
-}
-
-
-/* margin:auto en flex column = centrage vertical ET horizontal, sans rogner le haut quand le contenu dépasse la hauteur du viewport */
-.container {
-  width: 100%;
-  max-width: 680px;
-  margin: auto;
-}
-
-
-/* HEADER */
-.header {
-  text-align: center;
-  margin-bottom: 32px;
-}
-
-
-.logo {
-  display: inline-block;
-  font-weight: 900;
-  font-size: 22px;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  margin-bottom: 8px;
-}
-
-
-.logo-emoji {
-  display: inline-block;
-  color: var(--yellow);
-  margin-right: 4px;
-}
-
-
-.credentials {
-  font-size: 12px;
-  color: var(--muted);
-  font-weight: 500;
-}
-
-
-/* PROGRESS */
-.progress-wrap {
-  margin: 24px 0 32px;
-  display: none;
-}
-
-
-.progress-wrap.visible { display: block; }
-
-
-.progress-bar {
-  height: 6px;
-  background: var(--border);
-  border-radius: 100px;
-  overflow: hidden;
-}
-
-
-.progress-fill {
-  height: 100%;
-  background: var(--yellow);
-  border-radius: 100px;
-  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  width: 0%;
-}
-
-
-.progress-text {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-
-.progress-text-right {
-  color: var(--yellow-dark);
-}
-
-
-/* CARDS */
-.card {
-  background: var(--paper);
-  border-radius: 20px;
-  padding: 40px 32px;
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--border);
-  animation: fadeIn 0.4s ease;
-}
-
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-
-.card.hidden { display: none; }
-
-
-/* INTRO CARD */
-.intro h1 {
-  font-size: 30px;
-  font-weight: 900;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  margin-bottom: 18px;
-  text-align: center;
-}
-
-
-.intro h1 .accent {
-  color: var(--yellow-dark);
-}
-
-
-.intro .subtitle {
-  font-size: 15px;
-  color: var(--muted);
-  text-align: center;
-  margin-bottom: 24px;
-  line-height: 1.55;
-}
-
-
-.intro .subtitle strong {
-  color: var(--ink);
-  font-weight: 700;
-}
-
-
-.intro-stats {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-bottom: 32px;
-  flex-wrap: wrap;
-}
-
-
-.intro-stat {
-  background: var(--yellow-light);
-  border: 1px solid var(--yellow);
-  padding: 8px 14px;
-  border-radius: 100px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--yellow-dark);
-}
-
-
-.btn-primary {
-  display: block;
-  width: 100%;
-  padding: 18px 24px;
-  background: var(--ink);
-  color: var(--paper);
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 700;
-  font-family: inherit;
-  cursor: pointer;
-  transition: all 0.2s;
-  text-align: center;
-  letter-spacing: 0.01em;
-}
-
-
-.btn-primary:hover {
-  background: var(--yellow);
-  color: var(--ink);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-lg);
-}
-
-
-.btn-primary:active { transform: translateY(0); }
-
-
-.intro-trust {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 12px;
-  color: var(--muted);
-}
-
-
-/* === V2 INTRO ENHANCEMENTS === */
-.intro-badge-top {
-  display: flex;
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-  align-items: center;
-  gap: 6px;
-  background: var(--ink);
-  color: var(--yellow);
-  padding: 6px 14px;
-  border-radius: 100px;
-  font-size: 11px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin-bottom: 20px;
-}
-
-
-.intro-badge-top .live-dot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  background: #10b981;
-  border-radius: 50%;
-  animation: livePulse 1.5s ease-in-out infinite;
-}
-
-
-@keyframes livePulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.4); }
-}
-
-
-.intro h1 .highlight-yellow {
-  background: linear-gradient(180deg, transparent 55%, var(--yellow-light) 55%);
-  padding: 0 4px;
-}
-
-
-.intro h1 .underline-thick {
-  border-bottom: 5px solid var(--yellow);
-  padding-bottom: 2px;
-}
-
-
-.intro h1 .yellow {
-  color: var(--yellow-dark);
-}
-
-
-.steps-preview {
-  background: var(--bg);
-  border-radius: 14px;
-  padding: 20px;
-  margin: 24px 0;
-  border: 2px dashed var(--border);
-}
-
-
-.steps-preview-label {
-  font-size: 11px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--muted);
-  margin-bottom: 14px;
-  text-align: center;
-}
-
-
-.steps-preview-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-
-.step-locked {
-  background: var(--paper);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 14px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  position: relative;
-  overflow: hidden;
-}
-
-
-.step-locked::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: repeating-linear-gradient(
-    45deg,
-    rgba(245,166,35,0.04),
-    rgba(245,166,35,0.04) 8px,
-    transparent 8px,
-    transparent 16px
-  );
-  pointer-events: none;
-}
-
-
-.step-locked-num {
-  width: 32px;
-  height: 32px;
-  background: var(--ink);
-  color: var(--yellow);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 900;
-  font-size: 14px;
-  flex-shrink: 0;
-}
-
-
-.step-locked-content {
-  flex: 1;
-  min-width: 0;
-}
-
-
-.step-locked-title {
-  font-size: 12px;
-  font-weight: 800;
-  color: var(--ink);
-  margin-bottom: 2px;
-  line-height: 1.2;
-}
-
-
-.step-locked-status {
-  font-size: 10px;
-  color: var(--muted);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-
-.step-locked-lock {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  font-size: 12px;
-  opacity: 0.4;
-  z-index: 1;
-}
-
-
-.intro-promise {
-  background: var(--yellow-light);
-  border-left: 4px solid var(--yellow);
-  border-radius: 8px;
-  padding: 14px 16px;
-  margin: 16px 0;
-  font-size: 14px;
-  line-height: 1.5;
-  color: #333;
-}
-
-
-.intro-promise strong {
-  color: var(--ink);
-  font-weight: 700;
-}
-
-
-.intro-stats-v2 {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin: 20px 0;
-  flex-wrap: wrap;
-}
-
-
-.intro-stat-v2 {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--muted);
-}
-
-
-.intro-stat-v2-icon {
-  color: var(--success);
-  font-weight: 900;
-}
-
-
-@media (max-width: 540px) {
-  .steps-preview-grid { grid-template-columns: 1fr; }
-  .intro h1 { font-size: 24px; }
-  .intro-stats-v2 { gap: 10px; flex-direction: column; }
-  .intro-promise { font-size: 13px; padding: 12px 14px; }
-}
-
-
-/* QUESTION CARD */
-.back-btn {
-  background: none;
-  border: none;
-  color: var(--muted);
-  font-size: 14px;
-  font-weight: 600;
-  font-family: inherit;
-  cursor: pointer;
-  padding: 0;
-  margin-bottom: 16px;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  transition: color 0.2s;
-}
-
-
-.back-btn:hover {
-  color: var(--ink);
-}
-
-
-.question h2 {
-  font-size: 24px;
-  font-weight: 800;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-  margin-bottom: 8px;
-}
-
-
-.question-hint {
-  font-size: 14px;
-  color: var(--muted);
-  margin-bottom: 24px;
-  font-style: italic;
-}
-
-
-.options {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-
-.option {
-  background: var(--paper);
-  border: 2px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 20px;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-size: 15px;
-  line-height: 1.4;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-align: left;
-  font-family: inherit;
-  width: 100%;
-}
-
-
-.option:hover {
-  border-color: var(--yellow);
-  background: var(--yellow-light);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
-}
-
-
-.option.selected {
-  border-color: var(--ink);
-  background: var(--yellow);
-  font-weight: 600;
-}
-
-
-.option-emoji {
-  flex-shrink: 0;
-  font-size: 22px;
-  width: 32px;
-  text-align: center;
-}
-
-
-.option-text { flex: 1; }
-
-
-/* FORM CARD */
-.form-card h2 {
-  font-size: 26px;
-  font-weight: 800;
-  line-height: 1.2;
-  text-align: center;
-  margin-bottom: 8px;
-  letter-spacing: -0.01em;
-}
-
-
-.form-card .subtitle {
-  text-align: center;
-  color: var(--muted);
-  font-size: 14px;
-  margin-bottom: 28px;
-}
-
-
-.form-group {
-  margin-bottom: 16px;
-}
-
-
-.form-label {
-  display: block;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 6px;
-}
-
-
-.form-input {
-  width: 100%;
-  padding: 14px 16px;
-  border: 2px solid var(--border);
-  border-radius: 10px;
-  font-size: 16px;
-  font-family: inherit;
-  transition: border-color 0.2s;
-  background: var(--paper);
-}
-
-
-.form-input:focus {
-  outline: none;
-  border-color: var(--yellow);
-}
-
-
-.form-error {
-  display: none;
-  background: #fee2e2;
-  color: #dc2626;
-  border-radius: 8px;
-  padding: 12px 14px;
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-
-
-.form-error.visible {
-  display: block;
-}
-
-
-.form-trust {
-  text-align: center;
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 16px;
-}
-
-
-/* RESULT CARD */
-.result {
-  text-align: center;
-}
-
-
-.result-badge {
-  display: inline-block;
-  background: var(--success);
-  color: white;
-  padding: 6px 14px;
-  border-radius: 100px;
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 20px;
-}
-
-
-.result h2 {
-  font-size: 28px;
-  font-weight: 800;
-  line-height: 1.2;
-  margin-bottom: 16px;
-  letter-spacing: -0.01em;
-}
-
-
-.result .profile-name {
-  color: var(--yellow-dark);
-}
-
-
-.result-summary {
-  background: var(--yellow-light);
-  border-radius: 14px;
-  padding: 20px;
-  margin: 24px 0;
-  text-align: left;
-  font-size: 15px;
-  line-height: 1.6;
-}
-
-
-.result-summary strong {
-  display: block;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--yellow-dark);
-  margin-bottom: 8px;
-  font-weight: 700;
-}
-
-
-.result-redirect {
-  font-size: 13px;
-  color: var(--muted);
-  margin: 20px 0;
-}
-
-
-/* FOOTER */
-.footer {
-  text-align: center;
-  margin-top: 40px;
-  padding: 24px 16px;
-  font-size: 11px;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-
-.footer a {
-  color: var(--muted);
-  text-decoration: underline;
-}
-
-
-.footer-disclaimer {
-  max-width: 600px;
-  margin: 0 auto 12px;
-  font-size: 10px;
-  opacity: 0.7;
-}
-
-
-@media (max-width: 540px) {
-  body { padding: 16px 12px; }
-  .card { padding: 28px 20px; border-radius: 16px; }
-  .intro h1 { font-size: 26px; }
-  .question h2 { font-size: 20px; }
-  .result h2 { font-size: 24px; }
-  .option { padding: 14px 16px; font-size: 14px; }
-}
+  :root{
+    --paper:#FAFAFA;
+    --card:#FFFFFF;
+    --ink:#1A1A1A;
+    --ink-soft:#6B6B6B;
+    --line:#E5E5E5;
+    --accent:#F5A623;       /* jaune signature */
+    --accent-soft:#FFF3D6;
+    --accent-press:#D68A0A; /* jaune foncé — texte/accent lisible */
+    --marker:#FFE15A;       /* surligneur signature */
+    --radius:18px;
+    --maxw:520px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+    display:flex;
+    flex-direction:column;
+    min-height:100dvh;
+  }
+
+  /* ---------- Top bar / progress ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:10;
+    background:var(--paper);
+    padding:18px 20px 14px;
+  }
+  .topbar-inner{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;gap:14px}
+  .brand{
+    font-family:'Inter',system-ui,sans-serif;
+    font-weight:800;font-size:15px;letter-spacing:-.02em;white-space:nowrap;
+  }
+  .brand span{color:var(--accent-press)}
+  .progress-track{flex:1;height:7px;background:var(--line);border-radius:99px;overflow:hidden}
+  .progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-press));border-radius:99px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+  .progress-pct{font-size:12px;font-weight:600;color:var(--ink-soft);width:34px;text-align:right;font-variant-numeric:tabular-nums}
+
+  /* ---------- Stage ---------- */
+  .stage{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:8px 20px 40px}
+  .screen{
+    width:100%;max-width:var(--maxw);
+    animation:enter .45s cubic-bezier(.2,.7,.2,1) both;
+  }
+  @keyframes enter{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){
+    .screen{animation:none}
+    .progress-fill{transition:none}
+    .hl::after{animation:none;width:100% !important}
+  }
+
+  .eyebrow{
+    display:inline-block;font-size:12px;font-weight:600;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--accent-press);margin-bottom:14px;
+  }
+  h1{
+    font-family:'Inter',system-ui,sans-serif;
+    font-weight:800;letter-spacing:-.02em;line-height:1.12;
+    font-size:clamp(26px,6.5vw,34px);margin-bottom:10px;
+  }
+  .lead{color:var(--ink-soft);font-size:16px;margin-bottom:8px}
+  .lead.big{font-size:17px;color:var(--ink);margin-bottom:6px}
+
+  /* surligneur signature */
+  .hl{position:relative;white-space:nowrap;z-index:0}
+  .hl::after{
+    content:"";position:absolute;left:-3px;right:-3px;bottom:2px;height:42%;
+    background:var(--marker);z-index:-1;border-radius:3px;
+    transform:skewX(-4deg);
+    width:0;animation:swipe .6s .25s cubic-bezier(.4,0,.2,1) forwards;
+  }
+  @keyframes swipe{to{width:calc(100% + 6px)}}
+
+  /* ---------- Options ---------- */
+  .options{display:flex;flex-direction:column;gap:11px;margin-top:24px}
+  .opt{
+    display:flex;align-items:center;gap:13px;
+    background:var(--card);border:1.5px solid var(--line);border-radius:var(--radius);
+    padding:17px 18px;cursor:pointer;text-align:left;width:100%;
+    font-family:inherit;font-size:16px;color:var(--ink);font-weight:500;
+    transition:border-color .15s,background .15s,transform .08s;
+  }
+  .opt:hover{border-color:var(--accent);background:#fff}
+  .opt:active{transform:scale(.99)}
+  .opt:focus-visible{outline:3px solid var(--accent-soft);outline-offset:2px}
+  .opt .emoji{font-size:21px;line-height:1;flex-shrink:0}
+  .opt .tick{
+    margin-left:auto;width:22px;height:22px;border-radius:50%;
+    border:2px solid var(--line);flex-shrink:0;position:relative;transition:border-color .15s;
+  }
+  .opt.selected{border-color:var(--accent);background:var(--accent-soft)}
+  .opt.selected .tick{border-color:var(--accent-press);background:var(--accent-press)}
+  .opt.selected .tick::after{
+    content:"";position:absolute;left:6px;top:2px;width:6px;height:11px;
+    border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg);
+  }
+
+  /* ---------- Scale (likert) ---------- */
+  .scale{display:flex;gap:9px;margin-top:26px}
+  .scale-btn{
+    flex:1;aspect-ratio:1;min-height:54px;border:1.5px solid var(--line);
+    background:var(--card);border-radius:14px;cursor:pointer;
+    font-family:'Inter',system-ui,sans-serif;font-weight:700;font-size:19px;color:var(--ink);
+    transition:all .12s;
+  }
+  .scale-btn:hover{border-color:var(--accent);color:var(--accent-press)}
+  .scale-btn:active{transform:scale(.95)}
+  .scale-btn:focus-visible{outline:3px solid var(--accent-soft);outline-offset:2px}
+  .scale-labels{display:flex;justify-content:space-between;margin-top:11px;font-size:12.5px;color:var(--ink-soft)}
+
+  /* ---------- CTA ---------- */
+  .cta{
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    width:100%;margin-top:28px;background:var(--accent);color:var(--ink);
+    border:none;border-radius:var(--radius);padding:18px;cursor:pointer;
+    font-family:'Inter',system-ui,sans-serif;font-weight:700;font-size:17px;
+    transition:background .15s,transform .08s;
+  }
+  .cta:hover{background:var(--accent-press)}
+  .cta:active{transform:scale(.99)}
+  .cta:focus-visible{outline:3px solid var(--accent-soft);outline-offset:3px}
+  .cta .arrow{transition:transform .15s}
+  .cta:hover .arrow{transform:translateX(4px)}
+
+  /* ---------- Media placeholders (à remplacer par l'associé) ---------- */
+  .media-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:24px}
+  .media-grid.single{grid-template-columns:1fr}
+  .media{
+    border:2px dashed #C9C3B6;border-radius:14px;background:#FBFAF7;
+    aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:6px;color:#9A9484;font-size:12.5px;font-weight:600;text-align:center;padding:10px;
+  }
+  .media.video{aspect-ratio:16/9}
+  .media .ico{font-size:22px}
+  .proof-row{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:22px}
+  .proof-card{
+    border:2px dashed #C9C3B6;border-radius:12px;background:#FBFAF7;aspect-ratio:9/16;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:6px;color:#9A9484;font-size:11px;font-weight:600;text-align:center;padding:8px;
+  }
+  .proof-card .ico{font-size:18px}
+
+  .note{
+    margin-top:22px;font-size:12.5px;color:#A39C8C;
+    border-top:1px dashed var(--line);padding-top:12px;
+  }
+  .back{
+    background:none;border:none;color:var(--ink-soft);font-family:inherit;font-size:14px;
+    cursor:pointer;padding:8px 0;margin-bottom:4px;display:inline-flex;align-items:center;gap:5px;
+  }
+  .back:hover{color:var(--ink)}
+  .back.hidden{visibility:hidden}
+
+  /* ---------- Final ---------- */
+  .final-badge{
+    display:inline-flex;align-items:center;gap:7px;background:var(--accent-soft);color:var(--accent-press);
+    font-weight:600;font-size:13px;padding:7px 13px;border-radius:99px;margin-bottom:16px;
+  }
 </style>
 </head>
 <body>
 
-
-<div class="container">
-
-
-  <!-- HEADER -->
-  <header class="header">
-    <div class="logo"><span class="logo-emoji">✒️</span>Le Copy Quiz</div>
-    <div class="credentials">Par Sol · +6M€ générés pour mes clients · 1 100+ membres formés</div>
-  </header>
-
-
-  <!-- PROGRESS -->
-  <div class="progress-wrap" id="progressWrap">
-    <div class="progress-bar">
-      <div class="progress-fill" id="progressFill"></div>
-    </div>
-    <div class="progress-text">
-      <span id="progressLeft">Question 1 sur 9</span>
-      <span class="progress-text-right" id="progressRight">Plus que 8</span>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">✒️ Le Copy <span>Quiz</span></div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-pct" id="progressPct">0%</div>
     </div>
   </div>
 
-
-  <!-- INTRO -->
-  <div class="card intro" id="screenIntro">
-    <div class="intro-badge-top">
-      <span class="live-dot"></span>
-      <span>Quiz · 100% offert</span>
-    </div>
-
-
-    <h1>Découvre les <span class="yellow">4 étapes</span> pour atteindre <span class="highlight-yellow">3 000€/mois</span> en tant que copywriter <span class="underline-thick">en moins de 100 jours</span></h1>
-
-
-    <p class="subtitle">Réponds à <strong>9 questions</strong> et reçois ton plan personnalisé selon ton profil.</p>
-
-
-    <div class="intro-stats-v2">
-      <div class="intro-stat-v2"><span class="intro-stat-v2-icon">✓</span> 90 secondes</div>
-      <div class="intro-stat-v2"><span class="intro-stat-v2-icon">✓</span> 100% anonyme</div>
-      <div class="intro-stat-v2"><span class="intro-stat-v2-icon">✓</span> 100% offert</div>
-    </div>
-
-
-    <button class="btn-primary" onclick="startQuiz()">🚀 Démarrer le quiz maintenant</button>
-    <p class="intro-trust">Tes résultats arriveront par email. Aucun spam, jamais.</p>
-  </div>
-
-
-  <!-- QUESTIONS CONTAINER -->
-  <div id="questionsContainer"></div>
-
-
-  <!-- FORM -->
-  <div class="card form-card hidden" id="screenForm">
-    <h2>Une dernière étape pour recevoir ton résultat 👇</h2>
-    <p class="subtitle">Je t'envoie ton profil détaillé + ton plan d'action perso. Et je te contacte sur WhatsApp pour t'expliquer la suite.</p>
-
-
-    <div class="form-group">
-      <label class="form-label" for="firstname">Ton prénom *</label>
-      <input type="text" id="firstname" class="form-input" placeholder="Alex" required>
-    </div>
-
-
-    <div class="form-group">
-      <label class="form-label" for="email">Ton email *</label>
-      <input type="email" id="email" class="form-input" placeholder="alex@gmail.com" required>
-    </div>
-
-
-    <div class="form-group">
-      <label class="form-label" for="phone">Ton numéro WhatsApp *</label>
-      <input type="tel" id="phone" class="form-input" placeholder="+33 6 12 34 56 78" required>
-    </div>
-
-
-    <div class="form-error" id="formError"></div>
-
-
-    <button class="btn-primary" onclick="submitForm()">Voir mes résultats →</button>
-    <p class="form-trust">🔒 100% confidentiel. Pas de spam, jamais.</p>
-  </div>
-
-
-  <!-- RESULT -->
-  <div class="card result hidden" id="screenResult">
-    <div class="result-badge">✓ Profil identifié</div>
-    <h2>Tu es <span class="profile-name" id="profileName">…</span></h2>
-    <div class="result-summary" id="resultSummary"></div>
-    <p class="result-redirect">Tu vas être redirigé dans <span id="countdown">5</span> secondes vers ta page personnalisée…</p>
-    <button class="btn-primary" onclick="redirectNow()">Y aller maintenant →</button>
-  </div>
-
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-disclaimer">Ce site n'est pas affilié à Meta, Inc. ni à aucune de ses marques. Meta est une marque déposée de Meta, Inc.</div>
-    <div>
-      © Sol Copywriting · <a href="#">Mentions légales</a> · <a href="#">Politique de confidentialité</a> · <a href="#">CGV</a>
-    </div>
-  </footer>
-
-
-</div>
-
+  <main class="stage">
+    <div class="screen" id="screen"></div>
+  </main>
 
 <script>
-// ============================================
-// CONFIG — à remplir avant mise en ligne
-// ============================================
-const CONFIG = {
-  // Inbound Webhook GoHighLevel (déclencheur de workflow "Inbound Webhook").
-  // Le workflow mappe le payload vers les Custom Fields du contact + crée l'opportunité.
-  // Laisser vide = pas d'envoi (le quiz fonctionne quand même).
-  ghlWebhookUrl: ""
-};
+/* =========================================================================
+   QUIZ COPYWRITING — moteur conditionnel
+   -------------------------------------------------------------------------
+   Tout est piloté par l'objet `screens` ci-dessous.
+   Les réponses sont stockées dans `answers` (voir console + finishQuiz()).
+   ========================================================================= */
 
-// Envoie le lead à GoHighLevel. Non bloquant : n'empêche jamais l'affichage du résultat.
-// `keepalive` garantit que la requête aboutit malgré la redirection 5 s plus tard.
-function sendLeadToGHL() {
-  if (!CONFIG.ghlWebhookUrl) return;
-  const p = PROFILES[detectedProfile] || {};
-  const payload = {
-    firstName: userData.firstname,
-    email: userData.email,
-    phone: userData.phone,
-    source: "Le Copy Quiz",
-    quiz_version: "B",
-    quiz_profile_code: detectedProfile,        // p1..p6
-    quiz_profile_name: p.name || "",
-    quiz_score_p1: scores.p1,
-    quiz_score_p2: scores.p2,
-    quiz_score_p3: scores.p3,
-    quiz_score_p4: scores.p4,
-    quiz_score_p5: scores.p5,
-    quiz_score_p6: scores.p6,
-    quiz_scores: JSON.stringify(scores),
-    quiz_answers: JSON.stringify(answers),
-    completed_at: new Date().toISOString()
+const answers = {};
+const history = [];          // pile des écrans visités (pour le bouton retour)
+
+/* ---- helpers de texte dynamique ---- */
+function problemLabel(){
+  const map = {
+    clients:   "trouver des clients",
+    prospect:  "la prospection",
+    niveau:    "tes doutes sur ton niveau",
+    temps:     "ton organisation",
+    plan:      "te construire un plan d'action"
   };
-  try {
-    fetch(CONFIG.ghlWebhookUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-      keepalive: true
-    }).catch(function(){});
-  } catch (e) {}
+  return map[answers.problem] || "ce blocage";
+}
+function screenTimeLabel(){
+  const map = {
+    low:  "le temps que tu passes déjà sur les écrans",
+    mid:  "les 2 à 4h par jour que tu passes sur les écrans",
+    high: "les +4h par jour que tu passes sur les écrans"
+  };
+  return map[answers.screenTime] || "tout ce temps sur les écrans";
 }
 
-// ============================================
-// QUIZ DATA
-// ============================================
+/* ---- options conditionnelles pour "qu'as-tu déjà essayé ?" ---- */
+const attemptedOptions = {
+  clients: [
+    "J'ai posté sur les réseaux en espérant qu'on me contacte",
+    "J'ai envoyé des messages en DM",
+    "Je me suis inscrit sur des plateformes (Malt, Fiverr…)",
+    "Pour être honnête, je n'ai pas vraiment essayé"
+  ],
+  prospect: [
+    "J'ai envoyé des DM à froid",
+    "J'ai envoyé des emails de prospection",
+    "J'ai commenté et interagi sous des posts",
+    "Je n'ai jamais osé prospecter pour de vrai"
+  ],
+  niveau: [
+    "J'ai enchaîné les formations et les vidéos",
+    "Je me suis entraîné à écrire dans mon coin",
+    "J'ai fait relire mon travail à d'autres",
+    "Je reste bloqué sans trop savoir quoi faire"
+  ],
+  temps: [
+    "J'ai essayé de me faire un planning",
+    "Je m'y mets le soir ou le week-end",
+    "J'ai testé plusieurs méthodes d'organisation",
+    "J'ai abandonné plusieurs fois faute de temps"
+  ],
+  plan: [
+    "J'ai suivi des formations un peu dans tous les sens",
+    "J'ai copié ce que font d'autres copywriters",
+    "J'ai avancé au feeling, sans vraie méthode",
+    "Pour être honnête, je n'ai jamais eu de plan clair"
+  ]
+};
 
+/* =========================================================================
+   DÉFINITION DES ÉCRANS
+   type: 'choice' | 'scale' | 'info' | 'final'
+   next: fonction qui renvoie l'id de l'écran suivant (ou null = fin)
+   ========================================================================= */
+const screens = {
 
-const QUESTIONS = [
-  {
-    id: 'q1_situation',
-    title: "Où tu en es aujourd'hui ?",
-    hint: "Pour t'aider vraiment, j'ai besoin de comprendre ta situation réelle.",
-    options: [
-      { emoji: '🌱', text: "J'ai un job ou des études. Le copy m'attire mais je ne sais pas par où commencer.", score: { p1: 3 } },
-      { emoji: '📚', text: "J'ai déjà suivi des formations. Mais je n'ai pas encore eu de vrais résultats concrets.", score: { p3: 3 } },
-      { emoji: '💼', text: "Je suis freelance, je fais déjà quelques missions. Mais mes revenus sont trop instables pour en vivre.", score: { p4: 3 } },
-      { emoji: '🚀', text: "Je gagne déjà +2 000€ par mois avec mon activité. Et je veux maintenant passer un cap supérieur.", score: { p5: 4 } },
-      { emoji: '🎯', text: "J'ai déjà un business ou un projet qui marche. Je veux apprendre le copy pour mieux vendre MES produits.", score: { p6: 4 } }
-    ]
+  /* ---------- PAGE 1 ---------- */
+  status:{
+    progress:5, type:'choice', save:'status',
+    question:"Actuellement, tu es :",
+    options:[
+      {emoji:"🎓", label:"Étudiant",  value:"etudiant"},
+      {emoji:"💼", label:"Salarié",   value:"salarie"},
+      {emoji:"🧑‍💻", label:"Freelance", value:"freelance"}
+    ],
+    next:()=>'hook1'
   },
-  {
-    id: 'q2_driver',
-    title: "Au fond... pourquoi le copywriting t'attire autant ?",
-    hint: "Il y a toujours une vraie raison derrière ce choix. Laquelle est la tienne ?",
-    options: [
-      { emoji: '🔓', text: "Me libérer d'un patron, d'un salaire fixe et reprendre le contrôle de ma vie.", score: { p2: 2, p1: 1 } },
-      { emoji: '🌍', text: "Voyager, travailler depuis n'importe où et vivre selon mes propres règles.", score: { p2: 2, p4: 1 } },
-      { emoji: '🎯', text: "Travailler sur des projets qui ont du sens et collaborer avec des business ambitieux.", score: { p4: 2, p5: 1 } },
-      { emoji: '💰', text: "Générer des revenus solides pour investir et construire quelque chose de plus grand.", score: { p5: 2, p6: 2 } }
-    ]
-  },
-  {
-    id: 'q3_niveau',
-    title: "Honnêtement... où tu en es avec le copywriting aujourd'hui ?",
-    hint: "Pas de jugement — cette réponse va me permettre de t'orienter vers ce dont tu as vraiment besoin.",
-    options: [
-      { emoji: '🌱', text: "Je débute complètement. Je connais le concept mais je n'ai jamais vraiment pratiqué.", score: { p1: 3 } },
-      { emoji: '📖', text: "J'ai des bases. J'ai suivi des contenus gratuits ou une formation mais je manque de pratique réelle.", score: { p3: 2, p1: 1 } },
-      { emoji: '✅', text: "Je sais écrire du bon copy. Mais je ne sais pas comment convaincre des clients de me payer correctement.", score: { p3: 2, p4: 2 } },
-      { emoji: '💼', text: "J'ai déjà des clients. Mais je veux monter en gamme et facturer beaucoup plus cher.", score: { p4: 2, p5: 2 } }
-    ]
-  },
-  {
-    id: 'q4_vision',
-    title: "Si tout se passe comme tu le souhaites... à quoi ressemble ta vie dans 12 mois ?",
-    hint: "Ferme les yeux deux secondes et imagine vraiment...",
-    options: [
-      { emoji: '🎯', text: "J'ai signé mes premiers clients et je prouve que le copy peut vraiment me rapporter de l'argent.", score: { p1: 2, p3: 1 } },
-      { emoji: '🏆', text: "J'ai quitté mon job. Et je vis à 100% de mon activité de copywriter.", score: { p2: 3, p4: 1 } },
-      { emoji: '✈️', text: "Je travaille depuis n'importe où dans le monde. Et le copy me finance cette liberté totale.", score: { p2: 2, p5: 1 } },
-      { emoji: '📈', text: "Mon business a explosé grâce à mon copy. Mes ventes ont doublé ou triplé.", score: { p6: 3 } }
-    ]
-  },
-  {
-    id: 'q5_revenus',
-    title: "Pour vivre cette vie... quel niveau de revenus te permettrait de te sentir vraiment libre ?",
-    hint: "Sois honnête — ce n'est pas une question piège.",
-    options: [
-      { emoji: '💡', text: "500€ - 1 000€/mois. Un premier complément pour valider que ça marche.", score: { p1: 2 } },
-      { emoji: '🏠', text: "1 000€ - 1 500€/mois. De quoi vivre sereinement dans un pays au coût de vie accessible.", score: { p1: 1, p3: 1 } },
-      { emoji: '💪', text: "1 500€ - 3 000€/mois. Remplacer mon job et avoir un vrai salaire de copywriter.", score: { p2: 2, p3: 1, p4: 1 } },
-      { emoji: '🔥', text: "+3 000€/mois. Être totalement libre, voyager et commencer à investir.", score: { p2: 2, p5: 2, p6: 1 } }
-    ]
-  },
-  {
-    id: 'q6_priorite',
-    title: "À quel point tu es prêt à faire de ce projet une vraie priorité ?",
-    hint: "Sois honnête avec toi-même... c'est important pour la suite.",
-    options: [
-      { emoji: '💯', text: "Je suis prêt à m'engager à fond. Je veux que 2026 soit l'année où tout change pour moi.", score: { p2: 2, p4: 1 } },
-      { emoji: '🤔', text: "Je suis motivé mais j'ai encore des doutes. J'ai besoin d'être rassuré avant de me lancer.", score: { p3: 2, p1: 1 } },
-      { emoji: '👀', text: "Je veux d'abord comprendre la méthode. Et voir si c'est vraiment fait pour moi.", score: { p1: 2 } },
-      { emoji: '🚀', text: "Je suis déjà dedans. Je veux juste accélérer maintenant.", score: { p5: 2, p4: 1, p6: 1 } }
-    ]
-  },
-  {
-    id: 'q7_investissement',
-    title: "Imagine que tu as une méthode éprouvée et garantie pour atteindre +3 000€/mois en copywriting d'ici 100 jours...",
-    hint: "Combien serais-tu prêt à investir pour suivre cette méthode ?",
-    options: [
-      { emoji: '🌱', text: "Quelques centaines d'euros. Je veux m'assurer que ça marche avant d'aller plus loin.", score: { p1: 3 } },
-      { emoji: '📈', text: "Entre 500€ et 1 500€. Je sais qu'il faut investir sur soi, mais je n'ai pas un capital infini.", score: { p3: 2, p4: 1 } },
-      { emoji: '🚀', text: "Entre 1 500€ et 3 000€. Si ce système me permet de changer de vie en 100 jours, je suis prêt à m'investir à fond.", score: { p2: 3, p4: 1 } },
-      { emoji: '💼', text: "Le prix n'est pas ma priorité. Si le résultat est garanti, je ferais ce qu'il faut pour y arriver.", score: { p2: 2, p5: 3, p6: 2 } }
-    ]
-  },
-  {
-    id: 'q8_engagement',
-    title: "Si je te montre les 4 étapes pour atteindre 3 000€/mois en moins de 100 jours...",
-    hint: "Est-ce que tu serais prêt à te lancer ?",
-    options: [
-      { emoji: '🔥', text: "Oui, je suis prêt. Je veux découvrir ces 4 étapes et dans 100 jours je vis du copywriting.", score: { p2: 3, p4: 1 } },
-      { emoji: '🤔', text: "Probablement oui. J'aimerais d'abord en discuter avec un expert avant de me lancer.", score: { p3: 2, p4: 1, p1: 1 } },
-      { emoji: '👀', text: "Je suis curieux. Je veux d'abord voir la méthode avant de m'engager sur quoi que ce soit.", score: { p1: 2, p3: 1 } },
-      { emoji: '❌', text: "Je ferme cette page. Et je continue de voir les autres réussir sans passer à l'action.", score: { p1: 1 } }
-    ]
-  },
-  {
-    id: 'q9_timing',
-    title: "Dernière question... quand veux-tu vraiment commencer ?",
-    hint: "Le bon moment, c'est souvent maintenant.",
-    options: [
-      { emoji: '⚡', text: "Maintenant. Je n'ai pas envie d'attendre. Plus vite je commence, plus vite j'ai des résultats.", score: { p2: 2, p4: 1, p5: 1 } },
-      { emoji: '📅', text: "Dans les 30 prochains jours. Je veux être prêt et bien démarrer.", score: { p2: 1, p3: 1, p4: 1 } },
-      { emoji: '🤷', text: "Je ne sais pas encore. Ça dépend de plein de choses.", score: { p1: 2 } },
-      { emoji: '🎯', text: "Quand j'aurai trouvé LA bonne formation pour me lancer. Je ne veux pas perdre mon temps.", score: { p2: 1, p3: 1 } }
-    ]
-  }
-];
 
+  /* ---------- PAGE 2 (accroche) ---------- */
+  hook1:{
+    progress:10, type:'info',
+    eyebrow:"Le constat",
+    html:`<h1>7 débutants sur 10 <span class="hl">abandonnent</span> le copywriting</h1>
+          <p class="lead big">…parce qu'ils ne trouvent jamais de clients.</p>
+          <p class="lead">Mais peu savent qu'il existe une autre approche : trouver des clients <strong>premium</strong> en moins de <strong>45 jours</strong>.</p>`,
+    media:[ {label:"PHOTO / preuve"},{label:"PHOTO / preuve"},{label:"PHOTO / preuve"},{label:"PHOTO / preuve"} ],
+    cta:"Continuer",
+    next:()=>'motivation'
+  },
 
-const PROFILES = {
-  p1: {
-    name: "Le Débutant Ambitieux",
-    summary: "Tu fais partie des gens qui sentent qu'il y a quelque chose à explorer dans le copywriting. Tu as raison — mais il faut commencer par le bon endroit, pas par claquer 2000€ dans une formation que tu n'utiliseras pas.",
-    label: "Tu pars de zéro — et c'est une force",
-    redirect: "explication_debutant_total.html"
+  /* ---------- PAGE 3 ---------- */
+  motivation:{
+    progress:18, type:'choice', save:'motivation',
+    question:"Qu'est-ce qui te motive le plus à devenir copywriter ?",
+    options:[
+      {emoji:"🎓", label:"Pouvoir quitter mon job (ou mes études) au plus vite", value:"quitter"},
+      {emoji:"💸", label:"Gagner plus d'argent !", value:"argent"},
+      {emoji:"🌍", label:"Être libre de travailler depuis n'importe où.", value:"liberte"},
+      {emoji:"❤️", label:"Faire un métier qui me motive chaque matin.", value:"passion"}
+    ],
+    next:()=>'tried'
   },
-  p2: {
-    name: "Le Reconverti Motivé",
-    summary: "Tu fais partie de ceux qui ont décidé de reprendre le contrôle de leur vie. Tu cherches une voie concrète pour remplacer ton salaire et tu en as les moyens. Le profil idéal pour un accompagnement rapproché.",
-    label: "Tu es prêt à changer de vie",
-    redirect: "explication_reconverti_motive_v2.html"
+
+  /* ---------- PAGE 4 (aiguillage principal) ---------- */
+  tried:{
+    progress:26, type:'choice', save:'tried',
+    question:"As-tu déjà essayé de te lancer dans le copywriting ?",
+    options:[
+      {emoji:"✅", label:"Oui", value:"oui"},
+      {emoji:"🚫", label:"Non", value:"non"}
+    ],
+    next:()=> answers.tried==='oui' ? 'level' : 'whyNot'
   },
-  p3: {
-    name: "Le Formé Bloqué",
-    summary: "Tu as fait l'effort de te former, tu connais la théorie, mais quelque chose t'empêche d'aller plus loin. Spoiler : ton problème n'est presque jamais technique. C'est la prospection ou la prise d'action.",
-    label: "Tu as les bases — il te manque le déclic",
-    redirect: "explication_forme_bloque.html"
+
+  /* ===================== BRANCHE « OUI » ===================== */
+  level:{
+    progress:33, type:'choice', save:'level',
+    question:"Selon toi, quel est ton niveau actuel ?",
+    options:[
+      {label:"Grand débutant, je pars de zéro", value:"debut"},
+      {label:"J'ai les bases, mais j'ai du mal à les appliquer", value:"bases"},
+      {label:"J'ai un bon niveau d'écriture, mais peu (voire pas) de clients avec qui travailler", value:"sansclients"},
+      {label:"Niveau confirmé, mais des résultats irréguliers", value:"irregulier"}
+    ],
+    next:()=>'problem'
   },
-  p4: {
-    name: "Le Freelance Instable",
-    summary: "Tu as déjà prouvé que tu peux faire du copy ton métier. Mais tu vis le pire des deux mondes : pas la sécurité d'un salaire, pas la stabilité d'un freelance qui scale. Il est temps de monter en gamme.",
-    label: "Tu signes — mais tu veux la stabilité",
-    redirect: "explication_freelance_instable.html"
+
+  problem:{
+    progress:39, type:'choice', save:'problem',
+    question:"Quelle est ta plus grosse problématique aujourd'hui ?",
+    options:[
+      {label:"Je n'arrive pas à trouver de clients", value:"clients"},
+      {label:"Je ne sais pas par où démarrer la prospection", value:"prospect"},
+      {label:"Je doute de mon niveau et de mes compétences", value:"niveau"},
+      {label:"Je manque de temps et d'organisation pour être efficace", value:"temps"},
+      {label:"Je n'ai AUCUN plan d'action pour atteindre les 3.000€/mois", value:"plan"}
+    ],
+    next:()=>'attempted'
   },
-  p5: {
-    name: "Le Plafond Invisible",
-    summary: "Tu fais partie des 5% qui ont vraiment réussi à faire de l'argent en ligne. Tu gagnes déjà bien ta vie, mais tu sens un plafond invisible. Ce qui te manque, c'est pas la technique — c'est quelqu'un qui peut te challenger pour passer le cap.",
-    label: "Tu sens un plafond invisible",
-    redirect: "explication_scaler.html"
+
+  attempted:{
+    progress:45, type:'choice', save:'attempted',
+    question:()=>`Qu'as-tu déjà essayé pour ${problemLabel()} ?`,
+    options:()=> attemptedOptions[answers.problem].map((label,i)=>({label,value:'a'+i})),
+    next:()=>'reassureOui'
   },
-  p6: {
-    name: "L'Entrepreneur",
-    summary: "Tu n'es pas là pour devenir copywriter. Tu es là parce que tu sais que ton business pourrait vendre 2 à 5x plus avec un meilleur copy. C'est exactement comme ça que je raisonne quand j'analyse un tunnel.",
-    label: "Tu veux mieux vendre TES produits",
-    redirect: "explication_entrepreneur.html"
+
+  reassureOui:{
+    progress:52, type:'info',
+    eyebrow:"Rassure-toi",
+    html:`<h1>C'est <span class="hl">normal</span> si tu n'as pas eu de vrais résultats.</h1>
+          <p class="lead big">Ce qu'il te faut, ce n'est pas une méthode « secrète ».</p>
+          <p class="lead">C'est un plan personnalisé, adapté à ton profil, tes objectifs et ton emploi du temps. On va aller un cran plus loin pour comprendre ce qui te bloque encore.</p>`,
+    media:[ {label:"PHOTO"},{label:"PHOTO"},{label:"PHOTO"} ],
+    cta:"Continuer",
+    next:()=>'likert1'
+  },
+
+  /* ===================== BRANCHE « NON » ===================== */
+  whyNot:{
+    progress:33, type:'choice', save:'whyNot',
+    question:"Pourquoi tu ne t'es pas encore lancé ?",
+    options:[
+      {emoji:"😨", label:"La peur de me lancer", value:"peur"},
+      {emoji:"💳", label:"Le prix des formations", value:"prix"},
+      {emoji:"⏳", label:"Je n'ai pas le temps", value:"temps"}
+    ],
+    next:()=> answers.whyNot==='temps' ? 'screenTime'
+            : answers.whyNot==='peur'  ? 'fearObjection'
+            : 'priceObjection'
+  },
+
+  fearObjection:{
+    progress:44, type:'info',
+    eyebrow:"Respire",
+    html:`<h1>La peur ne partira <span class="hl">JAMAIS</span>.</h1>
+          <p class="lead big">Mais tous ceux qui réussissent aujourd'hui sont passés par exactement le même doute que toi.</p>
+          <p class="lead">La seule différence ? Ils ont suivi un plan d'action clair, étape par étape. Car quand tu sais précisément quoi faire tous les jours, la peur laisse place à l'action !</p>`,
+    proof:[ "TÉMOIGNAGE","TÉMOIGNAGE","TÉMOIGNAGE" ],
+    cta:"Ok, on continue",
+    next:()=>'likert1'
+  },
+
+  priceObjection:{
+    progress:44, type:'info',
+    eyebrow:"Parlons-en",
+    html:`<h1>Certaines formations sont chères… mais le vrai coût, c'est de <span class="hl">ne rien faire</span> !</h1>
+          <p class="lead big">Si tu travailles sérieusement… se former, c'est un investissement. Et pas une dépense.</p>
+          <p class="lead">Et honnêtement, avec la bonne méthode, un seul client peut te rembourser ta formation. C'est d'ailleurs ce qui se passe pour tous mes clients.</p>`,
+    media:[ {label:"SCREEN RÉSULTAT"},{label:"SCREEN RÉSULTAT"} ],
+    video:"VIDÉO RÉSULTAT",
+    cta:"Vu comme ça… on continue",
+    next:()=>'likert1'
+  },
+
+  screenTime:{
+    progress:40, type:'choice', save:'screenTime',
+    question:"Soyons honnêtes… combien de temps tu passes sur les écrans chaque jour ?",
+    options:[
+      {label:"Moins de 2h par jour", value:"low"},
+      {label:"Entre 2h et 4h par jour", value:"mid"},
+      {label:"Plus de 4h par jour", value:"high"}
+    ],
+    next:()=>'timeObjection'
+  },
+
+  timeObjection:{
+    progress:47, type:'info',
+    eyebrow:"Petite question",
+    html:()=>`<h1>Et si tu utilisais <span class="hl">ce temps</span> autrement ?</h1>
+          <p class="lead big">Tu ne penses pas qu'avec ${screenTimeLabel()}, tu pourrais développer une compétence et lancer un business pour devenir libre ?</p>
+          <p class="lead">On est d'accord : ce n'est donc pas vraiment une question de temps. 😉</p>
+          <p class="lead" style="margin-top:18px"><strong>Ils ont eu leurs premiers résultats en moins de 2h par jour :</strong></p>`,
+    proof:[ "TÉMOIGNAGE","TÉMOIGNAGE","TÉMOIGNAGE" ],
+    cta:"Carrément, on continue",
+    next:()=>'likert1'
+  },
+
+  /* ===================== TRONC COMMUN ===================== */
+  /* ---------- PAGE 6 : 5 phrases, 1 par écran ---------- */
+  likert1:{
+    progress:58, type:'scale', save:'likert1',
+    eyebrow:"À quel point cette phrase te parle ?",
+    question:"« Quand j'ouvre mon ordinateur je ne sais pas précisément sur quoi travailler (formation, écriture, prospection…). »",
+    next:()=>'likert2'
+  },
+  likert2:{
+    progress:62, type:'scale', save:'likert2',
+    eyebrow:"À quel point cette phrase te parle ?",
+    question:"« Je passe plus de temps à me former qu'à passer à l'action et gagner de l'argent. »",
+    next:()=>'likert3'
+  },
+  likert3:{
+    progress:66, type:'scale', save:'likert3',
+    eyebrow:"À quel point cette phrase te parle ?",
+    question:"« Je ne sais pas si c'est mon niveau, ma prospection ou mon offre qui me bloque. »",
+    next:()=>'midProof'
+  },
+
+  midProof:{
+    progress:68, type:'info',
+    eyebrow:"On continue",
+    html:`<h1>Tiens bon… le plus <span class="hl">intéressant</span> arrive.</h1>
+          <p class="lead big">À la fin de ce quiz, tu repars avec le plan d'action exact, adapté à ton profil, pour faire tes premiers 3.000€/mois dans le copy même si tu pars de 0.</p>
+          <p class="lead">Ce plan là, ils l'ont suivi 👇</p>`,
+    proof:[ "TÉMOIGNAGE","TÉMOIGNAGE","TÉMOIGNAGE" ],
+    cta:"Je continue",
+    next:()=>'likert4'
+  },
+  likert4:{
+    progress:70, type:'scale', save:'likert4',
+    eyebrow:"À quel point cette phrase te parle ?",
+    question:"« On m'a promis de gagner de l'argent, mais je suis toujours bloqué à 0. »",
+    next:()=>'likert5'
+  },
+  likert5:{
+    progress:74, type:'scale', save:'likert5',
+    eyebrow:"À quel point cette phrase te parle ?",
+    question:"« J'aimerais avoir un plan d'action clair au lieu d'avancer au feeling. »",
+    next:()=>'generated'
+  },
+
+  /* ---------- PAGE 7 ---------- */
+  generated:{
+    progress:79, type:'choice', save:'generated',
+    question:"Combien as-tu généré grâce à ton activité de copywriting ?",
+    options:[
+      {label:"0 € — je n'ai pas encore commencé à gagner", value:"0"},
+      {label:"Moins de 500 €", value:"<500"},
+      {label:"Entre 500 € et 1 000 €", value:"500-1000"},
+      {label:"Entre 1 000 € et 3 000 €", value:"1000-3000"},
+      {label:"Plus de 3 000 €", value:">3000"}
+    ],
+    next:()=>'goal'
+  },
+
+  /* ---------- PAGE 8 ---------- */
+  goal:{
+    progress:84, type:'choice', save:'goal',
+    question:"Combien aimerais-tu gagner dans 6 mois ?",
+    options:[
+      {label:"1 000 € / mois pour commencer", value:"1000"},
+      {label:"3 000 € / mois", value:"3000"},
+      {label:"5 000 € / mois", value:"5000"},
+      {label:"10 000 € / mois", value:"10000"},
+      {label:"Plus de 10 000 € / mois", value:">10000"}
+    ],
+    next:()=>'caseStudy'
+  },
+
+  /* ---------- PAGE 9 ---------- */
+  caseStudy:{
+    progress:89, type:'info',
+    eyebrow:"Ils l'ont fait",
+    html:`<h1>Atteindre ce résultat, c'est <span class="hl">carrément possible</span>.</h1>
+          <p class="lead big">Regarde ils l'ont fait 👇 :</p>`,
+    media:[ {label:"TÉMOIGNAGE VIDÉO",video:true},{label:"TÉMOIGNAGE VIDÉO",video:true} ],
+    cta:"Continuer",
+    next:()=>'projection'
+  },
+
+  /* ---------- PAGE 10 ---------- */
+  projection:{
+    progress:93, type:'choice', save:'projection',
+    question:`<span style="display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:16px;color:var(--ink-soft);margin-bottom:14px;line-height:1.5;">Maintenant si on fait un bond dans le temps de 6 mois… et que tu as atteint tes objectifs.</span>Qu'est-ce qui te ferait le plus kiffer ?`,
+    options:[
+      {emoji:"💰", label:"Quitter mon taff et pouvoir vivre uniquement grâce au copywriting", value:"quitter"},
+      {emoji:"🌍", label:"Être libre de voyager où je veux, quand je veux (et gagner de l'argent)", value:"voyager"},
+      {emoji:"❤️", label:"Pouvoir passer plus de temps avec mes proches (enfants, amis, familles…)", value:"proches"}
+    ],
+    next:()=>'capable'
+  },
+
+  /* ---------- PAGE 11 ---------- */
+  capable:{
+    progress:97, type:'choice', save:'capable',
+    question:"Te sens-tu capable d'atteindre cet objectif aujourd'hui ?",
+    options:[
+      {label:"Oui, il me manque simplement un plan clair.", value:"plan"},
+      {label:"Oui je suis sur d'y arriver tout seul", value:"seul"},
+      {label:"Oui mais j'ai peur de ne pas réussir", value:"peur"},
+      {label:"Non, j'ai besoin d'être accompagné.", value:"accompagne"}
+    ],
+    next:()=>'final'
+  },
+
+  /* ---------- PAGE 12 ---------- */
+  final:{
+    progress:100, type:'choice', save:'finalYes',
+    eyebrow:"Dernière étape",
+    question:"Et si je te montrais le plan d'action EXACT pour atteindre 3 000 €/mois en tant que copywriter… tu serais prêt à le suivre ?",
+    options:[
+      {emoji:"🔥", label:"Oui, montre-moi le plan", value:"oui"}
+    ],
+    next:()=>'end'
+  },
+
+  /* ---------- FIN ---------- */
+  end:{
+    progress:100, type:'final',
+    html:`<div class="final-badge">✓ Profil analysé</div>
+          <h1>Ton plan personnalisé est <span class="hl">prêt</span>.</h1>
+          <p class="lead big">On t'a préparé l'étape par étape adaptée à ton profil et à tes objectifs.</p>`,
+    media:[ {label:"TÉMOIGNAGES VIDÉOS",video:true} ]
   }
 };
 
+/* =========================================================================
+   MOTEUR DE RENDU
+   ========================================================================= */
+const el = document.getElementById('screen');
+const fill = document.getElementById('progressFill');
+const pct = document.getElementById('progressPct');
 
-// ============================================
-// STATE
-// ============================================
+function resolve(v){ return typeof v === 'function' ? v() : v; }
 
-
-let currentQuestion = 0;
-let scores = { p1: 0, p2: 0, p3: 0, p4: 0, p5: 0, p6: 0 };
-let answers = {};
-let userData = {};
-let detectedProfile = null;
-
-
-// ============================================
-// QUIZ LOGIC
-// ============================================
-
-
-function startQuiz() {
-  document.getElementById('screenIntro').classList.add('hidden');
-  document.getElementById('progressWrap').classList.add('visible');
-  renderQuestion(0);
+function setProgress(p){
+  fill.style.width = p + '%';
+  pct.textContent = p + '%';
 }
 
+function render(id){
+  const s = screens[id];
+  if(!s){ return; }
+  el.dataset.current = id;
+  setProgress(s.progress);
+  el.classList.remove('screen'); void el.offsetWidth; el.classList.add('screen'); // relance l'anim
 
-function renderQuestion(index) {
-  currentQuestion = index;
-  const q = QUESTIONS[index];
-  const container = document.getElementById('questionsContainer');
-  const previousAnswer = answers[q.id];
+  let h = '';
 
+  /* bouton retour (sauf 1er écran) */
+  const canBack = history.length > 0 && id !== 'end';
+  h += `<button class="back ${canBack?'':'hidden'}" onclick="goBack()">← Retour</button>`;
 
-  container.innerHTML = `
-    <div class="card question" id="question-${index}">
-      ${index > 0 ? `<button class="back-btn" onclick="goBack()">← Revenir en arrière</button>` : ''}
-      <h2>${q.title}</h2>
-      <p class="question-hint">${q.hint}</p>
-      <div class="options">
-        ${q.options.map((opt, i) => `
-          <button class="option ${previousAnswer === i ? 'selected' : ''}" onclick="selectOption(${index}, ${i})" data-index="${i}">
-            <span class="option-emoji">${opt.emoji}</span>
-            <span class="option-text">${opt.text}</span>
-          </button>
-        `).join('')}
-      </div>
-    </div>
-  `;
+  /* eyebrow */
+  if(s.eyebrow) h += `<span class="eyebrow">${s.eyebrow}</span>`;
 
-
-  updateProgress(index);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-
-function goBack() {
-  if (currentQuestion > 0) {
-    renderQuestion(currentQuestion - 1);
+  if(s.type === 'choice'){
+    h += `<h1>${resolve(s.question)}</h1>`;
+    h += `<div class="options">`;
+    resolve(s.options).forEach(o=>{
+      h += `<button class="opt" onclick="choose('${id}','${o.value}')">
+              ${o.emoji?`<span class="emoji">${o.emoji}</span>`:''}
+              <span>${o.label}</span>
+              <span class="tick"></span>
+            </button>`;
+    });
+    h += `</div>`;
   }
+
+  else if(s.type === 'scale'){
+    h += `<h1 style="font-size:clamp(20px,5vw,26px)">${resolve(s.question)}</h1>`;
+    h += `<div class="scale">`;
+    for(let i=1;i<=5;i++){
+      h += `<button class="scale-btn" onclick="choose('${id}',${i})">${i}</button>`;
+    }
+    h += `</div>`;
+    h += `<div class="scale-labels"><span>Pas du tout</span><span>Totalement</span></div>`;
+  }
+
+  else if(s.type === 'info'){
+    h += resolve(s.html);
+    if(s.media) h += renderMedia(s.media);
+    if(s.video) h += renderVideo(s.video);
+    if(s.proof) h += renderProof(s.proof);
+    h += `<button class="cta" onclick="goNext('${id}')">${s.cta} <span class="arrow">→</span></button>`;
+  }
+
+  else if(s.type === 'final'){
+    h += resolve(s.html);
+    if(s.media) h += renderMedia(s.media);
+    if(s.video) h += renderVideo(s.video);
+    if(s.proof) h += renderProof(s.proof);
+    if(s.note) h += `<div class="note">${s.note}</div>`;
+  }
+
+  el.innerHTML = h;
+  el.scrollIntoView({block:'start'});
 }
 
-
-function recalculateScores() {
-  // Recalcule tous les scores à partir des réponses enregistrées
-  // (évite les doublons quand l'utilisateur revient en arrière et change sa réponse)
-  scores = { p1: 0, p2: 0, p3: 0, p4: 0, p5: 0, p6: 0 };
-  Object.entries(answers).forEach(([qId, optIndex]) => {
-    const question = QUESTIONS.find(q => q.id === qId);
-    if (question && question.options[optIndex]) {
-      Object.entries(question.options[optIndex].score).forEach(([profile, points]) => {
-        scores[profile] = (scores[profile] || 0) + points;
-      });
-    }
+function renderMedia(items){
+  const single = items.length === 1 ? ' single' : '';
+  let m = `<div class="media-grid${single}">`;
+  items.forEach(it=>{
+    m += `<div class="media ${it.video?'video':''}">
+            <span class="ico">${it.video?'▶':'🖼️'}</span>
+            <span>${it.label}</span>
+          </div>`;
   });
+  m += `</div>`;
+  return m;
 }
 
+function renderVideo(label){
+  return `<div class="media-grid single"><div class="media video">
+            <span class="ico">▶</span><span>${label}</span></div></div>`;
+}
 
-function selectOption(qIndex, optIndex) {
-  const q = QUESTIONS[qIndex];
-
-
-  // Save answer
-  answers[q.id] = optIndex;
-
-
-  // Recalcule tous les scores à partir des réponses (gère le changement de réponse)
-  recalculateScores();
-
-
-  // Visual feedback
-  const buttons = document.querySelectorAll(`#question-${qIndex} .option`);
-  buttons.forEach((b, i) => {
-    if (i === optIndex) b.classList.add('selected');
-    else b.classList.remove('selected');
+function renderProof(labels){
+  let p = `<div class="proof-row">`;
+  labels.forEach(l=>{
+    p += `<div class="proof-card"><span class="ico">▶</span><span>${l}</span></div>`;
   });
-
-
-  // Next
-  setTimeout(() => {
-    if (qIndex < QUESTIONS.length - 1) {
-      renderQuestion(qIndex + 1);
-    } else {
-      showForm();
-    }
-  }, 350);
+  p += `</div>`;
+  return p;
 }
 
-
-function updateProgress(index) {
-  const total = QUESTIONS.length;
-  const current = index + 1;
-  const percent = (current / total) * 100;
-
-
-  document.getElementById('progressFill').style.width = percent + '%';
-  document.getElementById('progressLeft').textContent = `Question ${current} sur ${total}`;
-  const remaining = total - current;
-  document.getElementById('progressRight').textContent = remaining === 0 ? 'Dernière étape !' : `Plus que ${remaining}`;
+/* ---- actions ---- */
+function choose(id, value){
+  const s = screens[id];
+  if(s.save) answers[s.save] = value;
+  goNext(id);
 }
 
-
-function showForm() {
-  document.getElementById('questionsContainer').innerHTML = '';
-  document.getElementById('progressFill').style.width = '100%';
-  document.getElementById('progressLeft').textContent = 'Quiz terminé';
-  document.getElementById('progressRight').textContent = 'Tes infos pour recevoir tes résultats';
-  document.getElementById('screenForm').classList.remove('hidden');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+function goNext(id){
+  const s = screens[id];
+  history.push(id);
+  const nextId = resolve(s.next);
+  if(nextId){ render(nextId); }
+  else { finishQuiz(); }
 }
 
-
-function submitForm() {
-  const firstname = document.getElementById('firstname').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const phone = document.getElementById('phone').value.trim();
-  const errorEl = document.getElementById('formError');
-
-
-  // Validation des 3 champs obligatoires
-  if (!firstname) {
-    showFormError('Indique ton prénom pour continuer.');
-    return;
-  }
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    showFormError('Indique un email valide pour recevoir tes résultats.');
-    return;
-  }
-  if (!phone || phone.replace(/[^0-9]/g, '').length < 8) {
-    showFormError('Indique ton numéro WhatsApp pour qu\'on puisse te contacter.');
-    return;
-  }
-
-
-  errorEl.classList.remove('visible');
-
-
-  userData = { firstname, email, phone };
-  detectedProfile = detectProfile();
-
-
-  sendLeadToGHL();
-
-
-  showResult();
+function goBack(){
+  const prev = history.pop();
+  if(prev) render(prev);
 }
 
-
-function showFormError(message) {
-  const errorEl = document.getElementById('formError');
-  errorEl.textContent = '⚠ ' + message;
-  errorEl.classList.add('visible');
+function finishQuiz(){
+  console.log('✅ Quiz terminé. Réponses :', answers);
+  /* >>> ASSOCIÉ : c'est ici qu'on envoie `answers` (CRM, webhook, redirection…) <<< */
 }
 
-
-function detectProfile() {
-  let maxScore = -1;
-  let topProfile = 'p1';
-  Object.entries(scores).forEach(([profile, score]) => {
-    if (score > maxScore) {
-      maxScore = score;
-      topProfile = profile;
-    }
-  });
-  return topProfile;
-}
-
-
-function showResult() {
-  document.getElementById('screenForm').classList.add('hidden');
-  document.getElementById('progressWrap').classList.remove('visible');
-
-
-  const profile = PROFILES[detectedProfile];
-  document.getElementById('profileName').textContent = profile.name;
-  document.getElementById('resultSummary').innerHTML = `
-    <strong>${profile.label}</strong>
-    ${profile.summary}
-  `;
-  document.getElementById('countdown').textContent = '5';
-  document.getElementById('screenResult').classList.remove('hidden');
-
-
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-
-
-  // Countdown auto-redirect
-  let count = 5;
-  const countdownEl = document.getElementById('countdown');
-  const interval = setInterval(() => {
-    count--;
-    if (count >= 0 && countdownEl) countdownEl.textContent = count;
-    if (count <= 0) {
-      clearInterval(interval);
-      redirectNow();
-    }
-  }, 1000);
-}
-
-
-function redirectNow() {
-  const profile = PROFILES[detectedProfile];
-  // Stocker les data en localStorage pour la page de destination (optionnel)
-  try {
-    localStorage.setItem('quiz_profile', detectedProfile);
-    localStorage.setItem('quiz_user', JSON.stringify(userData));
-    localStorage.setItem('quiz_scores', JSON.stringify(scores));
-  } catch(e) {}
-
-
-  // Redirection vraie vers la page d'explication adaptée au profil
-  window.location.href = profile.redirect;
-}
+/* ---- démarrage ---- */
+render('status');
 </script>
-
-
 </body>
 </html>
