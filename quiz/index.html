@@ -45,7 +45,9 @@
   .brand{
     font-family:'Inter',system-ui,sans-serif;
     font-weight:800;font-size:15px;letter-spacing:-.02em;white-space:nowrap;
+    display:inline-flex;align-items:center;gap:6px;
   }
+  .brand-mark{height:19px;width:auto;display:block;flex-shrink:0}
   .brand span{color:var(--accent-press)}
   .progress-track{flex:1;height:7px;background:var(--line);border-radius:99px;overflow:hidden}
   .progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-press));border-radius:99px;transition:width .5s cubic-bezier(.4,0,.2,1)}
@@ -177,7 +179,7 @@
 
   <div class="topbar">
     <div class="topbar-inner">
-      <div class="brand">✒️ Le Copy <span>Quiz</span></div>
+      <div class="brand"><svg class="brand-mark" viewBox="0 0 287 586" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M91.3941 378.634L101.769 417.353L176.082 458.699L216.786 566.358L198.207 452.771L213.283 413.162L186.063 429.77L231.517 341.089L221.142 302.371L210.768 263.653L149.105 313.769L190.019 186.217L179.644 147.499L169.27 108.78L70.0612 18.774L29.1473 146.326L128.356 236.333L49.8963 223.762L60.2707 262.48L70.6452 301.198L169.854 391.205L91.3941 378.634Z" fill="#FEAA02"/></svg>Le Copy <span>Quiz</span></div>
       <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
       <div class="progress-pct" id="progressPct">0%</div>
     </div>
