@@ -173,6 +173,20 @@
     display:inline-flex;align-items:center;gap:7px;background:var(--accent-soft);color:var(--accent-press);
     font-weight:600;font-size:13px;padding:7px 13px;border-radius:99px;margin-bottom:16px;
   }
+
+  /* ---------- Capture lead ---------- */
+  .lead-form{margin-top:22px;display:flex;flex-direction:column;gap:11px}
+  .field-lead{
+    width:100%;font-family:inherit;font-size:16px;color:var(--ink);
+    background:var(--card);border:1.5px solid var(--line);border-radius:var(--radius);
+    padding:16px 18px;transition:border-color .15s,box-shadow .15s;
+  }
+  .field-lead::placeholder{color:#b0aca3}
+  .field-lead:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+  .lead-error{display:none;color:#D92D20;font-size:13.5px;font-weight:600}
+  .lead-error.show{display:block}
+  .lead-form .cta{margin-top:5px}
+  .lead-trust{text-align:center;font-size:12.5px;color:var(--ink-soft)}
 </style>
 </head>
 <body>
@@ -532,13 +546,12 @@ const screens = {
     next:()=>'end'
   },
 
-  /* ---------- FIN ---------- */
+  /* ---------- CAPTURE LEAD → redirection vers le plan (page profil) ---------- */
   end:{
-    progress:100, type:'final',
+    progress:100, type:'lead',
     html:`<div class="final-badge">✓ Profil analysé</div>
           <h1>Ton plan personnalisé est <span class="hl">prêt</span>.</h1>
-          <p class="lead big">On t'a préparé l'étape par étape adaptée à ton profil et à tes objectifs.</p>`,
-    media:[ {label:"TÉMOIGNAGES VIDÉOS",video:true} ]
+          <p class="lead big">Dis-moi juste où te l'envoyer — tu y accèdes juste après. 👇</p>`
   }
 };
 
@@ -603,12 +616,16 @@ function render(id){
     h += `<button class="cta" onclick="goNext('${id}')">${s.cta} <span class="arrow">→</span></button>`;
   }
 
-  else if(s.type === 'final'){
+  else if(s.type === 'lead'){
     h += resolve(s.html);
-    if(s.media) h += renderMedia(s.media);
-    if(s.video) h += renderVideo(s.video);
-    if(s.proof) h += renderProof(s.proof);
-    if(s.note) h += `<div class="note">${s.note}</div>`;
+    h += `<div class="lead-form">
+            <input class="field-lead" id="lead-firstname" type="text" placeholder="Ton prénom" autocomplete="given-name">
+            <input class="field-lead" id="lead-email" type="email" placeholder="Ton email" autocomplete="email">
+            <input class="field-lead" id="lead-phone" type="tel" placeholder="Ton numéro WhatsApp" autocomplete="tel">
+            <div class="lead-error" id="lead-error"></div>
+            <button class="cta" onclick="submitLead()">Recevoir mon plan <span class="arrow">→</span></button>
+            <p class="lead-trust">🔒 100% confidentiel. Pas de spam, jamais.</p>
+          </div>`;
   }
 
   el.innerHTML = h;
@@ -665,6 +682,95 @@ function goBack(){
 function finishQuiz(){
   console.log('✅ Quiz terminé. Réponses :', answers);
   /* >>> ASSOCIÉ : c'est ici qu'on envoie `answers` (CRM, webhook, redirection…) <<< */
+}
+
+/* =========================================================================
+   TUNNEL — capture du lead, scoring profil, envoi GHL, redirection
+   ========================================================================= */
+const CONFIG = {
+  // Inbound Webhook GoHighLevel. Vide = pas d'envoi (le quiz fonctionne quand même).
+  ghlWebhookUrl: ""
+};
+
+const PROFILES = {
+  p1:{ name:"Le Débutant Ambitieux", redirect:"explication_debutant_total.html" },
+  p2:{ name:"Le Reconverti Motivé",  redirect:"explication_reconverti_motive_v2.html" },
+  p3:{ name:"Le Formé Bloqué",       redirect:"explication_forme_bloque.html" },
+  p4:{ name:"Le Freelance Instable", redirect:"explication_freelance_instable.html" },
+  p5:{ name:"Le Plafond Invisible",  redirect:"explication_scaler.html" },
+  p6:{ name:"L'Entrepreneur",        redirect:"explication_entrepreneur.html" }
+};
+
+/* Scoring heuristique réponses → 6 profils. Pondérations à affiner avec Sol.
+   NB : p6 (Entrepreneur) reste rare faute de question « as-tu déjà un business ? ». */
+function computeScores(){
+  const s = {p1:0,p2:0,p3:0,p4:0,p5:0,p6:0};
+  const add = m => { if(m) for(const k in m) s[k]+=m[k]; };
+  const A = answers;
+  add({etudiant:{p1:2,p2:1}, salarie:{p2:2,p1:1,p3:1}, freelance:{p4:3,p5:1}}[A.status]);
+  if(A.tried==='non'){
+    add({p1:3});
+    add({peur:{p1:2}, prix:{p1:1,p2:1}, temps:{p1:1}}[A.whyNot]);
+  } else if(A.tried==='oui'){
+    add({debut:{p1:3}, bases:{p3:3,p1:1}, sansclients:{p3:2,p4:2}, irregulier:{p4:2,p5:2}}[A.level]);
+    add({clients:{p3:1,p4:1}, prospect:{p3:1,p4:1}, niveau:{p3:2,p1:1}, temps:{p4:1,p1:1}, plan:{p1:2,p3:1}}[A.problem]);
+  }
+  add({quitter:{p2:2,p1:1}, argent:{p4:1,p5:1}, liberte:{p2:1,p4:1}, passion:{p1:1,p3:1}}[A.motivation]);
+  add({'0':{p1:3}, '<500':{p1:2,p3:1}, '500-1000':{p3:1,p4:1}, '1000-3000':{p4:2,p5:1}, '>3000':{p5:3,p6:1}}[A.generated]);
+  add({'1000':{p1:1}, '3000':{p2:1,p3:1}, '5000':{p4:1,p2:1}, '10000':{p5:2}, '>10000':{p5:2,p6:2}}[A.goal]);
+  add({plan:{p3:1}, seul:{p5:1}, peur:{p1:1,p3:1}, accompagne:{p2:1,p4:1}}[A.capable]);
+  return s;
+}
+
+function detectProfile(scores){
+  let max=-1, top='p1';
+  ['p1','p2','p3','p4','p5','p6'].forEach(p=>{ if(scores[p]>max){ max=scores[p]; top=p; } });
+  return top;
+}
+
+function sendLeadToGHL(userData, scores, code){
+  if(!CONFIG.ghlWebhookUrl) return;
+  const p = PROFILES[code] || {};
+  const payload = {
+    firstName:userData.firstname, email:userData.email, phone:userData.phone,
+    source:"Le Copy Quiz", quiz_version:"conditionnel",
+    quiz_profile_code:code, quiz_profile_name:p.name||"",
+    quiz_score_p1:scores.p1, quiz_score_p2:scores.p2, quiz_score_p3:scores.p3,
+    quiz_score_p4:scores.p4, quiz_score_p5:scores.p5, quiz_score_p6:scores.p6,
+    quiz_scores:JSON.stringify(scores), quiz_answers:JSON.stringify(answers),
+    completed_at:new Date().toISOString()
+  };
+  try{
+    fetch(CONFIG.ghlWebhookUrl,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload),keepalive:true}).catch(function(){});
+  }catch(e){}
+}
+
+function submitLead(){
+  const firstname=(document.getElementById('lead-firstname').value||'').trim();
+  const email=(document.getElementById('lead-email').value||'').trim();
+  const phone=(document.getElementById('lead-phone').value||'').trim();
+  const err=document.getElementById('lead-error');
+  const fail=m=>{ err.textContent='⚠ '+m; err.classList.add('show'); };
+  if(!firstname){ return fail('Indique ton prénom pour continuer.'); }
+  if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ return fail('Indique un email valide pour recevoir ton plan.'); }
+  if(!phone || phone.replace(/[^0-9]/g,'').length<8){ return fail('Indique ton numéro WhatsApp pour qu\'on puisse te contacter.'); }
+  err.classList.remove('show');
+
+  const userData = {firstname, email, phone};
+  const scores = computeScores();
+  const code = detectProfile(scores);
+
+  sendLeadToGHL(userData, scores, code);
+  try{
+    localStorage.setItem('quiz_profile', code);
+    localStorage.setItem('quiz_user', JSON.stringify(userData));
+    localStorage.setItem('quiz_scores', JSON.stringify(scores));
+    localStorage.setItem('quiz_answers', JSON.stringify(answers));
+  }catch(e){}
+
+  const btn = document.querySelector('.lead-form .cta');
+  if(btn){ btn.disabled=true; btn.innerHTML='Redirection…'; }
+  window.location.href = (PROFILES[code]||PROFILES.p1).redirect;
 }
 
 /* ---- démarrage ---- */
