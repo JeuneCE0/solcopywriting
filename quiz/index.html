@@ -158,9 +158,12 @@
   }
   .proof-card .ico{font-size:18px}
 
-  /* Médias preuve sociale (images/vidéos réelles) */
-  .media.has-img, .proof-card.has-img{border:none;background:#0f0f12;padding:0;overflow:hidden}
-  .media.has-img img, .proof-card.has-img img{width:100%;height:100%;object-fit:cover;display:block}
+  /* Preuve sociale — galerie images plein cadre, cliquables, responsive (masonry) */
+  .pgrid{margin-top:24px;columns:2;column-gap:10px}
+  .pcell{display:block;break-inside:avoid;margin:0 0 10px;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff;cursor:zoom-in;transition:transform .12s ease,box-shadow .15s ease}
+  .pcell:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.14)}
+  .pcell img{width:100%;height:auto;display:block}
+  @media (max-width:480px){ .pgrid{columns:1} }
   .qvideo{margin-top:24px;border-radius:14px;overflow:hidden;background:#000;box-shadow:0 6px 20px rgba(0,0,0,.12)}
   .qvideo video{width:100%;max-height:72vh;display:block}
 
@@ -638,20 +641,26 @@ function render(id){
 }
 
 function renderMedia(items){
+  if(items[0] && items[0].src) return proofGallery(items);
   const single = items.length === 1 ? ' single' : '';
   let m = `<div class="media-grid${single}">`;
   items.forEach(it=>{
-    if(it.src){
-      m += `<div class="media has-img ${it.video?'video':''}"><img src="${it.src}" loading="lazy" alt="Preuve"></div>`;
-    } else {
-      m += `<div class="media ${it.video?'video':''}">
+    m += `<div class="media ${it.video?'video':''}">
             <span class="ico">${it.video?'▶':'🖼️'}</span>
             <span>${it.label}</span>
           </div>`;
-    }
   });
   m += `</div>`;
   return m;
+}
+
+function proofGallery(items){
+  let g = `<div class="pgrid">`;
+  items.forEach(it=>{
+    g += `<a class="pcell" href="${it.src}" target="_blank" rel="noopener" aria-label="Voir en grand"><img src="${it.src}" loading="lazy" alt="Preuve de résultat"></a>`;
+  });
+  g += `</div>`;
+  return g;
 }
 
 function renderVideo(v){
@@ -663,13 +672,10 @@ function renderVideo(v){
 }
 
 function renderProof(items){
+  if(items[0] && items[0].src) return proofGallery(items);
   let p = `<div class="proof-row">`;
   items.forEach(l=>{
-    if(l && l.src){
-      p += `<div class="proof-card has-img"><img src="${l.src}" loading="lazy" alt="Témoignage"></div>`;
-    } else {
-      p += `<div class="proof-card"><span class="ico">▶</span><span>${l}</span></div>`;
-    }
+    p += `<div class="proof-card"><span class="ico">▶</span><span>${l}</span></div>`;
   });
   p += `</div>`;
   return p;
