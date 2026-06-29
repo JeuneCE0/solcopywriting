@@ -749,8 +749,8 @@ function finishQuiz(){
    TUNNEL — capture du lead, scoring profil, envoi GHL, redirection
    ========================================================================= */
 const CONFIG = {
-  // Inbound Webhook GoHighLevel. Vide = pas d'envoi (le quiz fonctionne quand même).
-  ghlWebhookUrl: "https://services.leadconnectorhq.com/hooks/2lB0paK192CFU1cLz5eT/webhook-trigger/b80e5ada-e143-42a2-8b78-b7bb9486799a"
+  // Endpoint serveur (api/lead.js) qui relaie vers l'API GHL : contact + remarque (réponses) + opportunité par stage.
+  leadEndpoint: "/api/lead"
 };
 
 const PROFILES = {
@@ -823,7 +823,6 @@ function quizAnswersReadable(){
 }
 
 function sendLeadToGHL(userData, scores, code){
-  if(!CONFIG.ghlWebhookUrl) return;
   const p = PROFILES[code] || {};
   const src = quizSource();
   const stage = src === 'ads' ? 'Quiz Ads' : src === 'orga' ? 'Quiz Orga' : 'Quiz';
@@ -841,7 +840,7 @@ function sendLeadToGHL(userData, scores, code){
   };
   Object.assign(payload, ra.flat);
   try{
-    fetch(CONFIG.ghlWebhookUrl,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload),keepalive:true}).catch(function(){});
+    fetch(CONFIG.leadEndpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload),keepalive:true}).catch(function(){});
   }catch(e){}
 }
 
