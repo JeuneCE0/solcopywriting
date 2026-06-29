@@ -801,11 +801,33 @@ function quizSource(){
   return 'direct';
 }
 
+// Récap lisible de TOUTES les réponses (question → réponse choisie) : un champ texte mappable + champs q_<clé> à plat.
+function quizAnswersReadable(){
+  const flat = {}; const lines = [];
+  Object.keys(screens).forEach(id=>{
+    const s = screens[id];
+    if(!s || !s.save) return;
+    const val = answers[s.save];
+    if(val == null || val === '') return;
+    let q;
+    try{ q = String(resolve(s.question) || s.eyebrow || s.save).replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim(); }catch(e){ q = s.save; }
+    let label = val;
+    if(s.type === 'scale'){ label = val + '/5'; }
+    else if(s.options){
+      try{ const f = (resolve(s.options)||[]).find(o=>String(o.value)===String(val)); if(f) label = f.label; }catch(e){}
+    }
+    flat['q_'+s.save] = label;
+    lines.push(q + ' → ' + label);
+  });
+  return { flat, recap: lines.join('\n') };
+}
+
 function sendLeadToGHL(userData, scores, code){
   if(!CONFIG.ghlWebhookUrl) return;
   const p = PROFILES[code] || {};
   const src = quizSource();
   const stage = src === 'ads' ? 'Quiz Ads' : src === 'orga' ? 'Quiz Orga' : 'Quiz';
+  const ra = quizAnswersReadable();
   const payload = {
     firstName:userData.firstname, email:userData.email, phone:userData.phone,
     source:"Le Copy Quiz", quiz_version:"conditionnel",
@@ -813,9 +835,11 @@ function sendLeadToGHL(userData, scores, code){
     quiz_profile_code:code, quiz_profile_name:p.name||"",
     quiz_score_p1:scores.p1, quiz_score_p2:scores.p2, quiz_score_p3:scores.p3,
     quiz_score_p4:scores.p4, quiz_score_p5:scores.p5, quiz_score_p6:scores.p6,
+    quiz_recap:ra.recap,
     quiz_scores:JSON.stringify(scores), quiz_answers:JSON.stringify(answers),
     completed_at:new Date().toISOString()
   };
+  Object.assign(payload, ra.flat);
   try{
     fetch(CONFIG.ghlWebhookUrl,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload),keepalive:true}).catch(function(){});
   }catch(e){}
