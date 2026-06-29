@@ -159,14 +159,14 @@
   .proof-card .ico{font-size:18px}
 
   /* Preuve sociale — galerie images plein cadre, cliquables, responsive (masonry) */
-  .pgrid{margin-top:24px;columns:2;column-gap:10px}
-  .pcell{display:block;width:100%;padding:0;font:inherit;break-inside:avoid;margin:0 0 10px;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff;cursor:zoom-in;transition:transform .12s ease,box-shadow .15s ease}
-  .pcell:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.14)}
+  /* galerie : un visuel par ligne, en grand — déborde la colonne de texte, centré sur le viewport */
+  .pgrid{margin:26px 0 0;display:flex;flex-direction:column;gap:16px;width:min(720px,94vw);position:relative;left:50%;transform:translateX(-50%)}
+  .pcell{display:block;width:100%;padding:0;font:inherit;margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#fff;cursor:zoom-in;transition:transform .12s ease,box-shadow .15s ease}
+  .pcell:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.16)}
   .pcell img{width:100%;height:auto;display:block}
-  @media (max-width:480px){ .pgrid{columns:1} }
 
-  .qvideo{position:relative;display:block;width:100%;padding:0;margin-top:24px;border:none;border-radius:14px;overflow:hidden;background:#000;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.12)}
-  .qvideo video{width:100%;max-height:72vh;display:block;pointer-events:none}
+  .qvideo{position:relative;left:50%;transform:translateX(-50%);display:block;width:min(720px,94vw);padding:0;margin-top:26px;border:none;border-radius:14px;overflow:hidden;background:#000;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.12)}
+  .qvideo video{width:100%;max-height:80vh;display:block;pointer-events:none}
   .qvideo-play,.pcell-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:62px;height:62px;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;font-size:23px;display:flex;align-items:center;justify-content:center;pointer-events:none}
 
   /* Lightbox / popup */
