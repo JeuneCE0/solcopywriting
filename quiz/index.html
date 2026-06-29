@@ -158,6 +158,12 @@
   }
   .proof-card .ico{font-size:18px}
 
+  /* Médias preuve sociale (images/vidéos réelles) */
+  .media.has-img, .proof-card.has-img{border:none;background:#0f0f12;padding:0;overflow:hidden}
+  .media.has-img img, .proof-card.has-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .qvideo{margin-top:24px;border-radius:14px;overflow:hidden;background:#000;box-shadow:0 6px 20px rgba(0,0,0,.12)}
+  .qvideo video{width:100%;max-height:72vh;display:block}
+
   .note{
     margin-top:22px;font-size:12.5px;color:#A39C8C;
     border-top:1px dashed var(--line);padding-top:12px;
@@ -295,7 +301,7 @@ const screens = {
     html:`<h1>7 débutants sur 10 <span class="hl">abandonnent</span> le copywriting</h1>
           <p class="lead big">…parce qu'ils ne trouvent jamais de clients.</p>
           <p class="lead">Mais peu savent qu'il existe une autre approche : trouver des clients <strong>premium</strong> en moins de <strong>45 jours</strong>.</p>`,
-    media:[ {label:"PHOTO / preuve"},{label:"PHOTO / preuve"},{label:"PHOTO / preuve"},{label:"PHOTO / preuve"} ],
+    media:[ {src:"proof/1-page1-7-debutants/1.jpg"},{src:"proof/1-page1-7-debutants/2.jpg"},{src:"proof/1-page1-7-debutants/3.png"},{src:"proof/1-page1-7-debutants/4.png"} ],
     cta:"Continuer",
     next:()=>'motivation'
   },
@@ -363,7 +369,6 @@ const screens = {
     html:`<h1>C'est <span class="hl">normal</span> si tu n'as pas eu de vrais résultats.</h1>
           <p class="lead big">Ce qu'il te faut, ce n'est pas une méthode « secrète ».</p>
           <p class="lead">C'est un plan personnalisé, adapté à ton profil, tes objectifs et ton emploi du temps. On va aller un cran plus loin pour comprendre ce qui te bloque encore.</p>`,
-    media:[ {label:"PHOTO"},{label:"PHOTO"},{label:"PHOTO"} ],
     cta:"Continuer",
     next:()=>'likert1'
   },
@@ -388,7 +393,7 @@ const screens = {
     html:`<h1>La peur ne partira <span class="hl">JAMAIS</span>.</h1>
           <p class="lead big">Mais tous ceux qui réussissent aujourd'hui sont passés par exactement le même doute que toi.</p>
           <p class="lead">La seule différence ? Ils ont suivi un plan d'action clair, étape par étape. Car quand tu sais précisément quoi faire tous les jours, la peur laisse place à l'action !</p>`,
-    proof:[ "TÉMOIGNAGE","TÉMOIGNAGE","TÉMOIGNAGE" ],
+    video:{src:"proof/2-peur/jimmy.mp4"},
     cta:"Ok, on continue",
     next:()=>'likert1'
   },
@@ -399,8 +404,7 @@ const screens = {
     html:`<h1>Certaines formations sont chères… mais le vrai coût, c'est de <span class="hl">ne rien faire</span> !</h1>
           <p class="lead big">Si tu travailles sérieusement… se former, c'est un investissement. Et pas une dépense.</p>
           <p class="lead">Et honnêtement, avec la bonne méthode, un seul client peut te rembourser ta formation. C'est d'ailleurs ce qui se passe pour tous mes clients.</p>`,
-    media:[ {label:"SCREEN RÉSULTAT"},{label:"SCREEN RÉSULTAT"} ],
-    video:"VIDÉO RÉSULTAT",
+    media:[ {src:"proof/3-prix/1.jpg"},{src:"proof/3-prix/2.jpg"} ],
     cta:"Vu comme ça… on continue",
     next:()=>'likert1'
   },
@@ -423,7 +427,7 @@ const screens = {
           <p class="lead big">Tu ne penses pas qu'avec ${screenTimeLabel()}, tu pourrais développer une compétence et lancer un business pour devenir libre ?</p>
           <p class="lead">On est d'accord : ce n'est donc pas vraiment une question de temps. 😉</p>
           <p class="lead" style="margin-top:18px"><strong>Ils ont eu leurs premiers résultats en moins de 2h par jour :</strong></p>`,
-    proof:[ "TÉMOIGNAGE","TÉMOIGNAGE","TÉMOIGNAGE" ],
+    proof:[ {src:"proof/4-temps/1.jpg"},{src:"proof/4-temps/2.jpg"},{src:"proof/4-temps/3.jpg"} ],
     cta:"Carrément, on continue",
     next:()=>'likert1'
   },
@@ -455,7 +459,7 @@ const screens = {
     html:`<h1>Tiens bon… le plus <span class="hl">intéressant</span> arrive.</h1>
           <p class="lead big">À la fin de ce quiz, tu repars avec le plan d'action exact, adapté à ton profil, pour faire tes premiers 3.000€/mois dans le copy même si tu pars de 0.</p>
           <p class="lead">Ce plan là, ils l'ont suivi 👇</p>`,
-    proof:[ "TÉMOIGNAGE","TÉMOIGNAGE","TÉMOIGNAGE" ],
+    media:[ {src:"proof/5-tiens-bon/1.png"} ],
     cta:"Je continue",
     next:()=>'likert4'
   },
@@ -506,7 +510,7 @@ const screens = {
     eyebrow:"Ils l'ont fait",
     html:`<h1>Atteindre ce résultat, c'est <span class="hl">carrément possible</span>.</h1>
           <p class="lead big">Regarde ils l'ont fait 👇 :</p>`,
-    media:[ {label:"TÉMOIGNAGE VIDÉO",video:true},{label:"TÉMOIGNAGE VIDÉO",video:true} ],
+    proof:[ {src:"proof/6-resultats/1.jpg"},{src:"proof/6-resultats/2.jpg"},{src:"proof/6-resultats/3.jpg"},{src:"proof/6-resultats/4.jpg"},{src:"proof/6-resultats/5.jpg"},{src:"proof/6-resultats/6.jpg"} ],
     cta:"Continuer",
     next:()=>'projection'
   },
@@ -637,24 +641,35 @@ function renderMedia(items){
   const single = items.length === 1 ? ' single' : '';
   let m = `<div class="media-grid${single}">`;
   items.forEach(it=>{
-    m += `<div class="media ${it.video?'video':''}">
+    if(it.src){
+      m += `<div class="media has-img ${it.video?'video':''}"><img src="${it.src}" loading="lazy" alt="Preuve"></div>`;
+    } else {
+      m += `<div class="media ${it.video?'video':''}">
             <span class="ico">${it.video?'▶':'🖼️'}</span>
             <span>${it.label}</span>
           </div>`;
+    }
   });
   m += `</div>`;
   return m;
 }
 
-function renderVideo(label){
+function renderVideo(v){
+  if(v && v.src){
+    return `<div class="qvideo"><video src="${v.src}" controls preload="none" playsinline></video></div>`;
+  }
   return `<div class="media-grid single"><div class="media video">
-            <span class="ico">▶</span><span>${label}</span></div></div>`;
+            <span class="ico">▶</span><span>${v}</span></div></div>`;
 }
 
-function renderProof(labels){
+function renderProof(items){
   let p = `<div class="proof-row">`;
-  labels.forEach(l=>{
-    p += `<div class="proof-card"><span class="ico">▶</span><span>${l}</span></div>`;
+  items.forEach(l=>{
+    if(l && l.src){
+      p += `<div class="proof-card has-img"><img src="${l.src}" loading="lazy" alt="Témoignage"></div>`;
+    } else {
+      p += `<div class="proof-card"><span class="ico">▶</span><span>${l}</span></div>`;
+    }
   });
   p += `</div>`;
   return p;
