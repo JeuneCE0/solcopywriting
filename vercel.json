@@ -2,6 +2,8 @@
   "routes": [
     { "has": [{ "type": "host", "value": "lecopyquiz.com" }],          "src": "/(ads|orga)",   "dest": "/quiz/index.html" },
     { "has": [{ "type": "host", "value": "www.lecopyquiz.com" }],      "src": "/(ads|orga)",   "dest": "/quiz/index.html" },
+    { "has": [{ "type": "host", "value": "lecopyquiz.com" }],          "src": "/lp",           "dest": "/quiz/lp/index.html" },
+    { "has": [{ "type": "host", "value": "www.lecopyquiz.com" }],      "src": "/lp",           "dest": "/quiz/lp/index.html" },
     { "has": [{ "type": "host", "value": "lecopyquiz.com" }],          "src": "/(.*)",         "dest": "/quiz/$1" },
     { "has": [{ "type": "host", "value": "www.lecopyquiz.com" }],      "src": "/(.*)",         "dest": "/quiz/$1" },
     { "has": [{ "type": "host", "value": "quizz.solcopywriting.com" }], "src": "/(.*)",         "dest": "/quiz/$1" },

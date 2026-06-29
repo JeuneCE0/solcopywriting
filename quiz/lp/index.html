@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Copy Quiz — Ton plan pour atteindre 3 000€/mois en copywriting</title>
+<meta name="description" content="Complète ce quiz de 3 min et récupère ton plan d'action personnalisé pour atteindre 3 000€/mois en tant que copywriter — même si tu n'as jamais signé de client.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAFAFA; --card:#FFFFFF; --ink:#1A1A1A; --ink-soft:#5A5A66; --muted:#6B6B6B;
+    --line:#E5E5E5; --accent:#F5A623; --accent-soft:#FFF3D6; --accent-press:#D68A0A;
+    --marker:#FFE15A; --midnight:#121212; --r:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    background:var(--paper); color:var(--ink); line-height:1.6;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  .wrap{max-width:980px;margin:0 auto;padding:0 20px}
+  .narrow{max-width:680px;margin:0 auto}
+  mark{background:linear-gradient(180deg,transparent 58%,var(--marker) 58%);color:inherit;padding:0 2px}
+
+  /* APPBAR */
+  .appbar{position:sticky;top:0;z-index:40;background:rgba(250,250,250,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .appbar-row{max-width:980px;margin:0 auto;padding:13px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+  .brand{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:16px;letter-spacing:-.02em}
+  .brand .mark{height:21px;width:auto;display:block;flex-shrink:0}
+  .brand b{color:var(--accent-press)}
+  .nav-cta{display:inline-flex;align-items:center;gap:7px;background:var(--accent);color:var(--ink);font-weight:800;font-size:14px;padding:11px 18px;border-radius:11px;text-decoration:none;box-shadow:0 3px 0 var(--accent-press);transition:transform .12s,box-shadow .12s}
+  .nav-cta:hover{transform:translateY(2px);box-shadow:0 1px 0 var(--accent-press)}
+  @media(max-width:560px){.nav-cta span{display:none}}
+
+  /* HERO */
+  .hero{text-align:center;padding:54px 0 20px}
+  .eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-press);background:var(--accent-soft);border:1px solid var(--accent);padding:7px 15px;border-radius:100px;margin-bottom:22px}
+  h1{font-size:clamp(30px,5.6vw,50px);font-weight:900;line-height:1.08;letter-spacing:-.03em;margin-bottom:18px}
+  .hero .paren{display:block;font-size:clamp(15px,2.4vw,18px);font-weight:600;color:var(--muted);margin-top:10px;letter-spacing:0}
+  .lead{font-size:clamp(16px,2.3vw,19px);color:var(--ink-soft);max-width:600px;margin:0 auto 26px}
+  .lead b{color:var(--ink);font-weight:700}
+  .trust{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;font-size:14.5px;font-weight:600;color:var(--ink);margin-bottom:18px}
+  .trust span{display:inline-flex;align-items:center;gap:7px}
+  .trust .ck{color:#10b981;font-weight:900}
+  .social{font-size:13.5px;color:var(--muted);font-style:italic;margin-top:6px}
+
+  /* CTA button */
+  .cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--accent);color:var(--ink);font-family:inherit;font-weight:900;font-size:clamp(16px,2.2vw,18px);padding:18px 36px;border:none;border-radius:14px;text-decoration:none;cursor:pointer;box-shadow:0 5px 0 var(--accent-press);transition:transform .12s,box-shadow .12s}
+  .cta:hover{transform:translateY(3px);box-shadow:0 2px 0 var(--accent-press)}
+  .cta .arrow{transition:transform .15s}
+  .cta:hover .arrow{transform:translateX(4px)}
+  .cta-sub{display:block;font-size:12.5px;color:var(--muted);margin-top:11px}
+
+  /* VIDEO */
+  .video-sec{padding:18px 0 8px}
+  .video-card{max-width:760px;margin:0 auto;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 18px 50px rgba(0,0,0,.18);border:1px solid var(--line)}
+  .video-card video{width:100%;max-height:78vh;display:block}
+  .video-cap{text-align:center;font-size:13.5px;color:var(--muted);margin-top:12px}
+
+  /* SECTION shells */
+  section.block{padding:48px 0}
+  .kicker{text-align:center;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-press);margin-bottom:12px}
+  h2{font-size:clamp(24px,4vw,34px);font-weight:900;letter-spacing:-.025em;line-height:1.14;text-align:center;margin-bottom:14px}
+
+  /* ABOUT SOL */
+  .about{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .about p{font-size:16.5px;color:var(--ink-soft);margin:0 auto 14px;max-width:640px}
+  .about p b{color:var(--ink)}
+  .about .sig{font-weight:800;color:var(--ink);font-size:17px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:30px auto 6px;max-width:760px}
+  .stat{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 12px;text-align:center}
+  .stat .n{font-size:clamp(20px,3vw,26px);font-weight:900;color:var(--accent-press);letter-spacing:-.02em;line-height:1}
+  .stat .l{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:6px;line-height:1.3}
+  @media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+  /* BENEFITS */
+  .benefits{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:820px;margin:28px auto 0}
+  .benefit{display:flex;gap:13px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 18px}
+  .benefit .ix{flex-shrink:0;width:30px;height:30px;border-radius:9px;background:var(--accent-soft);color:var(--accent-press);font-weight:900;display:flex;align-items:center;justify-content:center;font-size:15px}
+  .benefit p{font-size:15.5px;font-weight:600;color:var(--ink);line-height:1.4}
+  @media(max-width:640px){.benefits{grid-template-columns:1fr}}
+
+  /* TESTIMONIALS gallery */
+  .tgrid{columns:3;column-gap:14px;max-width:900px;margin:26px auto 0}
+  .tcell{display:block;width:100%;padding:0;font:inherit;break-inside:avoid;margin:0 0 14px;border-radius:13px;overflow:hidden;border:1px solid var(--line);background:#fff;cursor:zoom-in;transition:transform .12s,box-shadow .15s}
+  .tcell:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.14)}
+  .tcell img{width:100%;height:auto;display:block}
+  @media(max-width:780px){.tgrid{columns:2}}
+  @media(max-width:480px){.tgrid{columns:1}}
+
+  /* FINAL CTA band */
+  .final{background:var(--midnight);color:#fff;text-align:center;padding:60px 20px}
+  .final h2{color:#fff}
+  .final .lead{color:rgba(255,255,255,.75)}
+  .final .trust{color:#fff}
+  .final .social{color:rgba(255,255,255,.6)}
+
+  /* FOOTER */
+  footer{text-align:center;padding:30px 20px;font-size:12.5px;color:var(--muted)}
+  footer .disc{max-width:620px;margin:0 auto 8px}
+
+  /* Lightbox */
+  .lb{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:rgba(10,10,15,.88);backdrop-filter:blur(4px);padding:20px}
+  .lb[hidden]{display:none}
+  .lb img{max-width:min(92vw,560px);max-height:90vh;width:auto;height:auto;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+  .lb-close{position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,.16);color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .lb-close:hover{background:rgba(255,255,255,.3)}
+
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- APPBAR -->
+<div class="appbar">
+  <div class="appbar-row">
+    <a class="brand" href="#top" style="text-decoration:none;color:inherit">
+      <svg class="mark" viewBox="0 0 287 586" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M91.3941 378.634L101.769 417.353L176.082 458.699L216.786 566.358L198.207 452.771L213.283 413.162L186.063 429.77L231.517 341.089L221.142 302.371L210.768 263.653L149.105 313.769L190.019 186.217L179.644 147.499L169.27 108.78L70.0612 18.774L29.1473 146.326L128.356 236.333L49.8963 223.762L60.2707 262.48L70.6452 301.198L169.854 391.205L91.3941 378.634Z" fill="#FEAA02"/></svg>
+      <span>Le Copy <b>Quiz</b></span>
+    </a>
+    <a class="nav-cta js-cta" href="/">🚀 <span>Faire le quiz</span></a>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap narrow">
+    <span class="eyebrow">Par Sol · +6M€ générés · +1500 copywriters formés</span>
+    <h1>Complète ce quiz de 3 min et récupère ton plan d'action pour atteindre <mark>3 000€/mois</mark> en tant que copywriter
+      <span class="paren">…même si tu n'as jamais signé de client.</span>
+    </h1>
+    <p class="lead">Réponds à <b>quelques questions</b> et reçois — gratuitement — ton <b>Copy Plan</b> personnalisé pour atteindre les 3k/mois.</p>
+    <div class="trust">
+      <span><span class="ck">✓</span> 3 min</span>
+      <span><span class="ck">✓</span> Résultat immédiat</span>
+      <span><span class="ck">✓</span> 100% offert</span>
+    </div>
+    <a class="cta js-cta" href="/">Démarrer le quiz <span class="arrow">→</span></a>
+    <p class="social">Déjà réalisé par +521 personnes</p>
+  </div>
+</header>
+
+<!-- VIDEO -->
+<section class="video-sec">
+  <div class="wrap">
+    <div class="video-card">
+      <video src="/lp/video.mp4#t=0.5" controls preload="metadata" playsinline onerror="this.closest('.video-sec').style.display='none'"></video>
+    </div>
+    <p class="video-cap">▶ Pourquoi j'ai créé Le Copy Quiz — en 1 minute</p>
+  </div>
+</section>
+
+<!-- ABOUT SOL -->
+<section class="block about">
+  <div class="wrap narrow" style="text-align:center">
+    <p class="kicker">Qui je suis</p>
+    <h2>Moi, c'est Sol.</h2>
+    <p>Ça fait plus de <b>4 ans</b> que je suis copywriter professionnel. J'ai travaillé avec les plus gros noms du marché et généré <b>plus de 6M€</b> pour mes clients.</p>
+    <p>J'ai aussi créé la plus grande <b>formation gratuite</b> sur le copywriting en France, la plus grande <b>communauté</b> (+1500 membres), et le meilleur portfolio du marché.</p>
+    <p>Mais surtout, j'ai créé <b>BIG BROTHER</b> : le seul accompagnement où tu es coaché et suivi en <b>1-1, directement en présentiel</b>. J'ai accompagné des centaines de personnes à devenir de vrais copywriters pro et à faire leurs premiers milliers d'euros en ligne — certains, je les ai même invités une semaine chez moi, en Géorgie.</p>
+    <p class="sig">— Sol</p>
+    <div class="stats">
+      <div class="stat"><div class="n">+6M€</div><div class="l">générés pour mes clients</div></div>
+      <div class="stat"><div class="n">+1500</div><div class="l">copywriters formés</div></div>
+      <div class="stat"><div class="n">+19 457</div><div class="l">vues sur la formation gratuite</div></div>
+      <div class="stat"><div class="n">4 ans</div><div class="l">copywriter pro</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="block">
+  <div class="wrap">
+    <p class="kicker">Ce que tu repars avec</p>
+    <h2>Un plan d'action clair pour tes premiers clients</h2>
+    <div class="benefits">
+      <div class="benefit"><span class="ix">1</span><p>Éviter les erreurs (bêtes) de débutant</p></div>
+      <div class="benefit"><span class="ix">2</span><p>Identifier ce qui te bloque aujourd'hui dans ta progression</p></div>
+      <div class="benefit"><span class="ix">3</span><p>Savoir enfin pourquoi personne ne répond à tes messages de prospection</p></div>
+      <div class="benefit"><span class="ix">4</span><p>Devenir un vrai BOSS du copywriting</p></div>
+      <div class="benefit"><span class="ix">5</span><p>Signer de nouveaux clients chaque semaine</p></div>
+      <div class="benefit"><span class="ix">6</span><p>Comprendre enfin dans quel ordre démarrer pour avoir tes premiers résultats</p></div>
+    </div>
+    <div style="text-align:center;margin-top:32px">
+      <a class="cta js-cta" href="/">Démarrer le quiz <span class="arrow">→</span></a>
+      <span class="cta-sub">✓ 3 min · ✓ Résultat immédiat · ✓ 100% offert</span>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="block about">
+  <div class="wrap">
+    <p class="kicker">Ils l'ont fait</p>
+    <h2>Ces copywriters sont passés de 0 à leurs premiers 3 000€/mois</h2>
+    <div class="tgrid" id="tgrid">
+      <button type="button" class="tcell" data-lb="/proof/6-resultats/1.jpg"><img src="/proof/6-resultats/1.jpg" loading="lazy" alt="Témoignage de résultat"></button>
+      <button type="button" class="tcell" data-lb="/proof/6-resultats/2.jpg"><img src="/proof/6-resultats/2.jpg" loading="lazy" alt="Témoignage de résultat"></button>
+      <button type="button" class="tcell" data-lb="/proof/6-resultats/3.jpg"><img src="/proof/6-resultats/3.jpg" loading="lazy" alt="Témoignage de résultat"></button>
+      <button type="button" class="tcell" data-lb="/proof/6-resultats/4.jpg"><img src="/proof/6-resultats/4.jpg" loading="lazy" alt="Témoignage de résultat"></button>
+      <button type="button" class="tcell" data-lb="/proof/6-resultats/5.jpg"><img src="/proof/6-resultats/5.jpg" loading="lazy" alt="Témoignage de résultat"></button>
+      <button type="button" class="tcell" data-lb="/proof/6-resultats/6.jpg"><img src="/proof/6-resultats/6.jpg" loading="lazy" alt="Témoignage de résultat"></button>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="narrow">
+    <h2>Prêt à découvrir ton Copy Plan ?</h2>
+    <p class="lead">3 minutes. Ton profil analysé. Ton plan d'action personnalisé pour atteindre 3 000€/mois.</p>
+    <div class="trust">
+      <span><span class="ck">✓</span> 3 min</span>
+      <span><span class="ck">✓</span> Résultat immédiat</span>
+      <span><span class="ck">✓</span> 100% offert</span>
+    </div>
+    <a class="cta js-cta" href="/">Démarrer le quiz <span class="arrow">→</span></a>
+    <p class="social">Déjà réalisé par +521 personnes</p>
+  </div>
+</section>
+
+<footer>
+  <div class="disc">Ce site n'est pas affilié à Meta, Inc. ni à aucune de ses marques. Meta est une marque déposée de Meta, Inc.</div>
+  <div>© Sol Copywriting · Le Copy Quiz</div>
+</footer>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lb" hidden>
+  <button type="button" class="lb-close" aria-label="Fermer">✕</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<script>
+// Préserve la source (?src=ads / utm_source / chemin) en la propageant vers le quiz.
+(function(){
+  var qs = location.search || '';
+  if(qs){ document.querySelectorAll('.js-cta').forEach(function(a){ a.setAttribute('href', '/' + qs); }); }
+})();
+
+// Lightbox témoignages
+(function(){
+  var lb = document.getElementById('lightbox'), img = document.getElementById('lb-img');
+  document.addEventListener('click', function(e){
+    var t = e.target.closest('[data-lb]');
+    if(t){ img.src = t.getAttribute('data-lb'); lb.hidden = false; document.body.style.overflow='hidden'; return; }
+    if(e.target.closest('.lb-close') || e.target.id === 'lightbox'){ lb.hidden = true; img.src=''; document.body.style.overflow=''; }
+  });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ lb.hidden=true; img.src=''; document.body.style.overflow=''; } });
+})();
+</script>
+</body>
+</html>
