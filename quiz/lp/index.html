@@ -121,7 +121,7 @@
       <svg class="mark" viewBox="0 0 287 586" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M91.3941 378.634L101.769 417.353L176.082 458.699L216.786 566.358L198.207 452.771L213.283 413.162L186.063 429.77L231.517 341.089L221.142 302.371L210.768 263.653L149.105 313.769L190.019 186.217L179.644 147.499L169.27 108.78L70.0612 18.774L29.1473 146.326L128.356 236.333L49.8963 223.762L60.2707 262.48L70.6452 301.198L169.854 391.205L91.3941 378.634Z" fill="#FEAA02"/></svg>
       <span>Le Copy <b>Quiz</b></span>
     </a>
-    <a class="nav-cta js-cta" href="/">🚀 <span>Faire le quiz</span></a>
+    <a class="nav-cta js-cta" href="/orga">🚀 <span>Faire le quiz</span></a>
   </div>
 </div>
 
@@ -138,7 +138,7 @@
       <span><span class="ck">✓</span> Résultat immédiat</span>
       <span><span class="ck">✓</span> 100% offert</span>
     </div>
-    <a class="cta js-cta" href="/">Démarrer le quiz <span class="arrow">→</span></a>
+    <a class="cta js-cta" href="/orga">Démarrer le quiz <span class="arrow">→</span></a>
     <p class="social">Déjà réalisé par +521 personnes</p>
   </div>
 </header>
@@ -185,7 +185,7 @@
       <div class="benefit"><span class="ix">6</span><p>Comprendre enfin dans quel ordre démarrer pour avoir tes premiers résultats</p></div>
     </div>
     <div style="text-align:center;margin-top:32px">
-      <a class="cta js-cta" href="/">Démarrer le quiz <span class="arrow">→</span></a>
+      <a class="cta js-cta" href="/orga">Démarrer le quiz <span class="arrow">→</span></a>
       <span class="cta-sub">✓ 3 min · ✓ Résultat immédiat · ✓ 100% offert</span>
     </div>
   </div>
@@ -217,7 +217,7 @@
       <span><span class="ck">✓</span> Résultat immédiat</span>
       <span><span class="ck">✓</span> 100% offert</span>
     </div>
-    <a class="cta js-cta" href="/">Démarrer le quiz <span class="arrow">→</span></a>
+    <a class="cta js-cta" href="/orga">Démarrer le quiz <span class="arrow">→</span></a>
     <p class="social">Déjà réalisé par +521 personnes</p>
   </div>
 </section>
@@ -234,10 +234,12 @@
 </div>
 
 <script>
-// Préserve la source (?src=ads / utm_source / chemin) en la propageant vers le quiz.
+// La LP est la racine ; les CTA pointent vers le quiz (/ads si trafic ads, sinon /orga).
 (function(){
-  var qs = location.search || '';
-  if(qs){ document.querySelectorAll('.js-cta').forEach(function(a){ a.setAttribute('href', '/' + qs); }); }
+  var p = new URLSearchParams(location.search);
+  var src = (p.get('src') || p.get('utm_source') || '').toLowerCase();
+  var dest = src.indexOf('ads') > -1 ? '/ads' : '/orga';
+  document.querySelectorAll('.js-cta').forEach(function(a){ a.setAttribute('href', dest); });
 })();
 
 // Lightbox témoignages
