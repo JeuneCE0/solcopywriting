@@ -160,12 +160,23 @@
 
   /* Preuve sociale — galerie images plein cadre, cliquables, responsive (masonry) */
   .pgrid{margin-top:24px;columns:2;column-gap:10px}
-  .pcell{display:block;break-inside:avoid;margin:0 0 10px;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff;cursor:zoom-in;transition:transform .12s ease,box-shadow .15s ease}
+  .pcell{display:block;width:100%;padding:0;font:inherit;break-inside:avoid;margin:0 0 10px;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff;cursor:zoom-in;transition:transform .12s ease,box-shadow .15s ease}
   .pcell:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.14)}
   .pcell img{width:100%;height:auto;display:block}
   @media (max-width:480px){ .pgrid{columns:1} }
-  .qvideo{margin-top:24px;border-radius:14px;overflow:hidden;background:#000;box-shadow:0 6px 20px rgba(0,0,0,.12)}
-  .qvideo video{width:100%;max-height:72vh;display:block}
+
+  .qvideo{position:relative;display:block;width:100%;padding:0;margin-top:24px;border:none;border-radius:14px;overflow:hidden;background:#000;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.12)}
+  .qvideo video{width:100%;max-height:72vh;display:block;pointer-events:none}
+  .qvideo-play,.pcell-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:62px;height:62px;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;font-size:23px;display:flex;align-items:center;justify-content:center;pointer-events:none}
+
+  /* Lightbox / popup */
+  .lb{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:rgba(10,10,15,.86);backdrop-filter:blur(4px);padding:20px;animation:lbIn .2s ease}
+  .lb[hidden]{display:none}
+  @keyframes lbIn{from{opacity:0}to{opacity:1}}
+  .lb-body{max-width:min(92vw,560px);max-height:90vh;display:flex}
+  .lb-body img,.lb-body video{max-width:100%;max-height:90vh;width:auto;height:auto;border-radius:12px;display:block;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+  .lb-close{position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,.16);color:#fff;font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
+  .lb-close:hover{background:rgba(255,255,255,.3)}
 
   .note{
     margin-top:22px;font-size:12.5px;color:#A39C8C;
@@ -212,6 +223,11 @@
   <main class="stage">
     <div class="screen" id="screen"></div>
   </main>
+
+  <div id="lightbox" class="lb" hidden>
+    <button type="button" class="lb-close" aria-label="Fermer">✕</button>
+    <div class="lb-body"></div>
+  </div>
 
 <script>
 /* =========================================================================
@@ -657,7 +673,7 @@ function renderMedia(items){
 function proofGallery(items){
   let g = `<div class="pgrid">`;
   items.forEach(it=>{
-    g += `<a class="pcell" href="${it.src}" target="_blank" rel="noopener" aria-label="Voir en grand"><img src="${it.src}" loading="lazy" alt="Preuve de résultat"></a>`;
+    g += `<button type="button" class="pcell" data-lb="${it.src}" data-lb-type="img" aria-label="Voir en grand"><img src="${it.src}" loading="lazy" alt="Preuve de résultat"></button>`;
   });
   g += `</div>`;
   return g;
@@ -665,7 +681,7 @@ function proofGallery(items){
 
 function renderVideo(v){
   if(v && v.src){
-    return `<div class="qvideo"><video src="${v.src}" controls preload="none" playsinline></video></div>`;
+    return `<button type="button" class="qvideo" data-lb="${v.src}" data-lb-type="video" aria-label="Lire la vidéo"><video src="${v.src}#t=0.1" preload="metadata" muted playsinline></video><span class="qvideo-play">▶</span></button>`;
   }
   return `<div class="media-grid single"><div class="media video">
             <span class="ico">▶</span><span>${v}</span></div></div>`;
@@ -680,6 +696,29 @@ function renderProof(items){
   p += `</div>`;
   return p;
 }
+
+/* ---- lightbox (popup image/vidéo) ---- */
+function openLightbox(src, type){
+  const lb = document.getElementById('lightbox');
+  lb.querySelector('.lb-body').innerHTML = type === 'video'
+    ? `<video src="${src}" controls autoplay playsinline></video>`
+    : `<img src="${src}" alt="">`;
+  lb.hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(){
+  const lb = document.getElementById('lightbox');
+  if(lb.hidden) return;
+  lb.hidden = true;
+  lb.querySelector('.lb-body').innerHTML = '';
+  document.body.style.overflow = '';
+}
+document.addEventListener('click', e=>{
+  const t = e.target.closest('[data-lb]');
+  if(t){ openLightbox(t.getAttribute('data-lb'), t.getAttribute('data-lb-type')); return; }
+  if(e.target.closest('.lb-close') || e.target.id === 'lightbox') closeLightbox();
+});
+document.addEventListener('keydown', e=>{ if(e.key === 'Escape') closeLightbox(); });
 
 /* ---- actions ---- */
 function choose(id, value){
