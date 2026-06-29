@@ -750,7 +750,7 @@ function finishQuiz(){
    ========================================================================= */
 const CONFIG = {
   // Inbound Webhook GoHighLevel. Vide = pas d'envoi (le quiz fonctionne quand même).
-  ghlWebhookUrl: ""
+  ghlWebhookUrl: "https://services.leadconnectorhq.com/hooks/2lB0paK192CFU1cLz5eT/webhook-trigger/b80e5ada-e143-42a2-8b78-b7bb9486799a"
 };
 
 const PROFILES = {
@@ -789,12 +789,27 @@ function detectProfile(scores){
   return top;
 }
 
+// Origine du trafic (/ads vs /orga) — chemin d'URL, fallback query (?src= / utm_source).
+function quizSource(){
+  const path = (location.pathname || '').toLowerCase();
+  if(path.includes('orga')) return 'orga';
+  if(path.includes('ads')) return 'ads';
+  const q = new URLSearchParams(location.search);
+  const s = (q.get('src') || q.get('utm_source') || '').toLowerCase();
+  if(s.includes('orga')) return 'orga';
+  if(s.includes('ads')) return 'ads';
+  return 'direct';
+}
+
 function sendLeadToGHL(userData, scores, code){
   if(!CONFIG.ghlWebhookUrl) return;
   const p = PROFILES[code] || {};
+  const src = quizSource();
+  const stage = src === 'ads' ? 'Quiz Ads' : src === 'orga' ? 'Quiz Orga' : 'Quiz';
   const payload = {
     firstName:userData.firstname, email:userData.email, phone:userData.phone,
     source:"Le Copy Quiz", quiz_version:"conditionnel",
+    quiz_source:src, quiz_stage:stage, pipeline:"Formations / Coaching", location_id:"2lB0paK192CFU1cLz5eT",
     quiz_profile_code:code, quiz_profile_name:p.name||"",
     quiz_score_p1:scores.p1, quiz_score_p2:scores.p2, quiz_score_p3:scores.p3,
     quiz_score_p4:scores.p4, quiz_score_p5:scores.p5, quiz_score_p6:scores.p6,
