@@ -38,7 +38,7 @@
   /* HERO */
   .hero{text-align:center;padding:54px 0 20px}
   .eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-press);background:var(--accent-soft);border:1px solid var(--accent);padding:7px 15px;border-radius:100px;margin-bottom:22px}
-  h1{font-size:clamp(30px,5.6vw,50px);font-weight:900;line-height:1.08;letter-spacing:-.03em;margin-bottom:18px}
+  h1{font-size:clamp(28px,4.6vw,46px);font-weight:900;line-height:1.1;letter-spacing:-.03em;max-width:960px;margin:0 auto 20px;text-wrap:balance}
   .hero .paren{display:block;font-size:clamp(15px,2.4vw,18px);font-weight:600;color:var(--muted);margin-top:10px;letter-spacing:0}
   .lead{font-size:clamp(16px,2.3vw,19px);color:var(--ink-soft);max-width:600px;margin:0 auto 26px}
   .lead b{color:var(--ink);font-weight:700}
@@ -55,7 +55,7 @@
   .cta-sub{display:block;font-size:12.5px;color:var(--muted);margin-top:11px}
 
   /* VIDEO */
-  .video-sec{padding:18px 0 8px}
+  .video-block{margin:16px auto 28px;max-width:760px}
   .video-card{max-width:760px;margin:0 auto;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 18px 50px rgba(0,0,0,.18);border:1px solid var(--line)}
   .video-card video{width:100%;max-height:78vh;display:block}
   .video-cap{text-align:center;font-size:13.5px;color:var(--muted);margin-top:12px}
@@ -127,11 +127,17 @@
 
 <!-- HERO -->
 <header class="hero" id="top">
-  <div class="wrap narrow">
+  <div class="wrap">
     <span class="eyebrow">Par Sol · +6M€ générés · +1500 copywriters formés</span>
     <h1>Complète ce quiz de 3 min et récupère ton plan d'action pour atteindre <mark>3 000€/mois</mark> en tant que copywriter
       <span class="paren">…même si tu n'as jamais signé de client.</span>
     </h1>
+    <div class="video-block">
+      <div class="video-card">
+        <video src="/lp/video.mp4#t=0.5" controls preload="metadata" playsinline onerror="this.closest('.video-block').style.display='none'"></video>
+      </div>
+      <p class="video-cap">▶ Pourquoi j'ai créé Le Copy Quiz — en 1 minute</p>
+    </div>
     <p class="lead">Réponds à <b>quelques questions</b> et reçois — gratuitement — ton <b>Copy Plan</b> personnalisé pour atteindre les 3k/mois.</p>
     <div class="trust">
       <span><span class="ck">✓</span> 3 min</span>
@@ -142,16 +148,6 @@
     <p class="social">Déjà réalisé par +521 personnes</p>
   </div>
 </header>
-
-<!-- VIDEO -->
-<section class="video-sec">
-  <div class="wrap">
-    <div class="video-card">
-      <video src="/lp/video.mp4#t=0.5" controls preload="metadata" playsinline onerror="this.closest('.video-sec').style.display='none'"></video>
-    </div>
-    <p class="video-cap">▶ Pourquoi j'ai créé Le Copy Quiz — en 1 minute</p>
-  </div>
-</section>
 
 <!-- ABOUT SOL -->
 <section class="block about">
