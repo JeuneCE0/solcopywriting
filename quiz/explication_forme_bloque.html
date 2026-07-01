@@ -1002,6 +1002,16 @@ body {
   .testimonials-wall-header h2 { font-size: 22px; }
 }
 </style>
+<!-- VTurb — optimize loading (VSL2) -->
+<link rel="preload" href="https://scripts.converteai.net/a7c449a0-bf37-4b16-9821-cc8fe4ef4a84/players/6a45207bee1d8d81f13852f1/v4/embed.html">
+<script>!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);</script>
+<link rel="preload" href="https://scripts.converteai.net/a7c449a0-bf37-4b16-9821-cc8fe4ef4a84/players/6a45207bee1d8d81f13852f1/v4/player.js" as="script">
+<link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
+<link rel="preload" href="https://cdn.converteai.net/a7c449a0-bf37-4b16-9821-cc8fe4ef4a84/6a451ff6848157530b63ece5/main.m3u8" as="fetch">
+<link rel="dns-prefetch" href="https://cdn.converteai.net">
+<link rel="dns-prefetch" href="https://scripts.converteai.net">
+<link rel="dns-prefetch" href="https://images.converteai.net">
+<link rel="dns-prefetch" href="https://license.vturb.com">
 </head>
 <body>
 
@@ -1023,10 +1033,11 @@ body {
     <div class="greeting">Et je vais t'expliquer pourquoi 👇</div>
   </div>
 
-  <!-- VSL -->
+  <!-- VSL — VTurb -->
   <div style="margin:6px auto 30px">
     <div style="border-radius:16px;overflow:hidden;background:#000;box-shadow:0 16px 44px rgba(0,0,0,.18);border:1px solid #e6e2d9">
-      <video src="vsl/vsl2.mp4#t=0.5" controls preload="metadata" playsinline style="width:100%;max-height:78vh;display:block"></video>
+      <vturb-smartplayer id="vid-6a45207bee1d8d81f13852f1" style="display:block;margin:0 auto;width:100%"><div class="vturb-player-placeholder" style="position:relative;width:100%;padding:56.25% 0 0;z-index:0;background-color:black"></div></vturb-smartplayer>
+      <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/a7c449a0-bf37-4b16-9821-cc8fe4ef4a84/players/6a45207bee1d8d81f13852f1/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
     </div>
     <p style="text-align:center;font-size:14px;color:#6b6b6b;margin-top:12px;font-weight:600">▶ Regarde cette vidéo en entier — c'est là que tout se joue.</p>
   </div>
