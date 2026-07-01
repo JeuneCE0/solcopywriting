@@ -1001,6 +1001,9 @@ body {
   .testi-card { width: 280px; }
   .testimonials-wall-header h2 { font-size: 22px; }
 }
+.video-thumb-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.video-thumb.playing{cursor:default}
+.video-thumb.playing::after,.video-thumb.playing .video-thumb-tag,.video-thumb.playing .video-thumb-duration{display:none}
 </style>
 <!-- VTurb — optimize loading (VSL4) -->
 <link rel="preload" href="https://scripts.converteai.net/a7c449a0-bf37-4b16-9821-cc8fe4ef4a84/players/6a4521350f935fd06c68a827/v4/embed.html">
@@ -1128,8 +1131,9 @@ body {
 
 
     <div class="videos-grid">
-      <div class="video-card featured" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+      <div class="video-card featured" onclick="playYT(this,'qTOcLUQ2k6A')">
         <div class="video-thumb">
+          <img class="video-thumb-img" src="https://i.ytimg.com/vi/qTOcLUQ2k6A/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/qTOcLUQ2k6A/hqdefault.jpg'" alt="" loading="lazy">
           <div class="video-thumb-tag">▶ Immersion</div>
           <div class="video-thumb-duration">47:49</div>
         </div>
@@ -1157,8 +1161,9 @@ body {
 
 
     <div class="videos-grid">
-      <div class="video-card featured" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+      <div class="video-card featured" onclick="playYT(this,'fI1TKIqwMGM')">
         <div class="video-thumb">
+          <img class="video-thumb-img" src="https://i.ytimg.com/vi/fI1TKIqwMGM/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/fI1TKIqwMGM/hqdefault.jpg'" alt="" loading="lazy">
           <div class="video-thumb-tag">▶ Coaching présentiel</div>
           <div class="video-thumb-duration">Immersion</div>
         </div>
@@ -1286,8 +1291,9 @@ body {
 
 
     <div class="videos-grid">
-      <div class="video-card" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+      <div class="video-card" onclick="playYT(this,'tITl6ARwnA4')">
         <div class="video-thumb">
+          <img class="video-thumb-img" src="https://i.ytimg.com/vi/tITl6ARwnA4/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/tITl6ARwnA4/hqdefault.jpg'" alt="" loading="lazy">
           <div class="video-thumb-tag">Conseils pros</div>
           <div class="video-thumb-duration">12:49</div>
         </div>
@@ -1298,8 +1304,9 @@ body {
       </div>
 
 
-      <div class="video-card" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+      <div class="video-card" onclick="playYT(this,'La8GBHp5_DM')">
         <div class="video-thumb">
+          <img class="video-thumb-img" src="https://i.ytimg.com/vi/La8GBHp5_DM/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/La8GBHp5_DM/hqdefault.jpg'" alt="" loading="lazy">
           <div class="video-thumb-tag">Analyse live</div>
           <div class="video-thumb-duration">29:50</div>
         </div>
@@ -1310,8 +1317,9 @@ body {
       </div>
 
 
-      <div class="video-card" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+      <div class="video-card" onclick="playYT(this,'c6fjE5-SLzg')">
         <div class="video-thumb">
+          <img class="video-thumb-img" src="https://i.ytimg.com/vi/c6fjE5-SLzg/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/c6fjE5-SLzg/hqdefault.jpg'" alt="" loading="lazy">
           <div class="video-thumb-tag">Bilan</div>
           <div class="video-thumb-duration">16:33</div>
         </div>
@@ -1733,5 +1741,8 @@ body {
 </div>
 
 
+<script>
+function playYT(card,id){var t=card.querySelector('.video-thumb');if(!t||t.classList.contains('playing'))return;t.classList.add('playing');var f=document.createElement('iframe');f.src='https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1&playsinline=1';f.title='Vidéo YouTube';f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';f.allowFullscreen=true;f.setAttribute('style','position:absolute;inset:0;width:100%;height:100%;border:0');t.appendChild(f);card.onclick=null;}
+</script>
 </body>
 </html>

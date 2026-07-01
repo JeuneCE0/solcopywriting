@@ -1001,6 +1001,9 @@ body {
   .testi-card { width: 280px; }
   .testimonials-wall-header h2 { font-size: 22px; }
 }
+.video-thumb-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.video-thumb.playing{cursor:default}
+.video-thumb.playing::after,.video-thumb.playing .video-thumb-tag,.video-thumb.playing .video-thumb-duration{display:none}
 </style>
 <!-- VTurb — optimize loading (VSL2) -->
 <link rel="preload" href="https://scripts.converteai.net/a7c449a0-bf37-4b16-9821-cc8fe4ef4a84/players/6a45207bee1d8d81f13852f1/v4/embed.html">
@@ -1136,8 +1139,9 @@ body {
 
 
     <div class="videos-grid">
-      <div class="video-card featured" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+      <div class="video-card featured" onclick="playYT(this,'J2WoNSWfMok')">
         <div class="video-thumb">
+          <img class="video-thumb-img" src="https://i.ytimg.com/vi/J2WoNSWfMok/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/J2WoNSWfMok/hqdefault.jpg'" alt="" loading="lazy">
           <div class="video-thumb-tag">▶ À voir en premier</div>
           <div class="video-thumb-duration">42:10</div>
         </div>
@@ -1265,8 +1269,9 @@ body {
 
 
     <div class="videos-grid">
-      <div class="video-card" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+      <div class="video-card" onclick="playYT(this,'S2M2mrqVK8I')">
         <div class="video-thumb">
+          <img class="video-thumb-img" src="https://i.ytimg.com/vi/S2M2mrqVK8I/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/S2M2mrqVK8I/hqdefault.jpg'" alt="" loading="lazy">
           <div class="video-thumb-tag">Coaching live</div>
           <div class="video-thumb-duration">1:03:22</div>
         </div>
@@ -1277,8 +1282,9 @@ body {
       </div>
 
 
-      <div class="video-card" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+      <div class="video-card" onclick="playYT(this,'qTOcLUQ2k6A')">
         <div class="video-thumb">
+          <img class="video-thumb-img" src="https://i.ytimg.com/vi/qTOcLUQ2k6A/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/qTOcLUQ2k6A/hqdefault.jpg'" alt="" loading="lazy">
           <div class="video-thumb-tag">Lifestyle</div>
           <div class="video-thumb-duration">47:49</div>
         </div>
@@ -1289,8 +1295,9 @@ body {
       </div>
 
 
-      <div class="video-card" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+      <div class="video-card" onclick="playYT(this,'9DUZOsvFGdY')">
         <div class="video-thumb">
+          <img class="video-thumb-img" src="https://i.ytimg.com/vi/9DUZOsvFGdY/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/9DUZOsvFGdY/hqdefault.jpg'" alt="" loading="lazy">
           <div class="video-thumb-tag">Témoignage</div>
           <div class="video-thumb-duration">24:46</div>
         </div>
@@ -1712,5 +1719,8 @@ body {
 </div>
 
 
+<script>
+function playYT(card,id){var t=card.querySelector('.video-thumb');if(!t||t.classList.contains('playing'))return;t.classList.add('playing');var f=document.createElement('iframe');f.src='https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1&playsinline=1';f.title='Vidéo YouTube';f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';f.allowFullscreen=true;f.setAttribute('style','position:absolute;inset:0;width:100%;height:100%;border:0');t.appendChild(f);card.onclick=null;}
+</script>
 </body>
 </html>

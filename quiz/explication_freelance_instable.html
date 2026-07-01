@@ -1001,6 +1001,9 @@ body {
   .testi-card { width: 280px; }
   .testimonials-wall-header h2 { font-size: 22px; }
 }
+.video-thumb-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.video-thumb.playing{cursor:default}
+.video-thumb.playing::after,.video-thumb.playing .video-thumb-tag,.video-thumb.playing .video-thumb-duration{display:none}
 </style>
 <!-- VTurb — optimize loading (VSL3) -->
 <link rel="preload" href="https://scripts.converteai.net/a7c449a0-bf37-4b16-9821-cc8fe4ef4a84/players/6a4521e5cad12262938483e9/v4/embed.html">
@@ -1133,8 +1136,9 @@ body {
 
 
     <div class="videos-grid">
-      <div class="video-card featured" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+      <div class="video-card featured" onclick="playYT(this,'S2M2mrqVK8I')">
         <div class="video-thumb">
+          <img class="video-thumb-img" src="https://i.ytimg.com/vi/S2M2mrqVK8I/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/S2M2mrqVK8I/hqdefault.jpg'" alt="" loading="lazy">
           <div class="video-thumb-tag">▶ Coaching live</div>
           <div class="video-thumb-duration">1:03:22</div>
         </div>
@@ -1264,8 +1268,9 @@ body {
 
 
     <div class="videos-grid">
-      <div class="video-card" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+      <div class="video-card" onclick="playYT(this,'urqsbtS2ppQ')">
         <div class="video-thumb">
+          <img class="video-thumb-img" src="https://i.ytimg.com/vi/urqsbtS2ppQ/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/urqsbtS2ppQ/hqdefault.jpg'" alt="" loading="lazy">
           <div class="video-thumb-tag">Rétention</div>
           <div class="video-thumb-duration">19:15</div>
         </div>
@@ -1276,8 +1281,9 @@ body {
       </div>
 
 
-      <div class="video-card" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+      <div class="video-card" onclick="playYT(this,'7VGxhjX-uoU')">
         <div class="video-thumb">
+          <img class="video-thumb-img" src="https://i.ytimg.com/vi/7VGxhjX-uoU/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/7VGxhjX-uoU/hqdefault.jpg'" alt="" loading="lazy">
           <div class="video-thumb-tag">Email</div>
           <div class="video-thumb-duration">15:10</div>
         </div>
@@ -1288,8 +1294,9 @@ body {
       </div>
 
 
-      <div class="video-card" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+      <div class="video-card" onclick="playYT(this,'tITl6ARwnA4')">
         <div class="video-thumb">
+          <img class="video-thumb-img" src="https://i.ytimg.com/vi/tITl6ARwnA4/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/tITl6ARwnA4/hqdefault.jpg'" alt="" loading="lazy">
           <div class="video-thumb-tag">Scaling</div>
           <div class="video-thumb-duration">12:49</div>
         </div>
@@ -1711,5 +1718,8 @@ body {
 </div>
 
 
+<script>
+function playYT(card,id){var t=card.querySelector('.video-thumb');if(!t||t.classList.contains('playing'))return;t.classList.add('playing');var f=document.createElement('iframe');f.src='https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1&playsinline=1';f.title='Vidéo YouTube';f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';f.allowFullscreen=true;f.setAttribute('style','position:absolute;inset:0;width:100%;height:100%;border:0');t.appendChild(f);card.onclick=null;}
+</script>
 </body>
 </html>
