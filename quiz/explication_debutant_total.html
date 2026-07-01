@@ -396,6 +396,20 @@ body {
 }
 
 
+.video-thumb-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.video-thumb.playing { cursor: default; }
+.video-thumb.playing::after,
+.video-thumb.playing .video-thumb-tag,
+.video-thumb.playing .video-thumb-duration { display: none; }
+
+
 .video-card-info {
   padding: 16px;
 }
@@ -1142,8 +1156,9 @@ body {
 
 
     <div class="videos-grid">
-      <div class="video-card featured" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+      <div class="video-card featured" onclick="playYT(this,'UUhkbZvO4zs')">
         <div class="video-thumb">
+          <img class="video-thumb-img" src="https://i.ytimg.com/vi/UUhkbZvO4zs/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/UUhkbZvO4zs/hqdefault.jpg'" alt="" loading="lazy">
           <div class="video-thumb-tag">▶ Formation complète</div>
           <div class="video-thumb-duration">10:03:19</div>
         </div>
@@ -1271,8 +1286,9 @@ body {
 
 
     <div class="videos-grid">
-      <div class="video-card" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+      <div class="video-card" onclick="playYT(this,'0x_4VBGYWbo')">
         <div class="video-thumb">
+          <img class="video-thumb-img" src="https://i.ytimg.com/vi/0x_4VBGYWbo/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/0x_4VBGYWbo/hqdefault.jpg'" alt="" loading="lazy">
           <div class="video-thumb-tag">Méthode</div>
           <div class="video-thumb-duration">12:12</div>
         </div>
@@ -1283,8 +1299,9 @@ body {
       </div>
 
 
-      <div class="video-card" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+      <div class="video-card" onclick="playYT(this,'me-yHIMqjWo')">
         <div class="video-thumb">
+          <img class="video-thumb-img" src="https://i.ytimg.com/vi/me-yHIMqjWo/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/me-yHIMqjWo/hqdefault.jpg'" alt="" loading="lazy">
           <div class="video-thumb-tag">Marché</div>
           <div class="video-thumb-duration">20:45</div>
         </div>
@@ -1295,8 +1312,9 @@ body {
       </div>
 
 
-      <div class="video-card" onclick="window.open('https://www.youtube.com/@sol.copywriting', '_blank')">
+      <div class="video-card" onclick="playYT(this,'56TIflczjsk')">
         <div class="video-thumb">
+          <img class="video-thumb-img" src="https://i.ytimg.com/vi/56TIflczjsk/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/56TIflczjsk/hqdefault.jpg'" alt="" loading="lazy">
           <div class="video-thumb-tag">Bases</div>
           <div class="video-thumb-duration">17:38</div>
         </div>
@@ -1308,6 +1326,23 @@ body {
     </div>
   </section>
 </div>
+
+
+<script>
+function playYT(card, id) {
+  var t = card.querySelector('.video-thumb');
+  if (!t || t.classList.contains('playing')) return;
+  t.classList.add('playing');
+  var f = document.createElement('iframe');
+  f.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+  f.title = 'Vidéo YouTube';
+  f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+  f.allowFullscreen = true;
+  f.setAttribute('style', 'position:absolute;inset:0;width:100%;height:100%;border:0');
+  t.appendChild(f);
+  card.onclick = null;
+}
+</script>
 
 
 <!-- MUR DE TÉMOIGNAGES — DÉFILEMENT VERTICAL INFINI -->
