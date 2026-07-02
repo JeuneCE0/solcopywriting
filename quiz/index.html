@@ -308,7 +308,8 @@ const screens = {
     options:[
       {emoji:"🎓", label:"Étudiant",  value:"etudiant"},
       {emoji:"💼", label:"Salarié",   value:"salarie"},
-      {emoji:"🧑‍💻", label:"Freelance", value:"freelance"}
+      {emoji:"🧑‍💻", label:"Freelance", value:"freelance"},
+      {emoji:"🚀", label:"J'ai déjà un business", value:"business"}
     ],
     next:()=>'hook1'
   },
@@ -763,30 +764,31 @@ const PROFILES = {
 };
 
 /* Scoring heuristique réponses → 6 profils. Pondérations à affiner avec Sol.
-   NB : p6 (Entrepreneur) reste rare faute de question « as-tu déjà un business ? ». */
+   NB : p6 (Entrepreneur) = option statut « J'ai déjà un business » (p6:5). */
 function computeScores(){
   const s = {p1:0,p2:0,p3:0,p4:0,p5:0,p6:0};
   const add = m => { if(m) for(const k in m) s[k]+=m[k]; };
   const A = answers;
-  add({etudiant:{p1:2,p2:1}, salarie:{p2:2,p1:1,p3:1}, freelance:{p4:3,p5:1}}[A.status]);
+  add({etudiant:{p1:2,p2:1}, salarie:{p2:2,p1:1,p3:1}, freelance:{p4:3,p5:1}, business:{p6:5}}[A.status]);
   if(A.tried==='non'){
-    add({p1:3});
-    add({peur:{p1:2}, prix:{p1:1,p2:1}, temps:{p1:1}}[A.whyNot]);
+    add({p1:2});
+    add({peur:{p1:2}, prix:{p1:1,p2:2}, temps:{p1:1}}[A.whyNot]);
   } else if(A.tried==='oui'){
     add({debut:{p1:3}, bases:{p3:3,p1:1}, sansclients:{p3:2,p4:2}, irregulier:{p4:2,p5:2}}[A.level]);
     add({clients:{p3:1,p4:1}, prospect:{p3:1,p4:1}, niveau:{p3:2,p1:1}, temps:{p4:1,p1:1}, plan:{p1:2,p3:1}}[A.problem]);
   }
-  add({quitter:{p2:2,p1:1}, argent:{p4:1,p5:1}, liberte:{p2:1,p4:1}, passion:{p1:1,p3:1}}[A.motivation]);
-  add({'0':{p1:3}, '<500':{p1:2,p3:1}, '500-1000':{p3:1,p4:1}, '1000-3000':{p4:2,p5:1}, '>3000':{p5:3,p6:1}}[A.generated]);
+  add({quitter:{p2:3,p1:1}, argent:{p4:1,p5:1}, liberte:{p2:1,p4:1}, passion:{p1:1,p3:1}}[A.motivation]);
+  add({'0':{p1:2}, '<500':{p1:2,p3:1}, '500-1000':{p3:1,p4:1}, '1000-3000':{p4:2,p5:1}, '>3000':{p5:3,p6:1}}[A.generated]);
   add({'1000':{p1:1}, '3000':{p2:1,p3:1}, '5000':{p4:1,p2:1}, '10000':{p5:2}, '>10000':{p5:2,p6:2}}[A.goal]);
   add({plan:{p3:1}, seul:{p5:1}, peur:{p1:1,p3:1}, accompagne:{p2:1,p4:1}}[A.capable]);
   return s;
 }
 
 function detectProfile(scores){
+  // egalite au sommet -> on tranche vers le profil le plus qualifie (p6 -> p1) ; defaut p1 si aucun point
   let max=-1, top='p1';
-  ['p1','p2','p3','p4','p5','p6'].forEach(p=>{ if(scores[p]>max){ max=scores[p]; top=p; } });
-  return top;
+  ['p6','p5','p4','p3','p2','p1'].forEach(p=>{ if(scores[p]>max){ max=scores[p]; top=p; } });
+  return max>0 ? top : 'p1';
 }
 
 // Origine du trafic (/ads vs /orga) — chemin d'URL, fallback query (?src= / utm_source).
