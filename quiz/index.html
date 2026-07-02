@@ -769,7 +769,8 @@ function computeScores(){
   const s = {p1:0,p2:0,p3:0,p4:0,p5:0,p6:0};
   const add = m => { if(m) for(const k in m) s[k]+=m[k]; };
   const A = answers;
-  add({etudiant:{p1:2,p2:1}, salarie:{p2:2,p1:1,p3:1}, freelance:{p4:3,p5:1}, business:{p6:5}}[A.status]);
+  // « J'ai déjà un business » = qualificatif Entrepreneur -> dominant (>max accumulable ailleurs) pour router fiablement sur p6.
+  add({etudiant:{p1:2,p2:1}, salarie:{p2:2,p1:1,p3:1}, freelance:{p4:3,p5:1}, business:{p6:10}}[A.status]);
   if(A.tried==='non'){
     add({p1:2});
     add({peur:{p1:2}, prix:{p1:1,p2:2}, temps:{p1:1}}[A.whyNot]);
