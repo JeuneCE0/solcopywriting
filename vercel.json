@@ -10,6 +10,7 @@
     { "has": [{ "type": "host", "value": "www.lecopyquiz.com" }],      "src": "/((?!api/).*)", "dest": "/quiz/$1" },
     { "has": [{ "type": "host", "value": "quizz.solcopywriting.com" }], "src": "/(.*)",         "dest": "/quiz/$1" },
     { "has": [{ "type": "host", "value": "ia.solcopywriting.com" }],   "src": "/((?!api/).*)", "dest": "/ia/$1" },
+    { "has": [{ "type": "host", "value": "onboarding.solcopywriting.com" }], "src": "/((?!api/).*)", "dest": "/onboarding/$1" },
     { "handle": "filesystem" }
   ]
 }
