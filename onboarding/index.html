@@ -730,19 +730,17 @@ input[type=range]::-moz-range-thumb{
 
 <script>
 /* =================================================================
-   CONFIG — 👉 RUDY : à compléter avant la mise en ligne
+   CONFIG
    ----------------------------------------------------------------
-   WEBHOOK_URL  : URL du webhook GHL (Workflow → Trigger "Inbound Webhook")
-                  qui recevra les réponses en JSON.
-                  Ex : "https://services.leadconnectorhq.com/hooks/XXXX/webhook-trigger/YYYY"
-                  Si vide → les données sont juste loguées dans la console.
+   WEBHOOK_URL  : endpoint serveur qui relaie vers l'API GHL
+                  (upsert contact par email + note récap). Voir api/onboarding.js.
+                  Le contact est identifié par l'email transmis dans le lien :
+                  onboarding.solcopywriting.com/?email={{contact.email}} (merge field GHL).
    REDIRECT_URL : (facultatif) page vers laquelle rediriger après l'envoi.
                   Si vide → on affiche l'écran de remerciement intégré.
-   NB : si le POST est bloqué par CORS côté GHL, un fallback "no-cors"
-        est tenté automatiquement (l'envoi passe, la réponse n'est pas lue).
    ================================================================= */
 const CONFIG = {
-  WEBHOOK_URL: "",
+  WEBHOOK_URL: "/api/onboarding",
   REDIRECT_URL: ""
 };
 
@@ -951,6 +949,11 @@ async function submitForm(){
   btnNext.textContent = 'Envoi…';
 
   const data = collectData();
+  // email (+ prénom en repli) transmis par GHL dans le lien : /?email={{contact.email}}
+  const _params = new URLSearchParams(location.search);
+  const _emailFromUrl = (_params.get('email') || '').trim();
+  if(_emailFromUrl) data.email = _emailFromUrl;
+  if(!data.prenom && _params.get('prenom')) data.prenom = _params.get('prenom').trim();
   data._meta = {
     submitted_at: new Date().toISOString(),
     source: 'big_brother_onboarding',
