@@ -741,5 +741,30 @@ try {
 </script>
 
 
+<script>
+/* Conversion « call booké » — page atteinte après réservation (redirection GHL du calendrier vers cette page).
+   Event Meta « Schedule » : pixel client + CAPI serveur (dédup via eventID). Une fois par session. */
+(function(){
+  try {
+    if (sessionStorage.getItem('bb_schedule_sent')) return;
+    var u = {}; try { u = JSON.parse(localStorage.getItem('quiz_user') || '{}'); } catch(e) {}
+    var eventId = 'schedule.' + Date.now() + '.' + Math.random().toString(36).slice(2);
+    if (window.fbq) { fbq('track','Schedule',{content_name:'Booking call Sol',currency:'EUR',value:0},{eventID:eventId}); }
+    var ck = function(n){ var m = document.cookie.match('(^|;)\\s*'+n+'\\s*=\\s*([^;]+)'); return m ? m.pop() : ''; };
+    var fbc = ck('_fbc');
+    if (!fbc) { var f = new URLSearchParams(location.search).get('fbclid'); if (f) fbc = 'fb.1.'+Date.now()+'.'+f; }
+    fetch('/api/booked', {
+      method:'POST', headers:{'Content-Type':'application/json'}, keepalive:true,
+      body: JSON.stringify({
+        event_id: eventId, firstName: u.firstname || '', email: u.email || '', phone: u.phone || '',
+        fbp: ck('_fbp'), fbc: fbc, event_source_url: location.href
+      })
+    }).catch(function(){});
+    sessionStorage.setItem('bb_schedule_sent','1');
+  } catch(e) {}
+})();
+</script>
+
+
 </body>
 </html>
