@@ -209,6 +209,13 @@
   .lead-form .cta{margin-top:5px}
   .lead-trust{text-align:center;font-size:12.5px;color:var(--ink-soft)}
 </style>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','5402493899974994');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=5402493899974994&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel -->
 </head>
 <body>
 
@@ -825,14 +832,19 @@ function quizAnswersReadable(){
   return { flat, recap: lines.join('\n') };
 }
 
-function sendLeadToGHL(userData, scores, code){
+function sendLeadToGHL(userData, scores, code, eventId){
   const p = PROFILES[code] || {};
   const src = quizSource();
   const stage = src === 'ads' ? 'Quiz Ads' : src === 'orga' ? 'Quiz Orga' : 'Quiz';
   const ra = quizAnswersReadable();
+  // cookies Meta (fbp/fbc) + fallback fbc depuis fbclid → transmis à la CAPI serveur pour la dédup
+  const ck = n => { const m = document.cookie.match('(^|;)\\s*'+n+'\\s*=\\s*([^;]+)'); return m ? m.pop() : ''; };
+  let fbc = ck('_fbc');
+  if(!fbc){ const fbclid = new URLSearchParams(location.search).get('fbclid'); if(fbclid) fbc = 'fb.1.'+Date.now()+'.'+fbclid; }
   const payload = {
     firstName:userData.firstname, email:userData.email, phone:userData.phone,
     source:"Le Copy Quiz", quiz_version:"conditionnel",
+    event_id:eventId||"", fbp:ck('_fbp'), fbc:fbc, event_source_url:location.href,
     quiz_source:src, quiz_stage:stage, pipeline:"Formations / Coaching", location_id:"2lB0paK192CFU1cLz5eT",
     quiz_profile_code:code, quiz_profile_name:p.name||"",
     quiz_score_p1:scores.p1, quiz_score_p2:scores.p2, quiz_score_p3:scores.p3,
@@ -862,7 +874,11 @@ function submitLead(){
   const scores = computeScores();
   const code = detectProfile(scores);
 
-  sendLeadToGHL(userData, scores, code);
+  // Meta Pixel — event Lead (dédupliqué avec la CAPI serveur via eventID)
+  const eventId = 'lead.' + Date.now() + '.' + Math.random().toString(36).slice(2);
+  try{ if(window.fbq){ fbq('track','Lead',{content_name:'Le Copy Quiz',currency:'EUR',value:0},{eventID:eventId}); } }catch(e){}
+
+  sendLeadToGHL(userData, scores, code, eventId);
   try{
     localStorage.setItem('quiz_profile', code);
     localStorage.setItem('quiz_user', JSON.stringify(userData));
