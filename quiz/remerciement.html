@@ -611,8 +611,16 @@ fbq('init','5402493899974994');fbq('track','PageView');
   <!-- HERO CONFIRMATION -->
   <div class="hero-confirmation">
     <div class="confirm-eyebrow">📅 Créneau réservé</div>
-    <h1>Top <span id="firstname-greeting">!</span> Ton créneau est posé — <span class="underline">il reste une étape</span></h1>
-    <p>Tu vas recevoir un <strong>email de confirmation</strong> dans les prochaines minutes avec tous les détails. Mais avant ça : lis bien ce qui suit, c'est important.</p>
+    <h1><span id="firstname-greeting">Toi</span>, ton rdv a été validé — <span class="underline">mais il reste une étape</span> …</h1>
+    <p style="font-weight:700;color:var(--ink);font-size:17px;margin-top:14px">👇 Regarde bien cette vidéo pour tout comprendre 👇</p>
+  </div>
+
+
+  <!-- VSL booking call -->
+  <div style="margin:0 auto 28px">
+    <div style="border-radius:16px;overflow:hidden;background:#000;box-shadow:var(--shadow-lg);border:1px solid var(--border)">
+      <video src="vsl/vsl-booking.mp4" poster="vsl/vsl-booking-poster.jpg" controls preload="metadata" playsinline style="width:100%;max-height:78vh;display:block"></video>
+    </div>
   </div>
 
 
@@ -730,13 +738,10 @@ fbq('init','5402493899974994');fbq('track','PageView');
 
 <script>
 try {
-  const userDataStr = localStorage.getItem('quiz_user');
-  if (userDataStr) {
-    const userData = JSON.parse(userDataStr);
-    if (userData.firstname && userData.firstname !== 'Dev') {
-      document.getElementById('firstname-greeting').textContent = userData.firstname;
-    }
-  }
+  // prénom : ?prenom= dans l'URL (merge field GHL) sinon quiz_user (localStorage)
+  var fn = (new URLSearchParams(location.search).get('prenom') || '').trim();
+  if (!fn) { var ud = JSON.parse(localStorage.getItem('quiz_user') || '{}'); if (ud.firstname && ud.firstname !== 'Dev') fn = ud.firstname; }
+  if (fn) document.getElementById('firstname-greeting').textContent = fn;
 } catch(e) {}
 </script>
 
