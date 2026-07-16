@@ -86,21 +86,24 @@ async function sendSlack(url, payload) {
     return r.ok;
   } catch { return false; }
 }
+const MATHIEU = "U0B0X1BU9PA"; // setter — tagué sur chaque notif
 function slackProspectPayload({ firstName, email, phone, source, profileName, recap }) {
   const blocks = [
-    { type: "header", text: { type: "plain_text", text: `🆕 Nouveau prospect${profileName ? " — " + profileName : ""}`, emoji: true } },
+    { type: "header", text: { type: "plain_text", text: "🆕 Nouveau prospect (quiz)", emoji: true } },
+    { type: "section", text: { type: "mrkdwn", text: `👋 <@${MATHIEU}> — nouveau prospect à contacter` } },
     { type: "section", fields: [
       { type: "mrkdwn", text: `*👤 Prénom*\n${firstName || "—"}` },
-      { type: "mrkdwn", text: `*🎯 Source*\n${source || "direct"}` },
+      { type: "mrkdwn", text: `*🏷️ Profil*\n${profileName || "—"}` },
       { type: "mrkdwn", text: `*✉️ Email*\n${email || "—"}` },
       { type: "mrkdwn", text: `*📱 WhatsApp*\n${phone || "—"}` },
+      { type: "mrkdwn", text: `*🎯 Source*\n${source || "direct"}` },
     ] },
   ];
   if (recap) {
     const quoted = String(recap).split("\n").map((l) => "> " + l).join("\n").slice(0, 2900);
     blocks.push({ type: "section", text: { type: "mrkdwn", text: "*📝 Récap des réponses*\n" + quoted } });
   }
-  return { text: `🆕 Nouveau prospect ${firstName || ""} (${source || "direct"})`.trim(), blocks };
+  return { text: `🆕 Nouveau prospect ${firstName || ""} — ${profileName || ""} (cc <@${MATHIEU}>)`.trim(), blocks };
 }
 
 // Résolution pipeline + stages par NOM (pas besoin d'IDs en dur). Mise en cache entre invocations chaudes.
