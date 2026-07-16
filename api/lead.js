@@ -78,6 +78,31 @@ async function sendMetaCAPI(body, req) {
   } catch { return false; }
 }
 
+// Slack — notif dans le canal #prospects-quiz à chaque optin. Webhook en env.
+async function sendSlack(url, payload) {
+  if (!url) return false;
+  try {
+    const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+    return r.ok;
+  } catch { return false; }
+}
+function slackProspectPayload({ firstName, email, phone, source, profileName, recap }) {
+  const blocks = [
+    { type: "header", text: { type: "plain_text", text: `🆕 Nouveau prospect${profileName ? " — " + profileName : ""}`, emoji: true } },
+    { type: "section", fields: [
+      { type: "mrkdwn", text: `*👤 Prénom*\n${firstName || "—"}` },
+      { type: "mrkdwn", text: `*🎯 Source*\n${source || "direct"}` },
+      { type: "mrkdwn", text: `*✉️ Email*\n${email || "—"}` },
+      { type: "mrkdwn", text: `*📱 WhatsApp*\n${phone || "—"}` },
+    ] },
+  ];
+  if (recap) {
+    const quoted = String(recap).split("\n").map((l) => "> " + l).join("\n").slice(0, 2900);
+    blocks.push({ type: "section", text: { type: "mrkdwn", text: "*📝 Récap des réponses*\n" + quoted } });
+  }
+  return { text: `🆕 Nouveau prospect ${firstName || ""} (${source || "direct"})`.trim(), blocks };
+}
+
 // Résolution pipeline + stages par NOM (pas besoin d'IDs en dur). Mise en cache entre invocations chaudes.
 let pipelineCache = null;
 async function resolvePipeline(token) {
@@ -171,8 +196,9 @@ export default async function handler(req, res) {
     } catch (e) { opportunityError = String((e && e.message) || e); }
 
     const capiOk = await sendMetaCAPI(body, req);
+    const slackOk = await sendSlack(process.env.SLACK_WEBHOOK_PROSPECTS, slackProspectPayload({ firstName, email, phone, source, profileName, recap }));
 
-    res.status(200).json({ ok: true, contactId, noteOk, capiOk, opportunityId, stage: stageUsed, opportunityError });
+    res.status(200).json({ ok: true, contactId, noteOk, capiOk, slackOk, opportunityId, stage: stageUsed, opportunityError });
   } catch (e) {
     res.status(502).json({ error: "Relais GHL indisponible.", detail: String((e && e.message) || e) });
   }
